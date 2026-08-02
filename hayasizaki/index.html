@@ -1,0 +1,1239 @@
+<!DOCTYPE html>
+<!--
+  ============================================================
+  株式会社ハヤシザキ様 サイトリニューアル ご提案用デザイン案
+  ------------------------------------------------------------
+  ・本ファイルは提案用の非公式デザイン案です（公式サイトではありません）
+  ・既存サイトの画像・ロゴは一切使用していません
+  ・写真5点はイメージ写真（img/）。それ以外の図版は全てこのファイル内で描画した自作SVGです
+  ・外部フォント・外部スクリプトへの依存なし
+  ・施工事例／お客様の声はデザイン確認用のダミーです
+  ・会社概要・電話番号・住所・資格等は既存サイトの記載を踏襲しています
+  ============================================================
+-->
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>株式会社ハヤシザキ｜札幌の屋根・外壁塗装［リニューアル提案デザイン案］</title>
+<meta name="description" content="札幌市北区篠路の屋根・外壁塗装。経験50年以上の一級建築塗装技能士が劣化診断を行い、適正価格でお見積りします。">
+<style>
+/* ===== tokens =================================================
+   コンセプト「塗り重ね」
+   塗装の価値は、重ねた層の数と、乾かした時間で決まる。ページも同じ原理で組む。
+   ・色  … 生成り(紙) → 白(下塗り) → 杉の葉(中塗り) → 深緑(上塗り) → 墨緑(下地)
+           ページを下るほど層が乗り、CTAが最後の上塗りになる
+   ・余白… 訴求＝広く（乾かす時間）、資料＝詰める。均一にしない
+   ・文字… 見出しを「山／標準／資料」の3階層に分け、リズムを作る
+   ・差し色… 山吹（足場と注意喚起の色）を2箇所だけ
+   ============================================================== */
+:root{
+  --ink:#131C17;         /* 墨 */
+  --ink-soft:#414F47;
+  --ink-mute:#6C7A72;
+  --snow:#EDF0EF;
+  --paper:#FFFFFF;       /* 基調は白 */
+  --white:#FFFFFF;
+  --mist:#F3F7F4;        /* ごく淡い緑白：層を分ける面 */
+  --line:#DCE4DE;
+  --line-soft:#EAF0EB;
+  --midori:#2F7A57;      /* 杉の葉：中塗り＝主アクセント */
+  --midori-deep:#1F5C40; /* 深緑：上塗り＝仕上げ（CTA） */
+  --slate:#1B2A24;       /* 墨緑：下地＝いちばん濃い面（施工の流れ） */
+  --yamabuki:#D9A441;    /* 山吹：差し色。極小面積にのみ使う */
+  --sky:#E4EDE7;
+  --shadow:0 1px 2px rgba(20,28,36,.05),0 12px 32px -18px rgba(20,28,36,.28);
+
+  --mincho:"Hiragino Mincho ProN","Yu Mincho",YuMincho,"Noto Serif JP","Sawarabi Mincho",serif;
+  --gothic:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",YuGothic,"Noto Sans JP",Meiryo,sans-serif;
+  /* 手書き風：Webフォント不使用のため、教科書体→丸ゴシックの順で環境依存フォールバック。
+     字形が出ない環境でも「手書き感」が残るよう、傾き＋自作の手描き罫と併用する */
+  --hand:"Klee One","Yu Kyokasho","YuKyokasho","UD Digi Kyokasho NK-R","Hiragino Maru Gothic ProN",
+         "Yu Gothic Medium","Yu Gothic",sans-serif;
+
+  --wrap:1120px;
+  --gut:clamp(20px,5vw,40px);
+  /* 余白の3段階。訴求は乾かす時間を取り、資料は詰める */
+  --sec-air:clamp(96px,13vw,168px);
+  --sec:clamp(64px,9vw,112px);
+  --sec-tight:clamp(44px,6vw,76px);
+  /* 見出しの3段階 */
+  --t-lead:clamp(2rem,5.2vw,3.1rem);
+  --t-mid:clamp(1.5rem,3.6vw,2.1rem);
+  --t-fact:clamp(1.16rem,2.5vw,1.46rem);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--gothic);font-size:16px;line-height:1.9;
+  font-feature-settings:"palt" 1;letter-spacing:.02em;
+  -webkit-font-smoothing:antialiased;
+}
+img,svg{max-width:100%;height:auto;display:block}
+a{color:inherit}
+h1,h2,h3,h4{margin:0;font-weight:600;line-height:1.4;letter-spacing:.01em}
+p{margin:0}
+ul,ol{margin:0;padding:0;list-style:none}
+:focus-visible{outline:2.5px solid var(--midori);outline-offset:3px;border-radius:2px}
+
+.wrap{width:min(100% - var(--gut)*2,var(--wrap));margin-inline:auto}
+.mincho{font-family:var(--mincho)}
+
+/* 既定は「標準」の階層。山と資料はセクション側で上書きする */
+.sec-title{
+  font-family:var(--mincho);font-size:var(--t-mid);
+  font-weight:600;line-height:1.42;letter-spacing:.03em;
+}
+.sec-lead{margin-top:18px;max-width:60ch;color:var(--ink-soft);font-size:.95rem}
+/* 山：訴求の頂点。字を大きく、行間を詰めて塊にする */
+.reasons .sec-title,.flow .sec-title,.cta h2{
+  font-size:var(--t-lead);line-height:1.36;letter-spacing:.045em;
+}
+.reasons .sec-lead,.flow .sec-lead{font-size:1.02rem;line-height:2}
+/* 資料：読ませるより引ける。字を落として密度を上げる */
+.faq .sec-title,.about .sec-title,.form-sec .sec-title{
+  font-size:var(--t-fact);letter-spacing:.06em;
+}
+.faq .sec-lead,.form-sec .sec-lead{font-size:.88rem;margin-top:12px}
+
+/* ===== 手書き風パーツ ========================================== */
+.hand{font-family:var(--hand);letter-spacing:.03em;line-height:1.72;color:var(--midori-deep)}
+/* 手描きの下線つき一言。ペンで書き足したように少しだけ傾ける */
+.scribble{
+  position:relative;display:inline-block;
+  font-family:var(--hand);font-size:clamp(.98rem,2.3vw,1.18rem);
+  color:var(--midori-deep);transform:rotate(-1.3deg);transform-origin:left bottom;
+  margin-bottom:18px;padding-bottom:2px;
+}
+.scribble .u{position:absolute;left:-6px;bottom:-10px;inline-size:calc(100% + 14px);block-size:12px;color:var(--midori);opacity:.75}
+/* 情景図に添える引き出し注釈。図と一緒に拡縮させたいのでSVG内に置く */
+.anno text{
+  font-family:var(--hand);font-size:16px;fill:var(--ink);letter-spacing:.02em;
+  paint-order:stroke fill;stroke:rgba(255,255,255,.92);stroke-width:3.5px;stroke-linejoin:round;
+}
+.anno .ln{fill:none;stroke:var(--midori-deep);stroke-width:2;stroke-linecap:round;opacity:.9;
+  filter:drop-shadow(0 0 2px rgba(255,255,255,.9))}
+.anno .dot{fill:var(--midori-deep);filter:drop-shadow(0 0 2px rgba(255,255,255,.9))}
+
+/* ===== セクション見出し（型はセクションごとに変える） ========= */
+/* A. 手書きの一言＋大見出しを左、リードを右に振る */
+.head-split{display:grid;grid-template-columns:1.02fr .98fr;gap:clamp(20px,4vw,60px);align-items:end}
+.head-split .sec-lead{margin-top:0;padding-bottom:.4em}
+/* B. 見出しを右に寄せ、空いた左を罫と英字ラベルで埋める */
+.head-rule{display:flex;align-items:flex-end;gap:clamp(16px,3vw,34px)}
+.head-rule .bar{flex:1;position:relative;border-bottom:1px solid var(--line);padding-bottom:12px}
+.head-rule .bar em{
+  display:block;font-style:normal;font-size:.68rem;letter-spacing:.26em;
+  color:var(--ink-mute);margin-bottom:12px;
+}
+.head-rule .bar .sec-lead{margin-top:0;max-width:48ch}
+.head-rule .t{text-align:right;flex:none;max-width:min(100%,20em)}
+/* C. 情景図に重ねる（濃色セクション用） */
+.head-over{position:relative;isolation:isolate;overflow:hidden}
+.head-over .scene{inline-size:100%;display:block;block-size:clamp(230px,30vw,400px);object-fit:cover;object-position:64% 42%}
+.head-over .veil{
+  position:absolute;inset:0;
+  /* 左に文字を置くための帯と、下端を面に溶かす層を重ねる */
+  background:
+    linear-gradient(180deg,rgba(27,42,36,0) 58%,var(--slate) 100%),
+    linear-gradient(100deg,var(--slate) 2%,rgba(27,42,36,.86) 32%,rgba(27,42,36,.16) 70%,rgba(27,42,36,.46) 100%);
+}
+.head-over .t{position:absolute;left:0;right:0;bottom:0;padding:0 0 clamp(22px,3.4vw,40px)}
+/* D. 誌面の柱風：見出しと出典メタを一行に並べ、太罫で締める */
+.head-mag{
+  display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;
+  gap:10px 20px;border-bottom:2px solid var(--ink);padding-bottom:14px;
+}
+.head-mag .meta{font-size:.72rem;letter-spacing:.14em;color:var(--ink-mute);white-space:nowrap}
+.head-mag+.sec-lead{margin-top:20px}
+/* E. 中央寄せ・小さめ見出し */
+.head-mid{text-align:center;max-width:46ch;margin-inline:auto}
+.head-mid .sec-lead{margin-inline:auto}
+/* F. 縦組みラベルを見出しの脇に立てる */
+.head-tate{display:flex;gap:clamp(14px,2.2vw,22px);align-items:flex-start}
+.head-tate .tate{
+  writing-mode:vertical-rl;font-size:.6rem;letter-spacing:.2em;
+  color:var(--ink-mute);margin-top:.5em;flex:none;
+}
+@media(max-width:760px){
+  .head-split{grid-template-columns:1fr;align-items:start}
+  .head-split .sec-lead{margin-top:16px;padding-bottom:0}
+  .head-rule{flex-direction:column-reverse;align-items:stretch;gap:16px}
+  .head-rule .bar{padding-bottom:0;border-bottom:0}
+  .head-rule .t{text-align:left;max-width:none}
+  /* 帯が浅くなるので、重ねずに図の下へ回す */
+  .head-over .t{position:relative;inset:auto;padding:clamp(20px,4vw,26px) 0 0}
+  .head-over .veil{background:linear-gradient(180deg,rgba(27,42,36,.12),rgba(27,42,36,.64))}
+}
+
+/* ===== header ================================================= */
+.note-bar{
+  background:var(--slate);color:rgba(255,255,255,.62);
+  font-size:.68rem;letter-spacing:.06em;line-height:1.6;
+  padding:5px 0;text-align:center;
+}
+.head-in{display:flex;align-items:center;gap:20px;min-height:66px}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;margin-right:auto}
+.brand-mark{inline-size:34px;block-size:34px;flex:none}
+.brand-name{font-family:var(--mincho);font-size:1.06rem;letter-spacing:.1em;line-height:1.25}
+.brand-sub{display:block;font-family:var(--gothic);font-size:.6rem;letter-spacing:.16em;color:var(--ink-mute)}
+.nav{display:flex;gap:24px}
+.nav a{font-size:.85rem;text-decoration:none;color:var(--ink-soft);padding:6px 0;position:relative}
+.nav a::after{
+  content:"";position:absolute;left:0;right:100%;bottom:0;height:1.5px;
+  background:var(--midori);transition:right .3s ease;
+}
+.nav a:hover::after{right:0}
+.head-tel{display:flex;align-items:center;gap:10px;text-decoration:none}
+.head-tel .num{font-family:var(--mincho);font-size:1.18rem;letter-spacing:.04em;white-space:nowrap}
+.head-tel .lbl{font-size:.6rem;letter-spacing:.14em;color:var(--ink-mute);display:block;line-height:1.3}
+@media(max-width:900px){.nav,.head-tel{display:none}}
+
+/* ===== hero ===================================================
+   全画面の実写を敷き、中央に社名・罫・実績を置く。
+   ヘッダーは透過で重ね、下端に用件（無料・所要時間・連絡先）の帯を出す */
+.hero{position:relative;isolation:isolate;color:#fff}
+.hero-media{position:absolute;inset:0;overflow:hidden;z-index:-1}
+.hero-media img{inline-size:100%;block-size:100%;object-fit:cover;object-position:56% 42%}
+.hero-scrim{
+  position:absolute;inset:0;
+  background:
+    linear-gradient(180deg,rgba(14,22,18,.62) 0%,rgba(14,22,18,.28) 26%,rgba(14,22,18,.34) 62%,rgba(14,22,18,.72) 100%),
+    radial-gradient(120% 78% at 50% 44%,rgba(14,22,18,0) 32%,rgba(14,22,18,.42) 100%);
+}
+.hero-inner{
+  min-block-size:min(100svh,860px);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:clamp(150px,20vh,220px) 0 clamp(150px,20vh,210px);
+}
+.hero-eyebrow{
+  font-size:clamp(.72rem,1.7vw,.84rem);letter-spacing:.32em;
+  color:rgba(255,255,255,.86);text-shadow:0 1px 12px rgba(0,0,0,.5);
+}
+.hero-title{
+  margin-top:clamp(20px,3vw,32px);font-family:var(--mincho);font-weight:600;
+  font-size:clamp(2.1rem,6vw,3.7rem);letter-spacing:.14em;line-height:1.3;
+  text-shadow:0 2px 22px rgba(0,0,0,.45);
+}
+.hero-rule{
+  display:block;inline-size:clamp(52px,7vw,80px);block-size:1px;
+  background:rgba(255,255,255,.72);margin:clamp(22px,3.4vw,34px) 0;
+}
+.hero-sub{
+  font-family:var(--mincho);font-size:clamp(1rem,2.6vw,1.4rem);
+  letter-spacing:.28em;text-shadow:0 1px 14px rgba(0,0,0,.5);
+}
+/* 下端の帯：飾りではなく、電話をかける前に知りたいことだけを置く */
+.hero-bar{
+  position:absolute;left:0;right:0;bottom:0;
+  background:rgba(14,22,18,.52);backdrop-filter:blur(6px);
+  border-top:1px solid rgba(255,255,255,.16);
+}
+.hero-bar-in{
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:center;
+  gap:clamp(12px,2.6vw,34px);padding:clamp(14px,2vw,20px) 0;
+}
+.hero-bar-msg{font-size:.82rem;letter-spacing:.06em;color:rgba(255,255,255,.86)}
+.hero-bar-tel,.hero-bar-mail{
+  display:inline-flex;align-items:center;gap:9px;text-decoration:none;color:#fff;
+}
+.hero-bar-tel .num{font-family:var(--mincho);font-size:clamp(1.3rem,3.4vw,1.72rem);letter-spacing:.05em}
+.hero-bar-mail{font-size:.84rem;letter-spacing:.06em;border-bottom:1px solid rgba(255,255,255,.42);padding-bottom:2px}
+.hero-bar-mail:hover{border-color:#fff}
+@keyframes rise{from{opacity:0;transform:translateY(18px)}}
+@media(prefers-reduced-motion:no-preference){
+  .hero-inner>*{animation:rise .9s ease both}
+  .hero-inner>*:nth-child(2){animation-delay:.12s}
+  .hero-inner>*:nth-child(3){animation-delay:.22s}
+  .hero-inner>*:nth-child(4){animation-delay:.3s}
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.on{opacity:1;transform:none}
+}
+@media(max-width:700px){
+  .hero-inner{min-block-size:min(88svh,640px);padding:clamp(120px,18vh,160px) 0 clamp(150px,22vh,190px)}
+  .hero-bar-in{flex-direction:column;gap:8px;text-align:center}
+  .hero-bar-msg{font-size:.76rem}
+}
+
+/* ===== ヘッダー：ヒーローに重ね、スクロールで白に戻す ========== */
+.topbar{position:fixed;top:0;left:0;right:0;z-index:50}
+.site-head{
+  position:relative;background:transparent;border-bottom:1px solid transparent;
+  transition:background .3s ease,border-color .3s ease,backdrop-filter .3s ease;
+}
+/* 空が明るいカットでも白文字が読めるよう、ヘッダー下だけ軽く落とす */
+.site-head::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,rgba(14,22,18,.5),rgba(14,22,18,0));
+  transition:opacity .3s ease;
+}
+.site-head.scrolled::before{opacity:0}
+.head-in{position:relative}
+/* 固定ヘッダーの下にアンカー先が隠れないようにする */
+section[id],main[id]{scroll-margin-top:104px}
+.site-head .brand-name,.site-head .nav a,.site-head .head-tel{color:#fff}
+.site-head .brand-sub,.site-head .head-tel .lbl{color:rgba(255,255,255,.72)}
+.site-head .brand-mark rect{fill:rgba(255,255,255,.16)}
+.site-head.scrolled{
+  background:rgba(255,255,255,.94);backdrop-filter:blur(10px);
+  border-bottom-color:var(--line-soft);
+}
+.site-head.scrolled .brand-name,.site-head.scrolled .head-tel{color:var(--ink)}
+.site-head.scrolled .nav a{color:var(--ink-soft)}
+.site-head.scrolled .brand-sub,.site-head.scrolled .head-tel .lbl{color:var(--ink-mute)}
+.site-head.scrolled .brand-mark rect{fill:var(--slate)}
+
+/* ===== 選ばれる理由（情景＋読み物） ============================ */
+.reasons{background:var(--mist);border-block:1px solid var(--line-soft);padding:var(--sec-air) 0 calc(var(--sec-air)*.78)}
+
+/* 情景図。実写が用意でき次第 .scene を <img> に差し替えるだけで成立する */
+.scene-fig{margin:clamp(30px,4.4vw,54px) 0 0}
+.scene-fig .frame{
+  position:relative;aspect-ratio:1000/430;overflow:hidden;
+  background:var(--sky);border-radius:4px;box-shadow:var(--shadow);
+}
+.scene-fig .scene{display:block;inline-size:100%;block-size:100%;object-fit:cover;object-position:50% 46%}
+.anno-layer{position:absolute;inset:0;inline-size:100%;block-size:100%}
+.scene-fig figcaption{margin-top:13px;font-size:.75rem;letter-spacing:.06em;color:var(--ink-mute)}
+.pin-list{display:none}
+
+/* 読み物：走り見出しの二段組本文＋欄外の手書きメモ */
+.read{
+  margin-top:clamp(32px,4.4vw,54px);display:grid;
+  grid-template-columns:1fr minmax(160px,225px);gap:clamp(26px,4vw,56px);align-items:start;
+}
+.lede{
+  font-family:var(--mincho);font-size:clamp(1.06rem,2.5vw,1.32rem);line-height:1.95;
+  letter-spacing:.04em;border-left:2px solid var(--midori);padding-left:clamp(15px,2.2vw,24px);
+}
+.read-body{margin-top:clamp(22px,2.8vw,32px);columns:2;column-gap:clamp(26px,3.4vw,46px)}
+.read-body p{margin-bottom:1.25em;font-size:.93rem;color:var(--ink-soft)}
+.run{font-family:var(--mincho);font-weight:600;color:var(--ink);letter-spacing:.04em}
+.run::after{content:"　"}
+.side-note{
+  font-family:var(--hand);font-size:.89rem;line-height:1.95;color:var(--midori-deep);
+  border-top:2px solid var(--midori);padding-top:15px;transform:rotate(-.6deg);
+}
+.side-note strong{display:block;font-weight:600;font-size:1.02rem;margin-bottom:5px}
+@media(max-width:860px){.read{grid-template-columns:1fr}.read-body{columns:1}.side-note{transform:none}}
+@media(max-width:760px){
+  /* 狭い画面では文字が小さくなりすぎるので、注釈を図の下に並べ直す */
+  .anno{display:none}
+  .pin-list{display:block;margin-top:15px;border-left:2px solid var(--midori);padding-left:15px}
+  .pin-list li{font-family:var(--hand);font-size:.86rem;line-height:1.8;color:var(--ink-soft)}
+  .pin-list li+li{margin-top:7px}
+}
+
+/* ===== 工事メニュー ============================================ */
+.menu{padding:var(--sec) 0 calc(var(--sec)*.88)}
+/* 均等3カラムをやめ、主役の屋根塗装を横位置の大枠に、残り2つを下段へ */
+.menu-grid{margin-top:clamp(34px,5vw,52px);display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(16px,2.4vw,26px)}
+.mcard{background:var(--white);border:1px solid var(--line-soft);border-radius:4px;overflow:hidden;transition:transform .25s ease,box-shadow .25s ease}
+.mcard:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.mcard .art{display:block;inline-size:100%;background:var(--sky);aspect-ratio:400/220;object-fit:cover}
+.mcard-body{padding:22px 22px 26px}
+.mcard h3{font-family:var(--mincho);font-size:1.16rem;letter-spacing:.05em}
+.mcard p{margin-top:10px;font-size:.88rem;color:var(--ink-soft)}
+.mcard ul{margin-top:14px;display:flex;flex-wrap:wrap;gap:6px}
+.mcard li{font-size:.7rem;letter-spacing:.04em;color:var(--ink-mute);border:1px solid var(--line);border-radius:2px;padding:3px 9px}
+.mcard.lead{grid-column:1/-1;display:grid;grid-template-columns:1.18fr 1fr;align-items:stretch}
+.mcard.lead .art{block-size:100%;aspect-ratio:auto}
+.mcard.lead .mcard-body{padding:clamp(24px,3.4vw,40px);align-self:center}
+.mcard.lead h3{font-size:clamp(1.22rem,2.6vw,1.6rem)}
+.mcard.lead p{font-size:.93rem;max-width:44ch}
+@media(max-width:820px){
+  .menu-grid{grid-template-columns:1fr;max-width:520px}
+  .mcard.lead{grid-template-columns:1fr}
+  /* 1カラムに落ちたら高さ指定を解除する（100%のままだとカード全体の高さを取り、本文と重なる） */
+  .mcard.lead .art{block-size:auto;aspect-ratio:400/220}
+  .mcard.lead .mcard-body{padding:22px 22px 26px}
+}
+
+/* ===== 塗り重ねの流れ（番号カードをやめ、工程表として読ませる） */
+.flow{background:var(--slate);color:#fff;padding:0 0 var(--sec-air)}
+.flow .sec-lead{color:rgba(255,255,255,.74)}
+.flow-body{padding-top:clamp(30px,4vw,46px)}
+.route{margin-top:clamp(26px,3.4vw,40px)}
+.leg{
+  display:grid;grid-template-columns:minmax(6.5em,10em) 1fr;gap:clamp(14px,3vw,36px);
+  padding:clamp(20px,2.8vw,30px) 0;border-top:1px solid rgba(255,255,255,.15);
+}
+.leg:first-child{border-top:0;padding-top:0}
+.leg-when{font-size:.78rem;letter-spacing:.06em;color:rgba(255,255,255,.5);padding-top:.4em}
+.leg-body{border-left:1px solid rgba(255,255,255,.22);padding-left:clamp(16px,3vw,32px)}
+.leg h3{font-family:var(--mincho);font-size:clamp(1.04rem,2.3vw,1.3rem);letter-spacing:.05em}
+.leg p{margin-top:10px;font-size:.9rem;line-height:1.92;color:rgba(255,255,255,.7);max-width:58ch}
+/* 職人の口ぐせをそのまま書き足したような一言 */
+.leg-note{
+  position:relative;display:inline-block;margin-top:16px;padding-left:38px;
+  font-family:var(--hand);font-size:.92rem;line-height:1.7;
+  color:var(--yamabuki);transform:rotate(-1deg);
+}
+.leg-note .ar{position:absolute;left:0;top:.1em;color:var(--yamabuki);opacity:.85}
+.flow-note{margin-top:26px;font-size:.8rem;color:rgba(255,255,255,.55)}
+@media(max-width:600px){
+  .leg{grid-template-columns:1fr;gap:8px}
+  .leg-when{padding-top:0}
+  .leg-body{border-left:0;padding-left:0}
+}
+
+/* ===== 施工事例 ================================================ */
+.works{padding:var(--sec) 0 var(--sec-tight)}
+/* 施工事例：施工前と施工後を並べて見せる。ここは比較できることが最優先 */
+.cases{margin-top:clamp(28px,3.8vw,48px)}
+.case{
+  display:grid;grid-template-columns:1.52fr 1fr;gap:clamp(20px,3.4vw,50px);
+  padding:clamp(26px,3.6vw,44px) 0;border-top:1px solid var(--line-soft);
+  align-items:start;   /* 写真列が本文列の高さまで伸びると、ラベルが画像の外に落ちる */
+}
+.case:last-child{border-bottom:1px solid var(--line-soft)}
+.case-photos{display:grid;grid-template-columns:1fr 1fr;gap:clamp(8px,1.3vw,14px);align-items:start}
+.ba{margin:0;position:relative}
+.ba img{
+  display:block;inline-size:100%;aspect-ratio:16/10;object-fit:cover;
+  border-radius:2px;background:var(--sky);
+}
+.ba figcaption{
+  position:absolute;left:9px;bottom:9px;
+  font-size:.66rem;font-weight:700;letter-spacing:.14em;
+  padding:3px 10px;border-radius:2px;
+}
+.ba-before figcaption{background:rgba(19,28,23,.72);color:#fff}
+.ba-after figcaption{background:rgba(255,255,255,.92);color:var(--midori-deep)}
+.case-body h3{font-family:var(--mincho);font-size:clamp(1rem,2.1vw,1.18rem);letter-spacing:.04em;line-height:1.6}
+.case-note{margin-top:11px;font-size:.85rem;line-height:1.9;color:var(--ink-soft)}
+.case-body dl{margin:16px 0 0;display:grid;grid-template-columns:auto 1fr;gap:7px 14px;font-size:.79rem}
+.case-body dt{color:var(--ink-mute);letter-spacing:.06em;white-space:nowrap}
+.case-body dd{margin:0;color:var(--ink-soft)}
+.swatches{display:flex;gap:6px;margin-top:16px;align-items:center}
+.sw{inline-size:20px;block-size:20px;border-radius:2px;box-shadow:0 0 0 1px rgba(20,28,36,.14) inset}
+.sw-lbl{font-size:.68rem;color:var(--ink-mute);letter-spacing:.08em}
+@media(max-width:820px){.case{grid-template-columns:1fr;gap:18px}}
+@media(max-width:420px){.case-photos{gap:6px}.ba figcaption{font-size:.6rem;padding:2px 7px;left:6px;bottom:6px}}
+
+/* ===== 声 ====================================================== */
+.voice{background:var(--mist);border-block:1px solid var(--line-soft);padding:var(--sec) 0 var(--sec-tight)}
+.voice-hand{font-size:.95rem;margin-bottom:10px}
+.voice-title{font-size:clamp(1.36rem,3vw,1.92rem)}
+.voice-grid{margin-top:clamp(34px,4.6vw,54px);display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(26px,4vw,52px)}
+.vcard{position:relative;padding:0 0 0 clamp(30px,3.4vw,42px)}
+.vcard::before{
+  content:"“";position:absolute;left:-2px;top:-.22em;
+  font-family:var(--mincho);font-size:clamp(2.6rem,5vw,3.6rem);line-height:1;
+  color:var(--midori);opacity:.32;
+}
+.vcard blockquote{margin:0;font-family:var(--mincho);font-size:1.02rem;line-height:1.95;letter-spacing:.03em}
+.vcard cite{display:block;margin-top:14px;font-style:normal;font-size:.76rem;color:var(--ink-mute);letter-spacing:.08em}
+@media(max-width:700px){.voice-grid{grid-template-columns:1fr}}
+
+/* ===== FAQ ===================================================== */
+.faq{padding:var(--sec-tight) 0}
+/* FAQは探して引く道具。凝らず、中央のシングルカラムで置く */
+.faq-grid{max-width:740px;margin-inline:auto}
+.faq-head{text-align:center}
+.faq-head .sec-lead{margin-inline:auto}
+.faq-list{margin-top:clamp(26px,3.4vw,38px);border-top:1px solid var(--line)}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{
+  list-style:none;cursor:pointer;padding:22px 44px 22px 34px;position:relative;
+  font-size:.97rem;font-weight:600;letter-spacing:.03em;
+}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::before{
+  content:"Q";position:absolute;left:0;top:22px;
+  font-family:var(--mincho);color:var(--midori);font-size:1rem;
+}
+.faq summary::after{
+  content:"";position:absolute;right:10px;top:31px;inline-size:11px;block-size:11px;
+  border-right:1.5px solid var(--ink-mute);border-bottom:1.5px solid var(--ink-mute);
+  transform:rotate(45deg);transition:transform .25s ease;
+}
+.faq details[open] summary::after{transform:rotate(-135deg)}
+.faq .ans{padding:0 44px 26px 34px;color:var(--ink-soft);font-size:.9rem}
+
+/* ===== 会社概要 ================================================ */
+.about{background:var(--mist);border-top:1px solid var(--line-soft);padding:var(--sec-tight) 0}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,5vw,64px);align-items:start}
+.tbl{margin-top:26px;border-top:1px solid var(--line)}
+.tbl div{display:grid;grid-template-columns:8.5em 1fr;gap:16px;padding:15px 0;border-bottom:1px solid var(--line-soft);font-size:.9rem}
+.tbl dt{color:var(--ink-mute);letter-spacing:.08em}
+.tbl dd{margin:0;color:var(--ink-soft);word-break:break-word}
+.quals{margin-top:26px;display:flex;flex-wrap:wrap;gap:8px}
+.qual{font-size:.75rem;letter-spacing:.04em;border:1px solid var(--line);border-radius:2px;padding:6px 12px;color:var(--ink-soft);background:var(--paper)}
+.jreform{
+  margin-top:30px;background:var(--paper);border:1px solid var(--line-soft);
+  border-radius:4px;padding:24px;
+}
+.jreform h3{font-size:.92rem;letter-spacing:.06em}
+.jreform p{margin-top:11px;font-size:.83rem;color:var(--ink-soft)}
+.jreform a{font-size:.8rem;color:var(--midori);margin-top:12px;display:inline-block;font-weight:700}
+@media(max-width:860px){.about-grid{grid-template-columns:1fr}}
+@media(max-width:420px){.tbl div{grid-template-columns:1fr;gap:4px}}
+
+/* ===== CTA ===================================================== */
+.cta{
+  position:relative;isolation:isolate;color:#fff;text-align:center;
+  padding:var(--sec-air) 0 calc(var(--sec-air)*.7);
+  overflow:hidden;
+}
+.cta-bg{position:absolute;inset:0;z-index:-1;overflow:hidden}
+.cta-bg img{
+  position:absolute;inset:0;inline-size:100%;block-size:100%;
+  max-width:none;height:100%;object-fit:cover;object-position:62% 40%;
+}
+.cta-scrim{
+  position:absolute;inset:0;
+  background:
+    linear-gradient(180deg,rgba(18,32,26,.78) 0%,rgba(18,32,26,.72) 45%,rgba(18,32,26,.86) 100%),
+    radial-gradient(90% 70% at 50% 40%,rgba(18,32,26,.2) 0%,rgba(18,32,26,.55) 100%);
+}
+.cta .wrap{position:relative;max-width:760px}
+.cta h2{font-family:var(--mincho);letter-spacing:.05em}
+.cta-lead{margin-top:18px;color:rgba(255,255,255,.78);font-size:.94rem;line-height:1.9}
+.cta-label{
+  display:flex;align-items:center;justify-content:center;gap:12px;
+  margin:clamp(36px,5vw,52px) auto 0;max-width:560px;
+}
+.cta-label::before,.cta-label::after{
+  content:"";flex:1;height:1px;background:rgba(217,164,65,.55);
+}
+.cta-label-icon{
+  flex:none;inline-size:36px;block-size:36px;border-radius:50%;
+  border:1px solid rgba(217,164,65,.7);
+  display:grid;place-items:center;color:var(--yamabuki);
+}
+.cta-label-text{
+  flex:none;font-size:.78rem;letter-spacing:.14em;color:rgba(255,255,255,.88);
+  white-space:nowrap;
+}
+.cta-tel{
+  display:inline-flex;align-items:center;justify-content:center;gap:14px;
+  margin-top:28px;text-decoration:none;color:#fff;
+}
+.cta-tel .ico{flex:none;color:var(--yamabuki)}
+.cta-tel .num{
+  font-family:var(--mincho);font-size:clamp(2.2rem,7vw,3.4rem);
+  letter-spacing:.06em;line-height:1.05;font-weight:600;
+}
+.cta-hours{
+  display:inline-flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:10px 12px;
+  margin-top:14px;font-size:.8rem;letter-spacing:.08em;color:rgba(255,255,255,.78);
+}
+.cta-hours .badge{
+  display:inline-block;padding:3px 10px;border:1px solid rgba(255,255,255,.55);
+  border-radius:2px;font-size:.68rem;letter-spacing:.12em;color:#fff;
+}
+.cta-actions{
+  display:grid;grid-template-columns:1fr 1fr;gap:14px;
+  margin:clamp(34px,5vw,48px) auto 0;max-width:640px;
+}
+.cta-btn{
+  display:flex;align-items:center;gap:12px;
+  padding:16px 18px;text-decoration:none;border-radius:2px;
+  transition:background .2s ease,border-color .2s ease,transform .2s ease;
+}
+.cta-btn .ico{flex:none}
+.cta-btn .txt{flex:1;text-align:left;min-width:0}
+.cta-btn .ttl{display:block;font-size:.92rem;font-weight:700;letter-spacing:.06em;line-height:1.35}
+.cta-btn .sub{display:block;margin-top:4px;font-size:.68rem;letter-spacing:.04em;opacity:.88;word-break:break-all}
+.cta-btn .ar{flex:none;opacity:.85}
+.cta-btn--mail{
+  background:var(--yamabuki);color:#fff;
+}
+.cta-btn--mail:hover{background:#c49232}
+.cta-btn--form{
+  background:transparent;color:#fff;border:1px solid rgba(255,255,255,.72);
+}
+.cta-btn--form:hover{background:rgba(255,255,255,.08);border-color:#fff}
+.cta-meta{
+  margin-top:clamp(36px,5vw,48px);padding-top:22px;
+  border-top:1px solid rgba(255,255,255,.22);
+  font-size:.82rem;color:rgba(255,255,255,.72);line-height:1.9;
+}
+.cta-meta .name{display:block;color:#fff;letter-spacing:.08em;margin-bottom:4px}
+.cta-meta .addr{
+  display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  color:rgba(255,255,255,.68);
+}
+.cta-meta .addr svg{flex:none;opacity:.75}
+@media(max-width:640px){
+  .cta-actions{grid-template-columns:1fr}
+  .cta-label{max-width:100%;gap:10px}
+  .cta-label-text{font-size:.7rem;letter-spacing:.1em}
+  .cta-tel{gap:10px}
+  .cta-btn{padding:15px 16px}
+}
+
+/* ===== form ==================================================== */
+.form-sec{padding:var(--sec-tight) 0 var(--sec)}
+.form-hand{margin-top:18px;font-size:.95rem;border-left:2px solid var(--midori);padding-left:16px}
+.form-sec .wrap{width:min(100% - var(--gut)*2,720px)}
+.form{margin-top:clamp(28px,4vw,40px)}
+.field{margin-bottom:20px}
+.field label{display:block;font-size:.82rem;letter-spacing:.08em;margin-bottom:8px;color:var(--ink-soft)}
+.field .req{color:var(--midori);font-size:.7rem;margin-left:6px}
+.field input,.field textarea,.field select{
+  inline-size:100%;font:inherit;font-size:.94rem;padding:13px 14px;
+  border:1px solid var(--line);border-radius:3px;background:var(--white);color:var(--ink);
+}
+.field textarea{min-height:130px;resize:vertical}
+.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--midori);outline:none;box-shadow:0 0 0 3px rgba(46,107,78,.12)}
+.form-note{font-size:.78rem;color:var(--ink-mute);margin-top:6px}
+.form-msg{margin-top:16px;font-size:.85rem;color:var(--midori);font-weight:700}
+
+/* ===== footer ================================================== */
+.site-foot{background:var(--ink);color:rgba(255,255,255,.66);padding:52px 0 96px;font-size:.83rem}
+.foot-grid{display:flex;flex-wrap:wrap;gap:30px;justify-content:space-between;align-items:flex-start}
+.foot-brand{display:flex;align-items:center;gap:11px;color:#fff}
+.foot-brand .brand-name{color:#fff}
+.foot-addr{margin-top:16px;line-height:2;color:rgba(255,255,255,.66);word-break:break-word}
+.foot-addr a{color:rgba(255,255,255,.85)}
+.foot-nav{display:flex;flex-wrap:wrap;gap:20px}
+.foot-nav a{text-decoration:none;color:rgba(255,255,255,.66)}
+.foot-nav a:hover{color:#fff}
+.foot-bottom{margin-top:38px;padding-top:20px;border-top:1px solid rgba(255,255,255,.14);
+  display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;font-size:.72rem;color:rgba(255,255,255,.42)}
+
+/* ===== mobile call bar ========================================= */
+.callbar{
+  position:fixed;left:0;right:0;bottom:0;z-index:60;display:none;
+  grid-template-columns:1fr 1fr;gap:1px;background:var(--line);
+  box-shadow:0 -6px 20px -12px rgba(20,28,36,.5);
+}
+.callbar a{
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  padding:15px 8px;text-decoration:none;font-size:.88rem;font-weight:700;letter-spacing:.06em;
+}
+.callbar .c-tel{background:var(--midori);color:#fff}
+.callbar .c-mail{background:var(--white);color:var(--ink)}
+@media(max-width:900px){.callbar{display:grid}.site-foot{padding-bottom:96px}}
+@media(min-width:901px){.site-foot{padding-bottom:52px}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+<p class="note-bar">※本サイトは提案用の非公式デザイン案です。写真はイメージ、施工事例・お客様の声はダミーです。</p>
+
+<header class="site-head">
+  <div class="wrap head-in">
+    <a class="brand" href="#top">
+      <svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true">
+        <rect width="40" height="40" rx="4" fill="#22322C"/>
+        <path d="M8 24 20 12l12 12v6H8z" fill="#2E6B4E"/>
+        <path d="M8 24 20 12l12 12" fill="none" stroke="#F1EFE8" stroke-width="1.6"/>
+        <rect x="17" y="25" width="6" height="5" fill="#F1EFE8"/>
+      </svg>
+      <span class="brand-name mincho">株式会社 ハヤシザキ
+        <span class="brand-sub">SAPPORO ／ ROOF &amp; WALL PAINTING</span>
+      </span>
+    </a>
+    <nav class="nav" aria-label="メインメニュー">
+      <a href="#reasons">選ばれる理由</a>
+      <a href="#menu">工事メニュー</a>
+      <a href="#flow">施工の流れ</a>
+      <a href="#works">施工事例</a>
+      <a href="#about">会社概要</a>
+    </nav>
+    <a class="head-tel" href="tel:0117723536">
+      <span>
+        <span class="lbl">お見積り・ご相談は無料</span>
+        <span class="num mincho">011-772-3536</span>
+      </span>
+    </a>
+  </div>
+</header>
+</div>
+
+<main id="top">
+
+  <!-- ============ HERO ============
+       全画面の実写＋中央に社名・罫・実績。下端に用件だけの帯を出す -->
+  <section class="hero">
+    <div class="hero-media">
+      <img src="img/hero-wide.jpg" width="1920" height="1080"
+           fetchpriority="high" decoding="async"
+           alt="足場の上で、職人がローラーで住宅の外壁を塗り替えているところ">
+      <div class="hero-scrim"></div>
+    </div>
+
+    <div class="wrap hero-inner">
+      <p class="hero-eyebrow">住まいを明るく。暮らしを楽しく。</p>
+      <h1 class="hero-title">株式会社 ハヤシザキ</h1>
+      <span class="hero-rule" aria-hidden="true"></span>
+      <p class="hero-sub">創業50年以上</p>
+    </div>
+
+    <div class="hero-bar">
+      <div class="wrap hero-bar-in">
+        <p class="hero-bar-msg">現地調査・お見積りは無料。診断は約1時間です。</p>
+        <a class="hero-bar-tel" href="tel:0117723536">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
+          <span class="num">011-772-3536</span>
+        </a>
+        <a class="hero-bar-mail" href="#contact">フォームで相談する</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 選ばれる理由 ============
+       見出しの型：手書きの一言＋大見出しを左／リードを右（他セクションと型を変える） -->
+  <section class="reasons" id="reasons">
+    <div class="wrap">
+      <div class="head-split">
+        <div>
+          <p class="scribble">見にも行かずに、見積りは書けません。
+            <svg class="u" viewBox="0 0 200 12" preserveAspectRatio="none" aria-hidden="true">
+              <path d="M3 8C36 2.5 63 9.5 97 5.5s57 4 100 .8" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+            </svg>
+          </p>
+          <h2 class="sec-title">診断する人が、<br>そのまま責任を持つ。</h2>
+        </div>
+        <p class="sec-lead">建物は必ず古くなります。美観と性能を保てるかどうかは、点検と手入れの積み重ね次第です。</p>
+      </div>
+
+      <!-- 診断風景。実写が用意でき次第、下の <svg class="scene"> を
+           同じ縦横比（1000:430）の <img class="scene"> に差し替えるだけで成立します -->
+      <figure class="scene-fig reveal">
+        <div class="frame">
+          <img class="scene" src="img/shindan.webp" width="1600" height="688"
+               loading="lazy" decoding="async"
+               alt="ヘルメットと作業着の診断士が、住宅の外壁に手を当てて劣化を確かめているところ">
+          <svg class="anno-layer" viewBox="0 0 1000 430" aria-hidden="true">
+            <g class="anno">
+              <g transform="rotate(-1.4 140 54)">
+                <text x="44" y="44">手で触ると白い粉が付く。</text>
+                <text x="44" y="66">これがチョーキングです。</text>
+              </g>
+              <path class="ln" d="M120 80c22 12 42 16 58 20"/>
+              <circle class="dot" cx="182" cy="102" r="3.4"/>
+
+              <g transform="rotate(1 120 330)">
+                <text x="44" y="330">所見はその場で書き取ります。</text>
+              </g>
+              <path class="ln" d="M196 340c44 12 88 26 124 34"/>
+              <circle class="dot" cx="324" cy="376" r="3.4"/>
+            </g>
+          </svg>
+        </div>
+        <ul class="pin-list">
+          <li>手で触ると白い粉が付く。これがチョーキングです。</li>
+          <li>所見はその場で書き取り、写真と一緒にお渡しします。</li>
+        </ul>
+        <figcaption>外壁のチョーキングを確認しているところ（イメージ写真）</figcaption>
+      </figure>
+
+      <div class="read reveal">
+        <div>
+          <p class="lede">屋根も外壁も、傷み方は一軒ずつ違います。だから見積りを書く前に、上って、触って、確かめる。ハヤシザキが50年変えていないのは、その順番です。</p>
+          <div class="read-body">
+            <p><b class="run">見るのは、営業ではなく職人です。</b>一級建築塗装技能士の資格を持つ診断士が、屋根の錆も外壁のチョーキングも自分の目で見ます。写真を撮って持ち帰るだけの調査とは、判断の精度が違います。</p>
+            <p><b class="run">要る工事と、要らない工事を分けます。</b>いま直すべき箇所と、次回まで持たせられる箇所をはっきりお伝えします。見積書には工程・数量・使用塗料を明記。その場で契約をお願いすることはありません。</p>
+            <p><b class="run">地元で、続けてきた会社です。</b>札幌市工事指名業者、札幌塗装工業協同組合員。建設業許可 知事許可（般-30）石第23176号。工事が終わったあとも相談していただける体制を残しています。</p>
+          </div>
+        </div>
+        <div class="side-note">
+          <strong>ご相談の前に</strong>
+          現地調査・お見積りは無料です。<br>
+          相見積りも歓迎します。<br>
+          拠点は札幌市北区篠路。
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 工事メニュー ============ -->
+  <section class="menu" id="menu">
+    <div class="wrap">
+      <!-- 見出しの型：右寄せ見出し＋左に伸びる罫（誌面の柱） -->
+      <div class="head-rule">
+        <div class="bar">
+          <em>SERVICE ／ 屋根・外壁・付帯部</em>
+          <p class="sec-lead">凍結と融解、積雪、強い日射。足場を組む工事だからこそ、屋根・外壁・付帯部は一度に整えるのが経済的です。</p>
+        </div>
+        <div class="t"><h2 class="sec-title">屋根と外壁を、<br>まとめて診る。</h2></div>
+      </div>
+
+      <div class="menu-grid">
+        <article class="mcard lead reveal">
+          <img class="art" src="img/yane.png" width="1200" height="800"
+               loading="lazy" decoding="async" style="object-position:45% 52%"
+               alt="金属屋根に錆止めをローラーで塗っている職人。雪止め金具が並んでいる">
+          <div class="mcard-body">
+            <h3>屋根塗装・錆止め</h3>
+            <p>錆を落とし、下地を整えてから塗り重ねます。雪止めや棟板金の状態も併せて確認します。</p>
+            <ul><li>ケレン・錆止め</li><li>棟板金の点検</li><li>屋根葺き替えのご相談</li></ul>
+          </div>
+        </article>
+
+        <article class="mcard reveal">
+          <img class="art" src="img/gaiheki.png" width="1200" height="800"
+               loading="lazy" decoding="async" style="object-position:52% 50%"
+               alt="窓まわりを養生したうえで、外壁をローラーで塗り替えている職人">
+          <div class="mcard-body">
+            <h3>外壁塗装</h3>
+            <p>高圧洗浄・下地補修から三度塗りまで。壁材それぞれに合う塗料を選びます。</p>
+            <ul><li>高圧洗浄</li><li>ひび割れ補修</li><li>シリコン／フッ素</li></ul>
+          </div>
+        </article>
+
+        <article class="mcard reveal">
+          <img class="art" src="img/sealing.png" width="1200" height="800"
+               loading="lazy" decoding="async" style="object-position:40% 50%"
+               alt="マスキングした目地に、コーキングガンでシーリング材を打っている職人">
+          <div class="mcard-body">
+            <h3>シーリング・付帯部</h3>
+            <p>雨樋・破風・軒天など、雨水の入り口になりやすい部分を塗装と同時に整えます。</p>
+            <ul><li>目地打ち替え</li><li>雨樋・破風</li><li>軒天・水切り</li></ul>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 施工の流れ ============ -->
+  <section class="flow" id="flow">
+    <!-- 見出しの型：情景に重ねる（実写が入り次第 <svg class="scene"> を <img class="scene"> に差し替え） -->
+    <div class="head-over">
+      <img class="scene" src="img/gaiheki.png" width="1200" height="800"
+           loading="lazy" decoding="async"
+           alt="窓まわりを養生したうえで、外壁を塗り重ねている職人">
+      <div class="veil"></div>
+      <div class="t">
+        <div class="wrap">
+          <h2 class="sec-title" style="color:#fff">塗膜は、重ねた回数だけ<br>長持ちする。</h2>
+          <p class="sec-lead">ご相談から完工まで。工程を省かないことが、10年後の差になります。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="wrap flow-body">
+      <div class="route">
+        <div class="leg">
+          <p class="leg-when">ご相談から数日</p>
+          <div class="leg-body">
+            <h3>現地診断</h3>
+            <p>ベテラン診断士がお伺いし、屋根・外壁・付帯部を調査します。所要は約1時間、費用はいただきません。</p>
+          </div>
+        </div>
+        <div class="leg">
+          <p class="leg-when">診断から約1週間</p>
+          <div class="leg-body">
+            <h3>診断報告と、お見積り</h3>
+            <p>劣化の状況と、必要な工事・不要な工事をご説明。工程・数量・使用塗料を明記した見積書をお渡しします。</p>
+          </div>
+        </div>
+        <div class="leg">
+          <p class="leg-when">着工 1〜2日目</p>
+          <div class="leg-body">
+            <h3>近隣ご挨拶・足場・高圧洗浄</h3>
+            <p>近隣にご挨拶のうえ足場を設置し、飛散防止シートを張ります。高圧洗浄で旧塗膜を落とし、しっかり乾かします。</p>
+          </div>
+        </div>
+        <div class="leg">
+          <p class="leg-when">3〜10日目</p>
+          <div class="leg-body">
+            <h3>下地補修と、三度塗り</h3>
+            <p>ケレン、ひび割れ補修、シーリング打ち替えのあと、下塗り・中塗り・上塗り。希釈率も塗布量も、決められたとおりに。</p>
+            <span class="leg-note">
+              <svg class="ar" width="30" height="16" viewBox="0 0 30 16" aria-hidden="true">
+                <path d="M1 13C7 5 15 2 28 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M22 1l7 3-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              ここを二度で済ませる会社があります。塗膜の寿命は、だいたいここで決まります。
+            </span>
+          </div>
+        </div>
+        <div class="leg">
+          <p class="leg-when">最終日</p>
+          <div class="leg-body">
+            <h3>完工・お引き渡し</h3>
+            <p>お客様と一緒に仕上がりを確認し、手直しがあれば対応。清掃のうえお引き渡し、施工記録の写真もお渡しします。</p>
+          </div>
+        </div>
+      </div>
+      <p class="flow-note">※ 天候により工程が前後する場合があります。北海道では、おおむね4月〜11月が塗装に適した時期です。</p>
+    </div>
+  </section>
+
+  <!-- ============ 施工事例 ============ -->
+  <section class="works" id="works">
+    <div class="wrap">
+      <!-- 見出しの型：誌面の柱（見出しと出典メタを一行に、太罫で締める） -->
+      <div class="head-mag">
+        <h2 class="sec-title">屋根・外壁塗装 施工事例</h2>
+        <p class="meta">札幌市・石狩市 ／ 2024–2025年 施工</p>
+      </div>
+      <p class="sec-lead">札幌市とその近郊で施工した住宅の一例です。</p>
+
+      <div class="cases">
+        <article class="case reveal">
+          <div class="case-photos">
+            <figure class="ba ba-before">
+              <img src="img/case1-before.jpg" width="562" height="344" loading="lazy" decoding="async"
+                   alt="施工前。外壁全体が色あせ、汚れの筋が出ている2階建て住宅">
+              <figcaption>施工前</figcaption>
+            </figure>
+            <figure class="ba ba-after">
+              <img src="img/case1-after.jpg" width="563" height="338" loading="lazy" decoding="async"
+                   alt="施工後。既存に近いクリーム色で塗り替えた同じ住宅">
+              <figcaption>施工後</figcaption>
+            </figure>
+          </div>
+          <div class="case-body">
+            <h3>札幌市北区 S様邸｜屋根・外壁塗装</h3>
+            <p class="case-note">「今と同じ雰囲気で」とのご希望でしたので、既存に近いクリーム系で塗り替えました。汚れの筋が出ていた北面は下塗りを一層足しています。</p>
+            <dl>
+              <dt>築年数</dt><dd>22年（窯業系サイディング）</dd>
+              <dt>工　期</dt><dd>約14日</dd>
+              <dt>使用塗料</dt><dd>屋根：シリコン系／外壁：シリコン系</dd>
+              <dt>施工時期</dt><dd>2025年9月</dd>
+            </dl>
+            <div class="swatches">
+              <span class="sw" style="background:#E7DFC7"></span>
+              <span class="sw" style="background:#3A332B"></span>
+              <span class="sw" style="background:#6E6257"></span>
+              <span class="sw-lbl">配色</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="case reveal">
+          <div class="case-photos">
+            <figure class="ba ba-before">
+              <img src="img/case2-before.jpg" width="562" height="338" loading="lazy" decoding="async"
+                   alt="施工前。淡いグレーの外壁が白茶けている2階建て住宅">
+              <figcaption>施工前</figcaption>
+            </figure>
+            <figure class="ba ba-after">
+              <img src="img/case2-after.jpg" width="562" height="338" loading="lazy" decoding="async"
+                   alt="施工後。濃紺に塗り替え、窓枠と柱を白で塗り分けた同じ住宅">
+              <figcaption>施工後</figcaption>
+            </figure>
+          </div>
+          <div class="case-body">
+            <h3>札幌市東区 K様邸｜外壁塗装＋シーリング打ち替え</h3>
+            <p class="case-note">色を変えたいとのご相談でした。窓枠と玄関柱を白のまま残し、壁だけ濃紺に。目地は全周打ち替えています。</p>
+            <dl>
+              <dt>築年数</dt><dd>18年（サイディング）</dd>
+              <dt>工　期</dt><dd>約11日</dd>
+              <dt>使用塗料</dt><dd>外壁：ラジカル制御型シリコン</dd>
+              <dt>施工時期</dt><dd>2025年6月</dd>
+            </dl>
+            <div class="swatches">
+              <span class="sw" style="background:#2E4A66"></span>
+              <span class="sw" style="background:#F1F0EA"></span>
+              <span class="sw" style="background:#4A5560"></span>
+              <span class="sw-lbl">配色</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="case reveal">
+          <div class="case-photos">
+            <figure class="ba ba-before">
+              <img src="img/case3-before.jpg" width="563" height="338" loading="lazy" decoding="async"
+                   alt="施工前。クリーム一色で、下屋の塗膜が傷んでいる2階建て住宅">
+              <figcaption>施工前</figcaption>
+            </figure>
+            <figure class="ba ba-after">
+              <img src="img/case3-after.jpg" width="562" height="338" loading="lazy" decoding="async"
+                   alt="施工後。上下をベージュと茶に塗り分けた同じ住宅">
+              <figcaption>施工後</figcaption>
+            </figure>
+          </div>
+          <div class="case-body">
+            <h3>石狩市 T様邸｜屋根・外壁塗装（ツートン）</h3>
+            <p class="case-note">面ごとに色を変えたいとのご希望で、出隅を境に茶とベージュで塗り分けました。海に近く傷みが早い立地のため、外壁はフッ素系にしています。</p>
+            <dl>
+              <dt>築年数</dt><dd>30年（窯業系サイディング）</dd>
+              <dt>工　期</dt><dd>約12日</dd>
+              <dt>使用塗料</dt><dd>屋根：錆止め＋シリコン系／外壁：フッ素系</dd>
+              <dt>施工時期</dt><dd>2024年10月</dd>
+            </dl>
+            <div class="swatches">
+              <span class="sw" style="background:#7A6249"></span>
+              <span class="sw" style="background:#DBCDB2"></span>
+              <span class="sw" style="background:#3A332C"></span>
+              <span class="sw-lbl">配色</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ お客様の声 ============ -->
+  <section class="voice">
+    <div class="wrap">
+      <!-- 見出しの型：中央寄せ・手書きの前置き＋小さめ見出し -->
+      <div class="head-mid">
+        <p class="hand voice-hand">工事が終わってから、いただいた言葉です。</p>
+        <h2 class="sec-title voice-title">お客様の声</h2>
+      </div>
+      <div class="voice-grid">
+        <div class="vcard reveal">
+          <blockquote>「屋根の錆が気になって相談しました。全部やり替えるものだと思っていたら、まだ塗装で持ちますと説明していただいて。写真を見ながらの説明が分かりやすかったです。」</blockquote>
+          <cite>札幌市北区 S様（60代・戸建て）</cite>
+        </div>
+        <div class="vcard reveal">
+          <blockquote>「見積書に工程と塗料の名前まで書いてあったので、他社と比べやすかった。職人さんが毎日きちんと挨拶してくれたのも安心でした。」</blockquote>
+          <cite>札幌市東区 K様（50代・戸建て）</cite>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section class="faq">
+    <div class="wrap">
+      <!-- 見出しの型：左に小さく据え置き、右に一覧を流す -->
+      <div class="faq-grid">
+      <div class="faq-head">
+        <h2 class="sec-title">よくあるご質問</h2>
+        <p class="sec-lead">ここに載っていないことも、お電話でお答えします。</p>
+      </div>
+      <div class="faq-list">
+        <details>
+          <summary>診断や見積りに費用はかかりますか？</summary>
+          <p class="ans">無料です。見積内容のご説明にお伺いし、ご検討のうえご判断ください。その場で契約はお願いしません。</p>
+        </details>
+        <details>
+          <summary>そろそろ塗り替え時期かどうか、判断できません。</summary>
+          <p class="ans">手で触ると白い粉が付く、錆が出ている、目地が切れている、塗膜が膨れている。どれかが出ていれば点検の目安です。前回の塗装から10年前後でも一度ご相談ください。</p>
+        </details>
+        <details>
+          <summary>北海道では、いつ工事するのがよいですか？</summary>
+          <p class="ans">塗料が乾く気温・湿度が要るため、おおむね4月〜11月が適期です。日程が埋まりやすいので早めのご相談を。</p>
+        </details>
+        <details>
+          <summary>工事中は在宅していなければいけませんか？</summary>
+          <p class="ans">終日のご在宅は不要です。窓が開けられない日など、生活に影響する工程は前もってお伝えします。</p>
+        </details>
+        <details>
+          <summary>屋根の葺き替えや、その他のリフォームも相談できますか？</summary>
+          <p class="ans">塗装で対応できない傷みは、葺き替えを含めてご提案します。リフォーム全般もご相談ください。</p>
+        </details>
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 会社概要 ============ -->
+  <section class="about" id="about">
+    <div class="wrap about-grid">
+      <div>
+        <!-- 見出しの型：縦組みのラベルを見出しの脇に立てる -->
+        <div class="head-tate">
+          <span class="tate">COMPANY</span>
+          <h2 class="sec-title">会社概要</h2>
+        </div>
+        <dl class="tbl">
+          <div><dt>会社名</dt><dd>株式会社 ハヤシザキ</dd></div>
+          <div><dt>所在地</dt><dd>札幌市北区篠路２条５丁目２番８号</dd></div>
+          <div><dt>電話</dt><dd><a href="tel:0117723536">011-772-3536</a></dd></div>
+          <div><dt>FAX</dt><dd>011-788-2097</dd></div>
+          <div><dt>メール</dt><dd><a href="mailto:norio5.27@sirius.ocn.ne.jp">norio5.27@sirius.ocn.ne.jp</a></dd></div>
+          <div><dt>事業内容</dt><dd>屋根・外壁塗装工事／住宅リフォーム工事</dd></div>
+          <div><dt>建設業許可</dt><dd>知事許可（般-30）石第23176号</dd></div>
+          <div><dt>対応エリア</dt><dd>札幌市および近郊</dd></div>
+        </dl>
+      </div>
+
+      <div>
+        <h3 class="sec-title" style="font-size:1.16rem;letter-spacing:.06em">資格・加盟団体</h3>
+        <ul class="quals">
+          <li class="qual">一級建築塗装技能士</li>
+          <li class="qual">二級建築施工管理技士</li>
+          <li class="qual">（一社）木造住宅塗装リフォーム協会 会員</li>
+          <li class="qual">札幌市 工事指名業者</li>
+          <li class="qual">札幌塗装工業協同組合 組合員</li>
+        </ul>
+
+        <div class="jreform">
+          <h3>住宅リフォーム事業団体登録制度とは</h3>
+          <p>業務の適正な運営や消費者への情報提供など、一定の要件を満たした住宅リフォーム事業者の団体を、国が登録する制度です。</p>
+          <a href="https://www.j-reform.com/reform-dantai/" target="_blank" rel="noopener noreferrer">制度の詳細を見る（住宅リフォーム推進協議会）→</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <section class="cta">
+    <div class="cta-bg" aria-hidden="true">
+      <img src="img/image.png" alt="" width="1536" height="1024" loading="lazy" decoding="async">
+      <div class="cta-scrim"></div>
+    </div>
+    <div class="wrap">
+      <h2>気になる所があれば、<br>まず見に行かせてください。</h2>
+      <p class="cta-lead">現地調査・お見積りは無料です。お電話いただければ、見積りのご説明にお伺いします。</p>
+
+      <div class="cta-label">
+        <span class="cta-label-icon" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5V21a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/><path d="M9 22V12h6v10"/></svg>
+        </span>
+        <span class="cta-label-text">お問い合わせ・ご相談はこちら</span>
+      </div>
+
+      <a class="cta-tel" href="tel:0117723536">
+        <svg class="ico" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
+        <span class="num">011-772-3536</span>
+      </a>
+      <p class="cta-hours">
+        <span class="badge">受付時間</span>
+        <span>8:30 - 18:00 ／ FAX 011-788-2097</span>
+      </p>
+
+      <div class="cta-actions">
+        <a class="cta-btn cta-btn--mail" href="mailto:norio5.27@sirius.ocn.ne.jp">
+          <svg class="ico" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 7 9-7"/></svg>
+          <span class="txt">
+            <span class="ttl">メールでのお問い合わせ</span>
+            <span class="sub">norio5.27@sirius.ocn.ne.jp</span>
+          </span>
+          <svg class="ar" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+        <a class="cta-btn cta-btn--form" href="#contact">
+          <svg class="ico" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 10h8M8 14h3M14 14h2M8 18h3M14 18h2"/></svg>
+          <span class="txt">
+            <span class="ttl">無料見積りを依頼する</span>
+            <span class="sub">簡単フォームで24時間受付中</span>
+          </span>
+          <svg class="ar" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <div class="cta-meta">
+        <span class="name">株式会社 ハヤシザキ</span>
+        <span class="addr">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.3 7 13 7 13s7-7.7 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z"/></svg>
+          札幌市北区篠路２条５丁目２番８号
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ フォーム ============ -->
+  <section class="form-sec" id="contact">
+    <div class="wrap">
+      <!-- 見出しの型：見出し＋手書きの添え書き（ラベルなし） -->
+      <h2 class="sec-title">フォームからのご相談</h2>
+      <p class="sec-lead">お名前とご連絡先、気になっている場所をお書きください。</p>
+      <p class="hand form-hand">「どこが悪いのか分からない」で構いません。<br>写真を送っていただければ、それだけでも見当がつきます。</p>
+
+      <form class="form" id="contactForm" novalidate>
+        <div class="field">
+          <label for="f-name">お名前<span class="req">必須</span></label>
+          <input id="f-name" name="name" type="text" autocomplete="name" required>
+        </div>
+        <div class="field">
+          <label for="f-tel">お電話番号<span class="req">必須</span></label>
+          <input id="f-tel" name="tel" type="tel" autocomplete="tel" required>
+        </div>
+        <div class="field">
+          <label for="f-mail">メールアドレス</label>
+          <input id="f-mail" name="email" type="email" autocomplete="email">
+        </div>
+        <div class="field">
+          <label for="f-type">ご相談の内容</label>
+          <select id="f-type" name="type">
+            <option>屋根の塗装</option>
+            <option>外壁の塗装</option>
+            <option>屋根・外壁の両方</option>
+            <option>シーリング・付帯部</option>
+            <option>その他・まだ決めていない</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-msg">気になっている場所・ご質問</label>
+          <textarea id="f-msg" name="message" placeholder="例）2階の屋根に錆が出ています。築25年で、まだ一度も塗り替えていません。"></textarea>
+          <p class="form-note">※ 本フォームは提案用デザイン案のため、送信は行われません。</p>
+        </div>
+        <button class="btn btn-main" type="submit">送信する</button>
+        <p class="form-msg" id="formMsg" hidden>デザイン案のため送信は行われません。実装時はメール通知・自動返信を設定します。</p>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand">
+          <svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true">
+            <rect width="40" height="40" rx="4" fill="#22322C"/>
+            <path d="M8 24 20 12l12 12v6H8z" fill="#2E6B4E"/>
+            <path d="M8 24 20 12l12 12" fill="none" stroke="#F1EFE8" stroke-width="1.6"/>
+            <rect x="17" y="25" width="6" height="5" fill="#F1EFE8"/>
+          </svg>
+          <span class="brand-name mincho">株式会社 ハヤシザキ</span>
+        </div>
+        <p class="foot-addr">
+          札幌市北区篠路２条５丁目２番８号<br>
+          TEL <a href="tel:0117723536">011-772-3536</a>　FAX 011-788-2097<br>
+          <a href="mailto:norio5.27@sirius.ocn.ne.jp">norio5.27@sirius.ocn.ne.jp</a><br>
+          建設業許可 知事（般-30）石第23176号
+        </p>
+      </div>
+      <nav class="foot-nav" aria-label="フッターメニュー">
+        <a href="#reasons">選ばれる理由</a>
+        <a href="#menu">工事メニュー</a>
+        <a href="#flow">施工の流れ</a>
+        <a href="#works">施工事例</a>
+        <a href="#about">会社概要</a>
+        <a href="#contact">お問い合わせ</a>
+      </nav>
+    </div>
+    <div class="foot-bottom">
+      <span>© 株式会社 ハヤシザキ</span>
+      <span>本ページはリニューアルご提案用のデザイン案です（非公式）</span>
+    </div>
+  </div>
+</footer>
+
+<div class="callbar">
+  <a class="c-tel" href="tel:0117723536">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
+    無料診断のお電話
+  </a>
+  <a class="c-mail" href="#contact">フォームで相談</a>
+</div>
+
+<script>
+(function(){
+  var mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+  if(!mq.matches && 'IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('on'); io.unobserve(e.target); } });
+    },{rootMargin:'0px 0px -12% 0px'});
+    document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+  }else{
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('on'); });
+  }
+
+  // ヒーローを抜けたらヘッダーを白に戻す。アンカー直リンクで開いた場合も拾う
+  var head = document.querySelector('.site-head');
+  var hero = document.querySelector('.hero');
+  var setHead = function(){
+    var past = !hero || (hero.getBoundingClientRect().bottom - head.offsetHeight - 24) <= 0;
+    head.classList.toggle('scrolled', past);
+  };
+  setHead();
+  window.addEventListener('scroll', setHead, {passive:true});
+  window.addEventListener('resize', setHead, {passive:true});
+  window.addEventListener('load', setHead);
+
+  var f = document.getElementById('contactForm');
+  f.addEventListener('submit', function(ev){
+    ev.preventDefault();
+    document.getElementById('formMsg').hidden = false;
+  });
+})();
+</script>
+</body>
+</html>
