@@ -20,30 +20,30 @@
 <meta name="description" content="札幌市北区篠路の屋根・外壁塗装。経験50年以上の一級建築塗装技能士が劣化診断を行い、適正価格でお見積りします。">
 <style>
 /* ===== tokens =================================================
-   コンセプト「塗り重ね」
-   塗装の価値は、重ねた層の数と、乾かした時間で決まる。ページも同じ原理で組む。
-   ・色  … 生成り(紙) → 白(下塗り) → 杉の葉(中塗り) → 深緑(上塗り) → 墨緑(下地)
-           ページを下るほど層が乗り、CTAが最後の上塗りになる
+   コンセプト「塗り重ね」＋既存サイト（hayashizaki.info）のブランド色
+   ・色  … 基調は白。黄緑／スカイブルーはアクセントのみ。
+           セクション面を淡色で交互に塗らない（既存サイトもほぼ白地）
    ・余白… 訴求＝広く（乾かす時間）、資料＝詰める。均一にしない
    ・文字… 見出しを「山／標準／資料」の3階層に分け、リズムを作る
-   ・差し色… 山吹（足場と注意喚起の色）を2箇所だけ
+   ・差し色… スカイブルー（既存ヘッダー色）
    ============================================================== */
 :root{
-  --ink:#131C17;         /* 墨 */
-  --ink-soft:#414F47;
-  --ink-mute:#6C7A72;
-  --snow:#EDF0EF;
-  --paper:#FFFFFF;       /* 基調は白 */
+  --ink:#333333;         /* 既存サイト本文色 */
+  --ink-soft:#555C64;
+  --ink-mute:#7A858F;
+  --snow:#F0F2F4;        /* 写真プレースホルダ等の中立面 */
+  --paper:#FFFFFF;       /* 基調は白。セクション面の交互塗りはしない */
   --white:#FFFFFF;
-  --mist:#F3F7F4;        /* ごく淡い緑白：層を分ける面 */
-  --line:#DCE4DE;
-  --line-soft:#EAF0EB;
-  --midori:#2F7A57;      /* 杉の葉：中塗り＝主アクセント */
-  --midori-deep:#1F5C40; /* 深緑：上塗り＝仕上げ（CTA） */
-  --slate:#1B2A24;       /* 墨緑：下地＝いちばん濃い面（施工の流れ） */
-  --yamabuki:#D9A441;    /* 山吹：差し色。極小面積にのみ使う */
-  --sky:#E4EDE7;
-  --shadow:0 1px 2px rgba(20,28,36,.05),0 12px 32px -18px rgba(20,28,36,.28);
+  --mist:#F9F9F9;        /* 既存のごく薄いグレー（面の交互には使わない） */
+  --line:#E4E6E8;
+  --line-soft:#EEF0F2;
+  --midori:#5F9A16;      /* ブランド黄緑 #8FC31F をリンク用に沈めた色 */
+  --midori-deep:#3F5973; /* 既存サイトのスレートブルー */
+  --slate:#2C4054;       /* スレートを沈めた面（施工の流れ） */
+  --yamabuki:#00A0E9;    /* 既存サイトのスカイブルー：差し色 */
+  --sky:#F0F2F4;         /* 中立のプレースホルダ面（水色の薄塗りは廃止） */
+  --midori-bright:#8FC31F; /* ブランド黄緑そのもの（ベタ塗り用） */
+  --shadow:0 1px 2px rgba(30,48,64,.05),0 12px 32px -18px rgba(30,48,64,.28);
 
   --mincho:"Hiragino Mincho ProN","Yu Mincho",YuMincho,"Noto Serif JP","Sawarabi Mincho",serif;
   --gothic:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",YuGothic,"Noto Sans JP",Meiryo,sans-serif;
@@ -64,13 +64,21 @@
   --t-fact:clamp(1.16rem,2.5vw,1.46rem);
 }
 *,*::before,*::after{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+html{
+  -webkit-text-size-adjust:100%;scroll-behavior:smooth;
+  scrollbar-width:none;           /* Firefox */
+  -ms-overflow-style:none;        /* 旧Edge */
+}
+html::-webkit-scrollbar{display:none} /* Chrome / Safari */
 body{
   margin:0;background:var(--paper);color:var(--ink);
   font-family:var(--gothic);font-size:16px;line-height:1.9;
   font-feature-settings:"palt" 1;letter-spacing:.02em;
   -webkit-font-smoothing:antialiased;
+  scrollbar-width:none;
+  -ms-overflow-style:none;
 }
+body::-webkit-scrollbar{display:none}
 img,svg{max-width:100%;height:auto;display:block}
 a{color:inherit}
 h1,h2,h3,h4{margin:0;font-weight:600;line-height:1.4;letter-spacing:.01em}
@@ -137,8 +145,8 @@ ul,ol{margin:0;padding:0;list-style:none}
   position:absolute;inset:0;
   /* 左に文字を置くための帯と、下端を面に溶かす層を重ねる */
   background:
-    linear-gradient(180deg,rgba(27,42,36,0) 58%,var(--slate) 100%),
-    linear-gradient(100deg,var(--slate) 2%,rgba(27,42,36,.86) 32%,rgba(27,42,36,.16) 70%,rgba(27,42,36,.46) 100%);
+    linear-gradient(180deg,rgba(44,64,84,0) 58%,var(--slate) 100%),
+    linear-gradient(100deg,var(--slate) 2%,rgba(44,64,84,.86) 32%,rgba(44,64,84,.16) 70%,rgba(44,64,84,.46) 100%);
 }
 .head-over .t{position:absolute;left:0;right:0;bottom:0;padding:0 0 clamp(22px,3.4vw,40px)}
 /* D. 誌面の柱風：見出しと出典メタを一行に並べ、太罫で締める */
@@ -165,7 +173,7 @@ ul,ol{margin:0;padding:0;list-style:none}
   .head-rule .t{text-align:left;max-width:none}
   /* 帯が浅くなるので、重ねずに図の下へ回す */
   .head-over .t{position:relative;inset:auto;padding:clamp(20px,4vw,26px) 0 0}
-  .head-over .veil{background:linear-gradient(180deg,rgba(27,42,36,.12),rgba(27,42,36,.64))}
+  .head-over .veil{background:linear-gradient(180deg,rgba(44,64,84,.12),rgba(44,64,84,.64))}
 }
 
 /* ===== header ================================================= */
@@ -200,8 +208,8 @@ ul,ol{margin:0;padding:0;list-style:none}
 .hero-scrim{
   position:absolute;inset:0;
   background:
-    linear-gradient(180deg,rgba(14,22,18,.62) 0%,rgba(14,22,18,.28) 26%,rgba(14,22,18,.34) 62%,rgba(14,22,18,.72) 100%),
-    radial-gradient(120% 78% at 50% 44%,rgba(14,22,18,0) 32%,rgba(14,22,18,.42) 100%);
+    linear-gradient(180deg,rgba(20,32,44,.62) 0%,rgba(20,32,44,.28) 26%,rgba(20,32,44,.34) 62%,rgba(20,32,44,.72) 100%),
+    radial-gradient(120% 78% at 50% 44%,rgba(20,32,44,0) 32%,rgba(20,32,44,.42) 100%);
 }
 .hero-inner{
   min-block-size:min(100svh,860px);
@@ -228,7 +236,7 @@ ul,ol{margin:0;padding:0;list-style:none}
 /* 下端の帯：飾りではなく、電話をかける前に知りたいことだけを置く */
 .hero-bar{
   position:absolute;left:0;right:0;bottom:0;
-  background:rgba(14,22,18,.52);backdrop-filter:blur(6px);
+  background:rgba(20,32,44,.52);backdrop-filter:blur(6px);
   border-top:1px solid rgba(255,255,255,.16);
 }
 .hero-bar-in{
@@ -243,13 +251,123 @@ ul,ol{margin:0;padding:0;list-style:none}
 .hero-bar-mail{font-size:.84rem;letter-spacing:.06em;border-bottom:1px solid rgba(255,255,255,.42);padding-bottom:2px}
 .hero-bar-mail:hover{border-color:#fff}
 @keyframes rise{from{opacity:0;transform:translateY(18px)}}
+@keyframes intro-name-in{
+  from{opacity:0;transform:translateY(14px);letter-spacing:.28em}
+  to{opacity:1;transform:none;letter-spacing:.18em}
+}
+@keyframes intro-rule{
+  from{transform:scaleX(0)}
+  to{transform:scaleX(1)}
+}
+@keyframes intro-coat-up{
+  from{transform:translateY(0)}
+  to{transform:translateY(-105%)}
+}
+@keyframes intro-fade{
+  from{opacity:1}
+  to{opacity:0}
+}
+@keyframes hero-zoom{
+  from{transform:scale(1.06)}
+  to{transform:scale(1)}
+}
+@keyframes bar-up{
+  from{opacity:0;transform:translateY(100%)}
+  to{opacity:1;transform:none}
+}
+
+/* ===== オープニング：一塗りが上がって現場が現れる ============== */
+.intro{
+  position:fixed;inset:0;z-index:200;pointer-events:none;
+  display:grid;place-items:center;overflow:hidden;
+}
+.intro-coat{
+  position:absolute;inset:0;
+  background:var(--slate);
+}
+.intro-coat::after{
+  content:"";position:absolute;left:0;right:0;bottom:-2px;height:4px;
+  background:var(--midori-bright);
+  transform-origin:left center;
+}
+.intro-mark{
+  position:relative;z-index:1;text-align:center;color:#fff;
+  padding:0 24px;
+}
+.intro-eyebrow{
+  font-size:.68rem;letter-spacing:.28em;color:rgba(255,255,255,.7);
+  margin-bottom:18px;
+}
+.intro-name{
+  font-family:var(--mincho);font-size:clamp(1.6rem,5vw,2.6rem);
+  font-weight:600;letter-spacing:.18em;line-height:1.35;
+}
+.intro-rule{
+  display:block;width:56px;height:2px;margin:22px auto 0;
+  background:var(--yamabuki);transform-origin:center;
+}
+
+body:not(.intro-done){overflow:hidden}
+body.intro-done .intro{visibility:hidden}
+
 @media(prefers-reduced-motion:no-preference){
-  .hero-inner>*{animation:rise .9s ease both}
-  .hero-inner>*:nth-child(2){animation-delay:.12s}
-  .hero-inner>*:nth-child(3){animation-delay:.22s}
-  .hero-inner>*:nth-child(4){animation-delay:.3s}
-  .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+  body.js .hero-inner>*{opacity:0}
+  body.js:not(.is-ready) .callbar,
+  body.js:not(.is-ready) .hero-bar{opacity:0;transform:translateY(16px)}
+  body.js:not(.is-ready) .topbar{opacity:0}
+  body.js.is-ready .topbar{animation:rise .7s ease .2s both}
+  body.js.is-ready .hero-inner>*{animation:rise 1s cubic-bezier(.22,1,.36,1) both}
+  body.js.is-ready .hero-inner>*:nth-child(2){animation-delay:.1s}
+  body.js.is-ready .hero-inner>*:nth-child(3){animation-delay:.2s}
+  body.js.is-ready .hero-inner>*:nth-child(4){animation-delay:.28s}
+  body.js.is-ready .hero-media img{animation:hero-zoom 4.2s cubic-bezier(.22,1,.36,1) both}
+  body.js.is-ready .hero-bar{animation:rise .9s cubic-bezier(.22,1,.36,1) .35s both}
+  body.js.is-ready .callbar{animation:bar-up .7s cubic-bezier(.22,1,.36,1) .55s both}
+
+  body.intro-play .intro-eyebrow{animation:rise .7s ease both}
+  body.intro-play .intro-name{animation:intro-name-in .85s cubic-bezier(.22,1,.36,1) .12s both}
+  body.intro-play .intro-rule{animation:intro-rule .55s cubic-bezier(.22,1,.36,1) .45s both}
+  body.intro-play .intro-coat{
+    animation:intro-coat-up 1.05s cubic-bezier(.76,0,.24,1) .95s both;
+  }
+  body.intro-play .intro-coat::after{
+    animation:intro-rule .4s ease .85s both;
+  }
+  body.intro-play .intro-mark{
+    animation:intro-fade .35s ease 1.15s both;
+  }
+
+  .reveal{
+    opacity:0;transform:translateY(28px);
+    transition:
+      opacity .85s cubic-bezier(.22,1,.36,1),
+      transform .85s cubic-bezier(.22,1,.36,1);
+    transition-delay:var(--d,0s);
+  }
   .reveal.on{opacity:1;transform:none}
+  .reveal-media{
+    opacity:0;transform:translateY(18px) scale(1.03);
+    clip-path:inset(6% 0 6% 0);
+    transition:
+      opacity 1s cubic-bezier(.22,1,.36,1),
+      transform 1.15s cubic-bezier(.22,1,.36,1),
+      clip-path 1.15s cubic-bezier(.22,1,.36,1);
+    transition-delay:var(--d,0s);
+  }
+  .reveal-media.on{
+    opacity:1;transform:none;clip-path:inset(0);
+  }
+  .leg.reveal{transform:translateX(-16px)}
+  .leg.reveal.on{transform:none}
+
+  .mcard:hover{transform:translateY(-5px)}
+  .cta-btn:hover{transform:translateY(-2px)}
+  .cta-btn--mail:hover{transform:translateY(-2px)}
+  .cta-tel:hover .num{letter-spacing:.08em;transition:letter-spacing .35s ease}
+}
+@media(prefers-reduced-motion:reduce){
+  .intro{display:none}
+  body:not(.intro-done){overflow:auto}
 }
 @media(max-width:700px){
   .hero-inner{min-block-size:min(88svh,640px);padding:clamp(120px,18vh,160px) 0 clamp(150px,22vh,190px)}
@@ -266,7 +384,7 @@ ul,ol{margin:0;padding:0;list-style:none}
 /* 空が明るいカットでも白文字が読めるよう、ヘッダー下だけ軽く落とす */
 .site-head::before{
   content:"";position:absolute;inset:0;pointer-events:none;
-  background:linear-gradient(180deg,rgba(14,22,18,.5),rgba(14,22,18,0));
+  background:linear-gradient(180deg,rgba(20,32,44,.5),rgba(20,32,44,0));
   transition:opacity .3s ease;
 }
 .site-head.scrolled::before{opacity:0}
@@ -286,7 +404,7 @@ section[id],main[id]{scroll-margin-top:104px}
 .site-head.scrolled .brand-mark rect{fill:var(--slate)}
 
 /* ===== 選ばれる理由（情景＋読み物） ============================ */
-.reasons{background:var(--mist);border-block:1px solid var(--line-soft);padding:var(--sec-air) 0 calc(var(--sec-air)*.78)}
+.reasons{padding:var(--sec-air) 0 calc(var(--sec-air)*.78)}
 
 /* 情景図。実写が用意でき次第 .scene を <img> に差し替えるだけで成立する */
 .scene-fig{margin:clamp(30px,4.4vw,54px) 0 0}
@@ -408,13 +526,13 @@ section[id],main[id]{scroll-margin-top:104px}
 .case-body dt{color:var(--ink-mute);letter-spacing:.06em;white-space:nowrap}
 .case-body dd{margin:0;color:var(--ink-soft)}
 .swatches{display:flex;gap:6px;margin-top:16px;align-items:center}
-.sw{inline-size:20px;block-size:20px;border-radius:2px;box-shadow:0 0 0 1px rgba(20,28,36,.14) inset}
+.sw{inline-size:20px;block-size:20px;border-radius:2px;box-shadow:0 0 0 1px rgba(30,48,64,.14) inset}
 .sw-lbl{font-size:.68rem;color:var(--ink-mute);letter-spacing:.08em}
 @media(max-width:820px){.case{grid-template-columns:1fr;gap:18px}}
 @media(max-width:420px){.case-photos{gap:6px}.ba figcaption{font-size:.6rem;padding:2px 7px;left:6px;bottom:6px}}
 
 /* ===== 声 ====================================================== */
-.voice{background:var(--mist);border-block:1px solid var(--line-soft);padding:var(--sec) 0 var(--sec-tight)}
+.voice{padding:var(--sec) 0 var(--sec-tight)}
 .voice-hand{font-size:.95rem;margin-bottom:10px}
 .voice-title{font-size:clamp(1.36rem,3vw,1.92rem)}
 .voice-grid{margin-top:clamp(34px,4.6vw,54px);display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(26px,4vw,52px)}
@@ -454,7 +572,7 @@ section[id],main[id]{scroll-margin-top:104px}
 .faq .ans{padding:0 44px 26px 34px;color:var(--ink-soft);font-size:.9rem}
 
 /* ===== 会社概要 ================================================ */
-.about{background:var(--mist);border-top:1px solid var(--line-soft);padding:var(--sec-tight) 0}
+.about{padding:var(--sec-tight) 0}
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,5vw,64px);align-items:start}
 .tbl{margin-top:26px;border-top:1px solid var(--line)}
 .tbl div{display:grid;grid-template-columns:8.5em 1fr;gap:16px;padding:15px 0;border-bottom:1px solid var(--line-soft);font-size:.9rem}
@@ -486,8 +604,8 @@ section[id],main[id]{scroll-margin-top:104px}
 .cta-scrim{
   position:absolute;inset:0;
   background:
-    linear-gradient(180deg,rgba(18,32,26,.78) 0%,rgba(18,32,26,.72) 45%,rgba(18,32,26,.86) 100%),
-    radial-gradient(90% 70% at 50% 40%,rgba(18,32,26,.2) 0%,rgba(18,32,26,.55) 100%);
+    linear-gradient(180deg,rgba(30,48,64,.78) 0%,rgba(30,48,64,.72) 45%,rgba(30,48,64,.86) 100%),
+    radial-gradient(90% 70% at 50% 40%,rgba(30,48,64,.2) 0%,rgba(30,48,64,.55) 100%);
 }
 .cta .wrap{position:relative;max-width:760px}
 .cta h2{font-family:var(--mincho);letter-spacing:.05em}
@@ -497,11 +615,11 @@ section[id],main[id]{scroll-margin-top:104px}
   margin:clamp(36px,5vw,52px) auto 0;max-width:560px;
 }
 .cta-label::before,.cta-label::after{
-  content:"";flex:1;height:1px;background:rgba(217,164,65,.55);
+  content:"";flex:1;height:1px;background:rgba(0,160,233,.55);
 }
 .cta-label-icon{
   flex:none;inline-size:36px;block-size:36px;border-radius:50%;
-  border:1px solid rgba(217,164,65,.7);
+  border:1px solid rgba(0,160,233,.7);
   display:grid;place-items:center;color:var(--yamabuki);
 }
 .cta-label-text{
@@ -542,7 +660,7 @@ section[id],main[id]{scroll-margin-top:104px}
 .cta-btn--mail{
   background:var(--yamabuki);color:#fff;
 }
-.cta-btn--mail:hover{background:#c49232}
+.cta-btn--mail:hover{background:#0088c7}
 .cta-btn--form{
   background:transparent;color:#fff;border:1px solid rgba(255,255,255,.72);
 }
@@ -579,12 +697,12 @@ section[id],main[id]{scroll-margin-top:104px}
   border:1px solid var(--line);border-radius:3px;background:var(--white);color:var(--ink);
 }
 .field textarea{min-height:130px;resize:vertical}
-.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--midori);outline:none;box-shadow:0 0 0 3px rgba(46,107,78,.12)}
+.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--midori);outline:none;box-shadow:0 0 0 3px rgba(95,154,22,.18)}
 .form-note{font-size:.78rem;color:var(--ink-mute);margin-top:6px}
 .form-msg{margin-top:16px;font-size:.85rem;color:var(--midori);font-weight:700}
 
 /* ===== footer ================================================== */
-.site-foot{background:var(--ink);color:rgba(255,255,255,.66);padding:52px 0 96px;font-size:.83rem}
+.site-foot{background:#484848;color:rgba(255,255,255,.66);padding:52px 0 96px;font-size:.83rem}
 .foot-grid{display:flex;flex-wrap:wrap;gap:30px;justify-content:space-between;align-items:flex-start}
 .foot-brand{display:flex;align-items:center;gap:11px;color:#fff}
 .foot-brand .brand-name{color:#fff}
@@ -600,19 +718,29 @@ section[id],main[id]{scroll-margin-top:104px}
 .callbar{
   position:fixed;left:0;right:0;bottom:0;z-index:60;display:none;
   grid-template-columns:1fr 1fr;gap:1px;background:var(--line);
-  box-shadow:0 -6px 20px -12px rgba(20,28,36,.5);
+  box-shadow:0 -6px 20px -12px rgba(30,48,64,.5);
 }
 .callbar a{
   display:flex;align-items:center;justify-content:center;gap:8px;
   padding:15px 8px;text-decoration:none;font-size:.88rem;font-weight:700;letter-spacing:.06em;
 }
-.callbar .c-tel{background:var(--midori);color:#fff}
+.callbar .c-tel{background:var(--midori-bright);color:#fff}
 .callbar .c-mail{background:var(--white);color:var(--ink)}
 @media(max-width:900px){.callbar{display:grid}.site-foot{padding-bottom:96px}}
 @media(min-width:901px){.site-foot{padding-bottom:52px}}
 </style>
 </head>
 <body>
+
+<!-- オープニング：暗い下地が一塗り上がって、現場写真が現れる -->
+<div class="intro" id="intro" aria-hidden="true">
+  <div class="intro-coat"></div>
+  <div class="intro-mark">
+    <p class="intro-eyebrow">SAPPORO ／ ROOF &amp; WALL PAINTING</p>
+    <p class="intro-name">株式会社 ハヤシザキ</p>
+    <span class="intro-rule" aria-hidden="true"></span>
+  </div>
+</div>
 
 <div class="topbar">
 <p class="note-bar">※本サイトは提案用の非公式デザイン案です。写真はイメージ、施工事例・お客様の声はダミーです。</p>
@@ -621,10 +749,10 @@ section[id],main[id]{scroll-margin-top:104px}
   <div class="wrap head-in">
     <a class="brand" href="#top">
       <svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true">
-        <rect width="40" height="40" rx="4" fill="#22322C"/>
-        <path d="M8 24 20 12l12 12v6H8z" fill="#2E6B4E"/>
-        <path d="M8 24 20 12l12 12" fill="none" stroke="#F1EFE8" stroke-width="1.6"/>
-        <rect x="17" y="25" width="6" height="5" fill="#F1EFE8"/>
+        <rect width="40" height="40" rx="4" fill="#3F5973"/>
+        <path d="M8 24 20 12l12 12v6H8z" fill="#8FC31F"/>
+        <path d="M8 24 20 12l12 12" fill="none" stroke="#FFFFFF" stroke-width="1.6"/>
+        <rect x="17" y="25" width="6" height="5" fill="#FFFFFF"/>
       </svg>
       <span class="brand-name mincho">株式会社 ハヤシザキ
         <span class="brand-sub">SAPPORO ／ ROOF &amp; WALL PAINTING</span>
@@ -696,7 +824,7 @@ section[id],main[id]{scroll-margin-top:104px}
 
       <!-- 診断風景。実写が用意でき次第、下の <svg class="scene"> を
            同じ縦横比（1000:430）の <img class="scene"> に差し替えるだけで成立します -->
-      <figure class="scene-fig reveal">
+      <figure class="scene-fig reveal-media">
         <div class="frame">
           <img class="scene" src="img/shindan.webp" width="1600" height="688"
                loading="lazy" decoding="async"
@@ -757,7 +885,7 @@ section[id],main[id]{scroll-margin-top:104px}
       </div>
 
       <div class="menu-grid">
-        <article class="mcard lead reveal">
+        <article class="mcard lead reveal" style="--d:.04s">
           <img class="art" src="img/yane.png" width="1200" height="800"
                loading="lazy" decoding="async" style="object-position:45% 52%"
                alt="金属屋根に錆止めをローラーで塗っている職人。雪止め金具が並んでいる">
@@ -768,7 +896,7 @@ section[id],main[id]{scroll-margin-top:104px}
           </div>
         </article>
 
-        <article class="mcard reveal">
+        <article class="mcard reveal" style="--d:.12s">
           <img class="art" src="img/gaiheki.png" width="1200" height="800"
                loading="lazy" decoding="async" style="object-position:52% 50%"
                alt="窓まわりを養生したうえで、外壁をローラーで塗り替えている職人">
@@ -779,7 +907,7 @@ section[id],main[id]{scroll-margin-top:104px}
           </div>
         </article>
 
-        <article class="mcard reveal">
+        <article class="mcard reveal" style="--d:.2s">
           <img class="art" src="img/sealing.png" width="1200" height="800"
                loading="lazy" decoding="async" style="object-position:40% 50%"
                alt="マスキングした目地に、コーキングガンでシーリング材を打っている職人">
@@ -811,28 +939,28 @@ section[id],main[id]{scroll-margin-top:104px}
 
     <div class="wrap flow-body">
       <div class="route">
-        <div class="leg">
+        <div class="leg reveal" style="--d:.02s">
           <p class="leg-when">ご相談から数日</p>
           <div class="leg-body">
             <h3>現地診断</h3>
             <p>ベテラン診断士がお伺いし、屋根・外壁・付帯部を調査します。所要は約1時間、費用はいただきません。</p>
           </div>
         </div>
-        <div class="leg">
+        <div class="leg reveal" style="--d:.08s">
           <p class="leg-when">診断から約1週間</p>
           <div class="leg-body">
             <h3>診断報告と、お見積り</h3>
             <p>劣化の状況と、必要な工事・不要な工事をご説明。工程・数量・使用塗料を明記した見積書をお渡しします。</p>
           </div>
         </div>
-        <div class="leg">
+        <div class="leg reveal" style="--d:.14s">
           <p class="leg-when">着工 1〜2日目</p>
           <div class="leg-body">
             <h3>近隣ご挨拶・足場・高圧洗浄</h3>
             <p>近隣にご挨拶のうえ足場を設置し、飛散防止シートを張ります。高圧洗浄で旧塗膜を落とし、しっかり乾かします。</p>
           </div>
         </div>
-        <div class="leg">
+        <div class="leg reveal" style="--d:.2s">
           <p class="leg-when">3〜10日目</p>
           <div class="leg-body">
             <h3>下地補修と、三度塗り</h3>
@@ -846,7 +974,7 @@ section[id],main[id]{scroll-margin-top:104px}
             </span>
           </div>
         </div>
-        <div class="leg">
+        <div class="leg reveal" style="--d:.26s">
           <p class="leg-when">最終日</p>
           <div class="leg-body">
             <h3>完工・お引き渡し</h3>
@@ -869,7 +997,7 @@ section[id],main[id]{scroll-margin-top:104px}
       <p class="sec-lead">札幌市とその近郊で施工した住宅の一例です。</p>
 
       <div class="cases">
-        <article class="case reveal">
+        <article class="case reveal" style="--d:.04s">
           <div class="case-photos">
             <figure class="ba ba-before">
               <img src="img/case1-before.jpg" width="562" height="344" loading="lazy" decoding="async"
@@ -900,7 +1028,7 @@ section[id],main[id]{scroll-margin-top:104px}
           </div>
         </article>
 
-        <article class="case reveal">
+        <article class="case reveal" style="--d:.12s">
           <div class="case-photos">
             <figure class="ba ba-before">
               <img src="img/case2-before.jpg" width="562" height="338" loading="lazy" decoding="async"
@@ -931,7 +1059,7 @@ section[id],main[id]{scroll-margin-top:104px}
           </div>
         </article>
 
-        <article class="case reveal">
+        <article class="case reveal" style="--d:.2s">
           <div class="case-photos">
             <figure class="ba ba-before">
               <img src="img/case3-before.jpg" width="563" height="338" loading="lazy" decoding="async"
@@ -974,11 +1102,11 @@ section[id],main[id]{scroll-margin-top:104px}
         <h2 class="sec-title voice-title">お客様の声</h2>
       </div>
       <div class="voice-grid">
-        <div class="vcard reveal">
+        <div class="vcard reveal" style="--d:.04s">
           <blockquote>「屋根の錆が気になって相談しました。全部やり替えるものだと思っていたら、まだ塗装で持ちますと説明していただいて。写真を見ながらの説明が分かりやすかったです。」</blockquote>
           <cite>札幌市北区 S様（60代・戸建て）</cite>
         </div>
-        <div class="vcard reveal">
+        <div class="vcard reveal" style="--d:.12s">
           <blockquote>「見積書に工程と塗料の名前まで書いてあったので、他社と比べやすかった。職人さんが毎日きちんと挨拶してくれたのも安心でした。」</blockquote>
           <cite>札幌市東区 K様（50代・戸建て）</cite>
         </div>
@@ -1166,10 +1294,10 @@ section[id],main[id]{scroll-margin-top:104px}
       <div>
         <div class="foot-brand">
           <svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true">
-            <rect width="40" height="40" rx="4" fill="#22322C"/>
-            <path d="M8 24 20 12l12 12v6H8z" fill="#2E6B4E"/>
-            <path d="M8 24 20 12l12 12" fill="none" stroke="#F1EFE8" stroke-width="1.6"/>
-            <rect x="17" y="25" width="6" height="5" fill="#F1EFE8"/>
+            <rect width="40" height="40" rx="4" fill="#3F5973"/>
+            <path d="M8 24 20 12l12 12v6H8z" fill="#8FC31F"/>
+            <path d="M8 24 20 12l12 12" fill="none" stroke="#FFFFFF" stroke-width="1.6"/>
+            <rect x="17" y="25" width="6" height="5" fill="#FFFFFF"/>
           </svg>
           <span class="brand-name mincho">株式会社 ハヤシザキ</span>
         </div>
@@ -1206,14 +1334,49 @@ section[id],main[id]{scroll-margin-top:104px}
 
 <script>
 (function(){
+  var doc = document.documentElement;
+  var body = document.body;
+  doc.classList.add('js');
+
   var mq = window.matchMedia('(prefers-reduced-motion: reduce)');
-  if(!mq.matches && 'IntersectionObserver' in window){
-    var io = new IntersectionObserver(function(es){
-      es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('on'); io.unobserve(e.target); } });
-    },{rootMargin:'0px 0px -12% 0px'});
-    document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+  var reduce = mq.matches;
+
+  var finishIntro = function(){
+    body.classList.add('is-ready');
+    body.classList.add('intro-done');
+  };
+
+  if(reduce){
+    finishIntro();
   }else{
-    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('on'); });
+    // 描画直後にオープニング開始 → 一塗りが上がったあとヒーローを出す
+    requestAnimationFrame(function(){
+      requestAnimationFrame(function(){
+        body.classList.add('intro-play');
+      });
+    });
+    window.setTimeout(function(){
+      body.classList.add('is-ready');
+    }, 1180);
+    window.setTimeout(finishIntro, 2100);
+  }
+
+  if(!reduce && 'IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if(e.isIntersecting){
+          e.target.classList.add('on');
+          io.unobserve(e.target);
+        }
+      });
+    },{rootMargin:'0px 0px -10% 0px', threshold:0.08});
+    document.querySelectorAll('.reveal, .reveal-media').forEach(function(el){
+      io.observe(el);
+    });
+  }else{
+    document.querySelectorAll('.reveal, .reveal-media').forEach(function(el){
+      el.classList.add('on');
+    });
   }
 
   // ヒーローを抜けたらヘッダーを白に戻す。アンカー直リンクで開いた場合も拾う
