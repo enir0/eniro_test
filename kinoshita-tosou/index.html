@@ -29,25 +29,26 @@
    ・余白… 訴求＝広く、資料＝詰める。均一にしない
    ============================================================== */
 :root{
-  --ink:#333333;
+  /* Ishikari workshop：雪明かりの紙面＋酸化鉄の塗料色＋冬空の鋼青 */
+  --ink:#2A2F34;
   --ink-soft:#555C64;
-  --ink-mute:#7A858F;
-  --snow:#F0F2F4;
-  --paper:#FFFFFF;
+  --ink-mute:#7E8790;
+  --snow:#F2F4F6;
+  --paper:#FAFBFC;
   --white:#FFFFFF;
-  --mist:#F9F9F9;
-  --line:#E4E6E8;
-  --line-soft:#EEF0F2;
-  --slate:#2C4054;
-  --slate-deep:#243648;
-  --foot:#484848;
-  --summer:#C4531D;
-  --summer-ink:#9A4216;
-  --summer-tint:#FBEEE6;
-  --winter:#3C6E93;
-  --winter-ink:#2E5570;
-  --winter-tint:#EAF1F5;
-  --shadow:0 1px 2px rgba(30,48,64,.05),0 12px 32px -18px rgba(30,48,64,.28);
+  --mist:#F4F6F8;
+  --line:#E1E5E9;
+  --line-soft:#EBEEF1;
+  --slate:#1E3347;
+  --slate-deep:#162838;
+  --foot:#3A424A;
+  --summer:#B8432F;
+  --summer-ink:#8E3424;
+  --summer-tint:#F6EEEB;
+  --winter:#4A7C9B;
+  --winter-ink:#355F78;
+  --winter-tint:#EAF2F6;
+  --shadow:0 1px 2px rgba(22,40,56,.05),0 14px 36px -18px rgba(22,40,56,.28);
 
   --mincho:"Hiragino Mincho ProN","Yu Mincho",YuMincho,"Noto Serif JP","Sawarabi Mincho",serif;
   --gothic:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic",YuGothic,"Noto Sans JP",Meiryo,sans-serif;
@@ -129,8 +130,8 @@ ul,ol{margin:0;padding:0;list-style:none}
 .sec-head.is-center .sec-lead{margin-inline:auto}
 .sec-head.is-dark .sec-en{color:rgba(255,255,255,.12)}
 .sec-head.is-dark .sec-lead{color:rgba(255,255,255,.68)}
-.sec-head.is-summer .sec-en{color:rgba(196,83,29,.12)}
-.sec-head.is-winter .sec-en{color:rgba(60,110,147,.13)}
+.sec-head.is-summer .sec-en{color:rgba(184,67,47,.12)}
+.sec-head.is-winter .sec-en{color:rgba(74,124,155,.14)}
 .sec-head.is-tight{
   padding-block:clamp(40px,6vw,64px) clamp(16px,2vw,24px);
 }
@@ -202,12 +203,12 @@ ul,ol{margin:0;padding:0;list-style:none}
 .shot{
   position:relative;aspect-ratio:var(--ar,4/3);overflow:hidden;
   background:
-    repeating-linear-gradient(135deg,rgba(44,64,84,.055) 0 2px,transparent 2px 15px),
+    repeating-linear-gradient(135deg,rgba(30,51,71,.055) 0 2px,transparent 2px 15px),
     var(--snow);
 }
 .shot::after{
   content:"";position:absolute;inset:0;
-  background:linear-gradient(180deg,transparent 60%,rgba(44,64,84,.06) 100%);
+  background:linear-gradient(180deg,transparent 60%,rgba(30,51,71,.06) 100%);
 }
 .shot .note{
   position:absolute;left:0;right:0;bottom:0;z-index:1;
@@ -276,8 +277,8 @@ ul,ol{margin:0;padding:0;list-style:none}
 .hero-scrim{
   position:absolute;inset:0;
   background:
-    linear-gradient(90deg,rgba(20,32,44,.72) 0%,rgba(20,32,44,.38) 42%,rgba(20,32,44,.18) 100%),
-    linear-gradient(180deg,rgba(20,32,44,.35) 0%,transparent 36%,rgba(20,32,44,.5) 100%);
+    linear-gradient(90deg,rgba(22,40,56,.74) 0%,rgba(22,40,56,.4) 42%,rgba(22,40,56,.18) 100%),
+    linear-gradient(180deg,rgba(22,40,56,.38) 0%,transparent 36%,rgba(22,40,56,.52) 100%);
 }
 .hero-copy{
   position:absolute;inset:0;z-index:1;
@@ -300,8 +301,8 @@ ul,ol{margin:0;padding:0;list-style:none}
   margin:0;
   text-shadow:0 2px 18px rgba(0,0,0,.25);
 }
-.hero-title .cut{color:#F0A57A}
-.hero-title .cut2{color:#A8C8E0}
+.hero-title .cut{color:#E8A090}
+.hero-title .cut2{color:#9DC0D4}
 .hero-sub{
   margin-top:clamp(14px,2vw,22px);
   font-size:clamp(.86rem,1.4vw,.98rem);line-height:1.9;
@@ -532,7 +533,7 @@ section[id],main[id]{scroll-margin-top:104px}
 .mi li{font-size:.68rem;letter-spacing:.02em;color:var(--ink-mute);border:1px solid var(--line);border-radius:2px;padding:4px 9px}
 .menu.is-paint .mi h3{box-shadow:inset 3px 0 0 var(--summer);padding-left:12px}
 .menu.is-snow .mi h3{box-shadow:inset 3px 0 0 var(--winter);padding-left:12px}
-.menu.is-snow .mi li{border-color:rgba(60,110,147,.28);color:var(--winter-ink)}
+.menu.is-snow .mi li{border-color:rgba(74,124,155,.3);color:var(--winter-ink)}
 @media(max-width:900px){.menu-list{grid-template-columns:1fr 1fr}}
 @media(max-width:600px){.menu-list{grid-template-columns:1fr}}
 
@@ -679,9 +680,9 @@ section[id],main[id]{scroll-margin-top:104px}
 .cta-scrim{
   position:absolute;inset:0;
   background:
-    linear-gradient(180deg,rgba(30,48,64,.82) 0%,rgba(30,48,64,.78) 45%,rgba(30,48,64,.9) 100%),
-    linear-gradient(90deg,rgba(196,83,29,.16) 0%,transparent 40%),
-    linear-gradient(270deg,rgba(60,110,147,.16) 0%,transparent 40%);
+    linear-gradient(180deg,rgba(22,40,56,.82) 0%,rgba(22,40,56,.78) 45%,rgba(22,40,56,.9) 100%),
+    linear-gradient(90deg,rgba(184,67,47,.16) 0%,transparent 40%),
+    linear-gradient(270deg,rgba(74,124,155,.16) 0%,transparent 40%);
 }
 .cta .wrap{position:relative;max-width:760px}
 .cta h2{font-family:var(--mincho);letter-spacing:.05em}
@@ -691,11 +692,11 @@ section[id],main[id]{scroll-margin-top:104px}
   margin:clamp(36px,5vw,52px) auto 0;max-width:560px;
 }
 .cta-label::before,.cta-label::after{
-  content:"";flex:1;height:1px;background:rgba(196,83,29,.55);
+  content:"";flex:1;height:1px;background:rgba(184,67,47,.55);
 }
 .cta-label-icon{
   flex:none;inline-size:36px;block-size:36px;border-radius:50%;
-  border:1px solid rgba(196,83,29,.7);
+  border:1px solid rgba(184,67,47,.7);
   display:grid;place-items:center;color:var(--summer);
 }
 .cta-label-text{
@@ -769,7 +770,7 @@ section[id],main[id]{scroll-margin-top:104px}
   border:1px solid var(--line);border-radius:3px;background:var(--white);color:var(--ink);
 }
 .field textarea{min-height:130px;resize:vertical}
-.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--summer);outline:none;box-shadow:0 0 0 3px rgba(196,83,29,.18)}
+.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--summer);outline:none;box-shadow:0 0 0 3px rgba(184,67,47,.18)}
 .form-note{font-size:.78rem;color:var(--ink-mute);margin-top:6px}
 .form-msg{margin-top:16px;font-size:.85rem;color:var(--summer-ink);font-weight:700}
 .btn-main{
@@ -799,7 +800,7 @@ section[id],main[id]{scroll-margin-top:104px}
 .callbar{
   position:fixed;left:0;right:0;bottom:0;z-index:60;display:none;
   grid-template-columns:1fr 1fr;gap:1px;background:var(--line);
-  box-shadow:0 -6px 20px -12px rgba(30,48,64,.5);
+  box-shadow:0 -6px 20px -12px rgba(22,40,56,.5);
 }
 .callbar a{
   display:flex;align-items:center;justify-content:center;gap:8px;
@@ -829,9 +830,9 @@ section[id],main[id]{scroll-margin-top:104px}
   <div class="wrap head-in">
     <a class="brand" href="#top">
       <svg class="brand-mark" viewBox="0 0 34 34" aria-hidden="true">
-        <rect class="bg" width="34" height="34" rx="3" fill="#2C4054"/>
-        <path d="M5 23 L17 9 L29 23" fill="none" stroke="#C4531D" stroke-width="2.2"/>
-        <path d="M5 23 L17 9 L29 23" fill="none" stroke="#3C6E93" stroke-width="2.2" stroke-dasharray="2.2 4.4" stroke-dashoffset="22"/>
+        <rect class="bg" width="34" height="34" rx="3" fill="#1E3347"/>
+        <path d="M5 23 L17 9 L29 23" fill="none" stroke="#B8432F" stroke-width="2.2"/>
+        <path d="M5 23 L17 9 L29 23" fill="none" stroke="#4A7C9B" stroke-width="2.2" stroke-dasharray="2.2 4.4" stroke-dashoffset="22"/>
       </svg>
       <span class="brand-name">木下塗装
         <span class="brand-sub">ISHIKARI ／ PAINTING &amp; SNOW REMOVAL</span>
@@ -1391,9 +1392,9 @@ section[id],main[id]{scroll-margin-top:104px}
       <div>
         <div class="foot-brand">
           <svg class="brand-mark" viewBox="0 0 34 34" aria-hidden="true">
-            <rect class="bg" width="34" height="34" rx="3" fill="#2C4054"/>
-            <path d="M5 23 L17 9 L29 23" fill="none" stroke="#C4531D" stroke-width="2.2"/>
-            <path d="M5 23 L17 9 L29 23" fill="none" stroke="#3C6E93" stroke-width="2.2" stroke-dasharray="2.2 4.4" stroke-dashoffset="22"/>
+            <rect class="bg" width="34" height="34" rx="3" fill="#1E3347"/>
+            <path d="M5 23 L17 9 L29 23" fill="none" stroke="#B8432F" stroke-width="2.2"/>
+            <path d="M5 23 L17 9 L29 23" fill="none" stroke="#4A7C9B" stroke-width="2.2" stroke-dasharray="2.2 4.4" stroke-dashoffset="22"/>
           </svg>
           <span class="brand-name mincho">木下塗装</span>
         </div>
