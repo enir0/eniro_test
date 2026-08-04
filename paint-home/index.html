@@ -1,0 +1,1620 @@
+<!DOCTYPE html>
+<!--
+  ============================================================
+  株式会社ペイントホーム様 サイトリニューアル ご提案用デザイン案
+  ------------------------------------------------------------
+  ・本ファイルは提案用の非公式デザイン案です（公式サイトではありません）
+  ・既存サイト（paint-home.co.jp）の画像・ロゴは一切使用していません
+  ・写真はヒーローのメインビジュアル1点（img/main-img-full2.jpg：ご提供画像）のみ。
+    それ以外は差し替え枠（撮影メモ付き）で構成しています。
+    フリー素材・生成画像は使用していません
+  ・外部フォント／外部スクリプト／CDNへの依存なし（画像1点を除きファイル内で完結）
+  ・施工事例・お客様の声・ニュースはデザイン確認用のダミーです
+  ・社名／住所／電話／FAX／許可番号／設立／代表者／事業内容／採用条件は
+    既存サイトの記載をそのまま踏襲しています。記載のない情報（保証年数・
+    価格・施工実績件数など）は創作せず、空欄または「見積書に明記」の表現にしています
+  ・色の運用ルールは「色＝家のどの面か」。詳細はファイル末尾の解説と
+    デザインコンセプト.md を参照してください
+  ============================================================
+-->
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>株式会社ペイントホーム｜札幌の外壁塗装・屋根塗装［リニューアル提案デザイン案］</title>
+<meta name="description" content="札幌市内・札幌市近郊の外壁塗装／屋根塗装。1995年から自社施工の株式会社ペイントホーム。塗装工事全般・防水・リフォーム・外まわり工事まで、職人が直接お伺いします。">
+<style>
+/* ===== tokens ==================================================
+   コンセプト「色は、家のどこを指すか」
+   ・既存サイトのブランド水色 #0B85C8 を主役に据える
+   ・差し色3色は装飾ではなく「塗る場所」の識別記号として運用する
+       水色 = 壁 ／ 山吹 = 屋根 ／ 若草 = 床・防水・外構 ／ 朱 = 室内
+   ・グラデーションは2種類だけ定義。角度は 38deg に固定
+     （ローラーを下から上へ押し上げる手の角度。全ページで向きを揃える）
+   ・余白は3段階。訴求＝広く、資料＝詰める。均一にしない
+   =============================================================== */
+:root{
+  /* 基調 */
+  --paper:#FFFFFF;
+  --paper2:#F4F8FB;
+  --ink:#16202A;
+  --ink2:#4C5B68;
+  --ink3:#7E8C99;
+  --line:#DCE5EB;
+  --line2:#EDF2F6;
+  --navy:#06293D;
+
+  /* 主役：既存サイトのブランド水色 */
+  --sky:#0B85C8;
+  --sky-d:#04618F;
+  --sky-l:#3FA9E5;
+  --sky-t:#E9F5FD;
+
+  /* 差し色（面の識別） */
+  --yama:#F7A600;   /* 屋根 */
+  --yama-d:#C57E00;
+  --yama-t:#FFF5DF;
+  --wakaba:#37A75C; /* 床・防水・外構 */
+  --wakaba-d:#278044;
+  --wakaba-t:#E9F6ED;
+  --shu:#E8462B;    /* 室内 */
+  --shu-d:#BE3320;
+  --shu-t:#FDEDE9;
+
+  /* グラデーションは意味と向きを固定して2種のみ */
+  --grad-sky:linear-gradient(38deg,#04618F 0%,#0B85C8 52%,#3FA9E5 100%);
+  --grad-warm:linear-gradient(38deg,#E8462B 0%,#F7A600 100%);
+
+  --gothic:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic Medium","Yu Gothic",YuGothic,"Noto Sans JP",Meiryo,sans-serif;
+  --mono:"SF Mono","Roboto Mono","DejaVu Sans Mono","Osaka-Mono",monospace;
+
+  --wrap:1160px;
+  --gut:clamp(18px,5vw,44px);
+  --air:clamp(78px,11vw,140px);   /* 訴求セクション */
+  --sec:clamp(56px,7.5vw,96px);   /* 標準 */
+  --tight:clamp(38px,5vw,64px);   /* 資料セクション */
+
+  --shadow:0 1px 2px rgba(6,41,61,.06),0 18px 40px -24px rgba(6,41,61,.34);
+  --shadow-s:0 1px 2px rgba(6,41,61,.05),0 8px 18px -12px rgba(6,41,61,.28);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{
+  margin:0;font-family:var(--gothic);color:var(--ink);background:var(--paper);
+  font-size:16px;line-height:1.9;letter-spacing:.02em;
+  font-feature-settings:"palt" 1;
+  -webkit-font-smoothing:antialiased;
+  overflow-wrap:break-word;
+}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit}
+ul,ol{margin:0;padding:0;list-style:none}
+h1,h2,h3,h4,p,figure,dl,dd{margin:0}
+button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
+:focus-visible{outline:3px solid var(--yama);outline-offset:2px}
+
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.wrap{width:min(100% - var(--gut)*2,var(--wrap));margin-inline:auto}
+.wrap-wide{width:min(100% - var(--gut)*2,1340px);margin-inline:auto}
+
+/* ---- 場所を示すラベル -------------------------------------
+   「色付き四角＋英字ラベル」の型は使わない。色は四角ではなく
+   文字そのものに乗せ、書いてあることと色の意味を一致させる */
+.place{font-size:13px;font-weight:800;letter-spacing:.06em;line-height:1.6}
+.place.-sky{color:var(--sky-d)}
+.place.-yama{color:var(--yama-d)}
+.place.-wakaba{color:var(--wakaba-d)}
+.place.-shu{color:var(--shu-d)}
+/* 濃色面では同じ色相の明るい側へ振る（読めることを優先） */
+.works .place.-sky{color:#5CB8EA}
+.works .place.-yama{color:#F7A600}
+.works .place.-wakaba{color:#5EC47E}
+.works .place.-shu{color:#FF7C60}
+
+/* ---- 見出しの型（セクションごとに違う型を使う） -------------- */
+.ttl-a{font-size:clamp(27px,4.4vw,48px);font-weight:800;line-height:1.28;letter-spacing:-.01em}
+.ttl-b{font-size:clamp(23px,3.4vw,38px);font-weight:800;line-height:1.34}
+.ttl-c{font-size:clamp(20px,2.6vw,27px);font-weight:800;line-height:1.5}
+.lead{font-size:clamp(15px,1.6vw,17.5px);line-height:2.05;color:var(--ink2)}
+.small{font-size:13px;line-height:1.85;color:var(--ink3)}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+
+/* ============ 提案注記バー ＋ ヘッダー ============ */
+.notice{
+  background:var(--navy);color:#CFE4F0;font-size:12px;line-height:1.6;
+  padding:7px 0;letter-spacing:.04em;
+}
+.notice .wrap{display:flex;gap:.7em;align-items:baseline;flex-wrap:wrap}
+.notice b{color:#fff;font-weight:700}
+.notice span{color:rgba(207,228,240,.72);font-size:11.5px}
+
+.hd{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.hd-in{display:flex;align-items:center;gap:clamp(14px,3vw,34px);height:clamp(62px,7vw,80px)}
+.logo{display:flex;align-items:center;gap:11px;text-decoration:none;flex:none}
+.logo-mk{width:34px;height:34px;flex:none;display:block}
+.logo-tx{line-height:1.25}
+.logo-tx b{display:block;font-size:clamp(15px,1.8vw,17px);font-weight:800;letter-spacing:.03em}
+.logo-tx small{display:block;font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;color:var(--ink3)}
+.gnav{margin-left:auto;display:flex;gap:clamp(12px,2vw,26px);align-items:center}
+.gnav a{
+  text-decoration:none;font-size:14px;font-weight:700;padding:6px 0;position:relative;letter-spacing:.03em;
+}
+.gnav a::after{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:3px;background:var(--sky);
+  transform:scaleX(0);transform-origin:left;transition:transform .28s cubic-bezier(.2,.7,.3,1);
+}
+.gnav a:hover::after{transform:scaleX(1)}
+.hd-cta{display:flex;align-items:center;gap:10px;flex:none}
+.hd-tel{text-align:right;line-height:1.15;text-decoration:none}
+.hd-tel small{display:block;font-size:10px;color:var(--ink3);letter-spacing:.06em}
+.hd-tel b{font-family:var(--mono);font-size:19px;font-weight:700;color:var(--sky-d)}
+.btn-hd{
+  display:inline-block;background:var(--sky);color:#fff;text-decoration:none;
+  font-size:13.5px;font-weight:800;padding:11px 18px;letter-spacing:.04em;
+  box-shadow:inset 0 -3px 0 rgba(0,0,0,.16);transition:transform .18s,background .18s;
+}
+.btn-hd:hover{background:var(--sky-d);transform:translateY(-1px)}
+.burger{display:none;margin-left:auto;width:44px;height:44px;position:relative}
+.burger i{position:absolute;left:11px;right:11px;height:2px;background:var(--ink);transition:.25s}
+.burger i:nth-child(1){top:15px}.burger i:nth-child(2){top:21px}.burger i:nth-child(3){top:27px}
+.burger[aria-expanded="true"] i:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.burger[aria-expanded="true"] i:nth-child(2){opacity:0}
+.burger[aria-expanded="true"] i:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+
+/* ============ ヒーロー ============
+   ご提供のメインビジュアルを背景に敷く。写真は右側の刷毛が主役で、
+   左半分は白い壁。そこへ白のスクリム（写真自身のフェードと同じ白）を
+   重ねて文字を置く。色を濁らせる黒オーバーレイは使わない */
+.hero{position:relative;overflow:hidden;background:var(--paper);isolation:isolate}
+.hero-bg{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;object-position:78% 50%;z-index:-2; /* 刷毛の穂先と虹の塗り跡が入る位置 */
+}
+/* 白のスクリム。写真自身の白フェードと同じ色で伸ばすので、覆っている感じが出ない */
+.hero-scrim{
+  position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:linear-gradient(92deg,
+    rgba(255,255,255,.98) 0%,
+    rgba(255,255,255,.95) 30%,
+    rgba(255,255,255,.72) 48%,
+    rgba(255,255,255,.22) 68%,
+    rgba(255,255,255,0) 84%);
+}
+.hero-in{
+  display:flex;align-items:center;
+  min-height:clamp(420px,44vw,580px);
+  padding:clamp(40px,6vw,76px) 0 clamp(44px,6vw,80px);
+}
+.hero-tx{max-width:min(100%,720px)}
+.hero-eyebrow{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-bottom:20px}
+.hero-eyebrow em{
+  font-style:normal;font-size:12px;font-weight:800;letter-spacing:.1em;
+  background:var(--sky);color:#fff;padding:5px 11px;
+}
+.eyebrow-note{font-size:12.5px;font-weight:700;color:var(--ink2);letter-spacing:.03em}
+.hero h1{
+  font-size:clamp(30px,5.6vw,60px);font-weight:800;line-height:1.26;letter-spacing:-.015em;
+  position:relative;z-index:0; /* 塗り跡(::after z-index:-1)の重なり文脈をここで作る */
+}
+.hero h1 .l2{display:block}
+.hero h1 .mk{position:relative;display:inline-block}
+/* 塗り跡は1本だけ。ページ内で唯一の処理にして、繰り返さない。
+   色は水色＝壁／会社そのもの。山吹（屋根）や朱（室内）をここに使うと色の意味が壊れる */
+.hero h1 .mk::after{
+  content:"";position:absolute;left:-.06em;right:-.06em;bottom:.16em;height:.26em;
+  background:var(--sky-l);z-index:-1;transform:scaleX(0);transform-origin:left;
+  transition:transform .9s cubic-bezier(.16,.84,.28,1) .35s;
+}
+.is-in .hero h1 .mk::after{transform:scaleX(1)}
+/* 2本目の下線を引く代わりに、文字を大きくして強調する */
+.hero h1 .lg{font-style:normal;font-size:1.16em;letter-spacing:-.04em}
+.hero-copy{margin-top:26px;max-width:30em}
+.hero-copy p+p{margin-top:.9em}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px;align-items:center}
+.btn{
+  display:inline-flex;align-items:center;gap:10px;text-decoration:none;
+  font-weight:800;letter-spacing:.03em;padding:16px 26px;font-size:15.5px;
+  transition:transform .18s ease,box-shadow .18s ease,background .2s;
+}
+.btn-p{background:var(--sky);color:#fff;box-shadow:inset 0 -4px 0 rgba(0,0,0,.18)}
+.btn-p:hover{background:var(--sky-d);transform:translateY(-2px)}
+.btn-o{border:2px solid var(--ink);color:var(--ink);padding:14px 24px}
+.hero .btn-o{background:rgba(255,255,255,.9)} /* 写真の上に乗るので下地を白く */
+.btn-o:hover{background:var(--ink);color:#fff;transform:translateY(-2px)}
+.btn .ar{font-family:var(--mono);font-size:13px}
+
+/* 家の断面＝色の凡例そのもの。「色のルール」セクションの図版として使う */
+.sec-house{width:100%;height:auto;display:block;box-shadow:var(--shadow)}
+.house-note{
+  margin-top:10px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;
+  font-size:11.5px;color:var(--ink3);line-height:1.6;
+}
+.hero-strip{display:flex;height:9px;margin-top:0}
+.hero-strip i{flex:1}
+.hero-strip i:nth-child(1){background:var(--yama)}
+.hero-strip i:nth-child(2){background:var(--sky);flex:2.4}
+.hero-strip i:nth-child(3){background:var(--shu);flex:.6}
+.hero-strip i:nth-child(4){background:var(--wakaba)}
+
+/* ============ 職人の構成 ============
+   「数字を4つ等分に並べる帯」をやめ、19人の年代構成を1枚の図にした。
+   40代が13人という事実は、数字を読ませるより行の長さで見せた方が速い。
+   色は使わない（色＝家のどこ、のルールを人数に持ち込まない） */
+.crew{background:var(--navy);color:#fff;padding:clamp(46px,6.4vw,84px) 0}
+.crew-in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(28px,4.6vw,72px);align-items:center}
+.crew h2{font-size:clamp(23px,3.2vw,34px);font-weight:800;line-height:1.42;margin:12px 0 16px}
+.crew p{font-size:14.5px;color:#BBD5E4;line-height:1.95;max-width:30em}
+.crew .note{font-size:12px;color:rgba(255,255,255,.42);margin-top:16px;line-height:1.78}
+.crew-row{display:grid;grid-template-columns:clamp(44px,4.4vw,56px) auto 1fr;gap:clamp(10px,1.4vw,18px);align-items:center}
+.crew-row+.crew-row{margin-top:clamp(9px,1.2vw,14px)}
+.crew-row>span{font-size:12.5px;color:#8FBBD3;white-space:nowrap}
+.dots{display:flex;gap:4px;flex-wrap:wrap}
+.dots i{width:clamp(11px,1.1vw,15px);height:clamp(11px,1.1vw,15px);background:rgba(255,255,255,.26);display:block}
+.crew-row.-main .dots i{background:#fff}
+.crew-row b{font-family:var(--mono);font-size:14px;font-weight:700;color:rgba(255,255,255,.6)}
+.crew-row.-main b{font-size:clamp(20px,2.4vw,26px);color:#fff}
+.crew-cap{margin-top:18px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:rgba(255,255,255,.4)}
+
+/* ============ 写真の差し替え枠 ============
+   全部同じ枠にすると、撮ってほしい画が伝わらないうえに反復に見える。
+   引き／寄り／縦で、枠の比率・下地・メモの位置を変える */
+.ph{position:relative;display:block;overflow:hidden}
+.ph .memo{
+  position:absolute;left:0;right:0;bottom:0;padding:clamp(10px,1.4vw,16px);
+  font-size:11.5px;line-height:1.7;color:var(--ink3);
+}
+.ph .kind{
+  position:absolute;left:clamp(10px,1.4vw,16px);top:clamp(10px,1.4vw,16px);
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;color:var(--ink3);
+}
+.ph.-wide{aspect-ratio:16/9;background:var(--paper2)}
+.ph.-close{aspect-ratio:4/3;background:transparent;border:1px solid var(--line)}
+.ph.-close .memo{text-align:right}
+.ph.-tall{aspect-ratio:3/4;background:var(--paper2)}
+.ph.-sq{aspect-ratio:1/1;background:var(--paper2)}
+
+/* ============ 汎用セクション ============ */
+/* 見出しの入りは、短い罫線やラベルではなく「位置のズレ」と余白で作る */
+.sec-head{margin-bottom:clamp(28px,4vw,48px)}
+.sec-head.-indent{padding-left:clamp(0px,5vw,90px)}
+.sec-head.-hang{margin-left:calc(clamp(0px,3vw,52px) * -1)}
+
+/* ---- 色のルール説明（このサイトの主張） ---- */
+.rulebox{padding:var(--air) 0}
+.rulebox-in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.12fr);gap:clamp(26px,5vw,64px);align-items:start}
+.rule-list{border-top:1px solid var(--line)}
+.rule-list li{
+  display:grid;grid-template-columns:64px 1fr;gap:18px;align-items:baseline;
+  padding:17px 0;border-bottom:1px solid var(--line);
+}
+.rule-sw{height:34px;position:relative}
+.rule-sw b{position:absolute;inset:0}
+.rule-list h3{font-size:17px;font-weight:800;margin-bottom:2px}
+.rule-list p{font-size:13.5px;color:var(--ink2);line-height:1.8}
+.rule-note{margin-top:20px;font-size:12.5px;color:var(--ink3)}
+
+/* ============ 業務内容 ============
+   7件を同じカードで並べると、どれが主力か分からず反復にも見える。
+   売上の柱である外壁・屋根の2件だけ「大きい写真＋文章」で扱い、
+   残り5件は索引に落とす。カードの箱・影・枠線は使わない */
+.biz{padding:var(--sec) 0;background:var(--paper2)}
+.lead-biz{display:grid;gap:clamp(44px,6vw,86px)}
+.lead-item{
+  display:grid;grid-template-columns:minmax(0,1.18fr) minmax(0,1fr);
+  gap:clamp(20px,3.4vw,54px);align-items:center;
+}
+.lead-item.-rev{grid-template-columns:minmax(0,1fr) minmax(0,1.18fr)}
+.lead-item.-rev .lead-vis{order:2}
+.lead-vis{position:relative}
+.lead-vis .bar{position:absolute;left:0;top:0;width:100%;height:6px;z-index:2}
+.lead-item.-sky .bar{background:var(--sky)}   .lead-item.-sky .ph{background:var(--sky-t)}
+.lead-item.-yama .bar{background:var(--yama)} .lead-item.-yama .ph{background:var(--yama-t)}
+.lead-tx h3{font-size:clamp(23px,3.2vw,34px);font-weight:800;margin:10px 0 14px;letter-spacing:.01em}
+.lead-tx p{font-size:14.5px;color:var(--ink2);line-height:1.95;max-width:32em}
+.lead-tx p+p{margin-top:.85em}
+.lead-tx .sub{font-size:13px;color:var(--ink3);line-height:1.85}
+.ln{
+  display:inline-flex;align-items:center;gap:8px;margin-top:18px;text-decoration:none;
+  font-size:14px;font-weight:800;padding-bottom:3px;border-bottom:2px solid var(--ink);
+  transition:gap .2s,border-color .2s,color .2s;
+}
+.ln:hover{gap:14px;color:var(--sky-d);border-color:var(--sky)}
+.ln em{font-style:normal;font-family:var(--mono);font-size:12px}
+
+.biz-index{margin-top:clamp(48px,6.4vw,88px)}
+.biz-index-cap{font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--ink3);margin-bottom:clamp(18px,2.4vw,28px)}
+.biz-index-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(16px,2.4vw,34px)}
+.bi .place{margin-bottom:4px;font-size:12px}
+.bi .place.-all{background:linear-gradient(90deg,var(--yama-d),var(--sky-d) 40%,var(--shu-d) 70%,var(--wakaba-d));-webkit-background-clip:text;background-clip:text;color:transparent}
+.bi h4{font-size:15.5px;font-weight:800;margin-bottom:6px;letter-spacing:.01em}
+.bi p{font-size:13px;color:var(--ink2);line-height:1.82}
+
+/* ============ 自社施工の理由（非対称・重ね） ============ */
+.why{padding:var(--air) 0;position:relative;overflow:hidden}
+.why-in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(26px,5vw,64px);align-items:center}
+.why-vis{position:relative}
+.why-vis .ph{background:var(--paper2)}
+.why-tag{
+  position:absolute;right:-8px;bottom:-22px;background:var(--yama);color:#231400;
+  padding:14px 18px;font-weight:800;font-size:14px;line-height:1.5;box-shadow:var(--shadow-s);max-width:240px;
+}
+.why-body h2{margin-bottom:18px}
+.why-body p+p{margin-top:1.05em}
+/* 番号も罫線も置かない。区切りは余白の量と、偶数項目の字下げだけで作る */
+.why-pts{margin-top:clamp(26px,3.4vw,38px);display:grid;gap:clamp(20px,2.6vw,30px)}
+.why-pts li:nth-child(even){padding-left:clamp(16px,2.4vw,34px)}
+.why-pts b{display:block;font-size:clamp(17px,2vw,20px);font-weight:800;margin-bottom:4px;letter-spacing:.01em}
+.why-pts p{font-size:14px;color:var(--ink2);line-height:1.85;max-width:34em}
+
+/* ============ 施工事例 ============ */
+.works{padding:var(--sec) 0;background:var(--navy);color:#fff}
+.works .sec-head p{color:#A9C9DA}
+.works-head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-bottom:clamp(24px,3.4vw,40px)}
+/* 6件を等分に並べず、代表1件だけ大きく扱う。残り5件は 3+2 の索引 */
+.work-hero{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:clamp(20px,3vw,44px);align-items:center;margin-bottom:clamp(38px,5vw,66px)}
+.work-hero .ph{aspect-ratio:16/9;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12)}
+.work-hero .ph .memo,.work-hero .ph .kind{color:rgba(255,255,255,.5)}
+.work-hero h3{font-size:clamp(20px,2.6vw,28px);font-weight:800;margin-bottom:14px}
+.wh-dl{display:grid;grid-template-columns:auto 1fr;gap:7px 16px;font-size:13.5px;line-height:1.8}
+.wh-dl dt{color:#8FBBD3;white-space:nowrap}
+.wh-dl dd{margin:0;color:#E7F1F7}
+.works-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:clamp(14px,2vw,28px)}
+.work{grid-column:span 2}
+.work:nth-child(n+4){grid-column:span 3}
+.work .ph{aspect-ratio:4/3;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12)}
+.work:nth-child(n+4) .ph{aspect-ratio:16/9}
+.work .ph .memo,.work .ph .kind{color:rgba(255,255,255,.45)}
+.work-b{padding-top:13px}
+.work-b h3{font-size:16px;font-weight:800;margin-bottom:5px}
+.work-b .meta{font-size:12.5px;color:#A9C9DA;line-height:1.8}
+.painted{margin-top:9px;font-size:12.5px;color:#7FA6BC}
+.painted .place{font-size:12.5px}
+
+/* ============ 流れ ============ */
+.flow{padding:var(--sec) 0}
+.flow-in{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:clamp(24px,4vw,60px);align-items:start}
+/* 番号付きカードも、色付き数字＋横罫のプロセスリストも使わない。
+   工程が進むことは「字下げが一段ずつ深くなる」ことで表す */
+.flow-steps{display:grid;gap:clamp(30px,4.2vw,50px)}
+.phase{padding-left:calc(var(--i,0) * clamp(9px,1.5vw,26px))}
+.phase-cap{
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink3);margin-bottom:12px;
+}
+.phase-items{display:grid;gap:clamp(14px,1.8vw,20px)}
+.phase-items b{display:block;font-size:clamp(16px,1.9vw,18px);font-weight:800;margin-bottom:3px}
+.phase-items p{font-size:13.5px;color:var(--ink2);line-height:1.85;max-width:38em}
+
+/* 施工できる時期の可用表。装飾ではなく資料。
+   色は「家のどこ」ルールをそのまま使う＝室内だけ冬も動けることが一目で分かる */
+.cal{margin:clamp(26px,3.4vw,36px) 0 0}
+.cal-t{font-size:16px;font-weight:800;margin-bottom:12px}
+.cal-row{display:grid;grid-template-columns:clamp(64px,7vw,86px) repeat(12,1fr);gap:2px;align-items:center}
+.cal-row+.cal-row{margin-top:3px}
+.cal-row>span{font-size:12px;color:var(--ink2);padding-right:6px;white-space:nowrap}
+.cal-row i{height:15px;background:var(--line2);display:block}
+.cal-row i[data-on]{background:var(--c,var(--ink3))}
+.cal-head span{font-size:0}
+.cal-head b{font-family:var(--mono);font-size:10px;color:var(--ink3);text-align:center;font-weight:400}
+.cal-note{margin-top:12px;font-size:12.5px;color:var(--ink3);line-height:1.8}
+
+/* ============ 対応エリア ============ */
+.area{padding:var(--tight) 0;background:var(--paper2)}
+.area-in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:clamp(24px,4vw,56px);align-items:start}
+.base-list{display:grid;gap:14px}
+.base{background:#fff;border:1px solid var(--line);padding:18px 20px;display:grid;gap:4px}
+.base h3{font-size:15px;font-weight:800;letter-spacing:.04em;margin-bottom:2px}
+/* 拠点名の頭に付けていた四角は廃止（色付きブロック＋ラベルの型を使わない） */
+.base p{font-size:13.5px;color:var(--ink2);line-height:1.8}
+.base .num{font-size:15px;font-weight:700;color:var(--ink)}
+.area-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.area-tags li{font-size:13px;background:#fff;border:1px solid var(--line);padding:6px 12px;color:var(--ink2)}
+
+/* ============ 採用 ============ */
+.rec{padding:var(--air) 0;position:relative;overflow:hidden}
+.rec-in{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:clamp(26px,4vw,60px);align-items:start}
+.rec-vis{background:var(--grad-warm);color:#fff;padding:clamp(26px,4vw,44px);position:relative;overflow:hidden}
+.rec-vis h3{font-size:clamp(21px,3vw,30px);font-weight:800;line-height:1.4;margin-bottom:14px}
+.rec-vis p{font-size:14.5px;line-height:1.95;color:rgba(255,255,255,.94)}
+.rec-tbl{width:100%;border-collapse:collapse;margin-top:6px}
+.rec-tbl th,.rec-tbl td{text-align:left;padding:12px 0;border-bottom:1px solid var(--line);font-size:14px;vertical-align:top;line-height:1.85}
+.rec-tbl th{width:88px;font-weight:800;color:var(--ink);white-space:nowrap;padding-right:14px}
+.rec-tbl td{color:var(--ink2)}
+.rec-tbl tr:first-child th,.rec-tbl tr:first-child td{border-top:2px solid var(--ink)}
+
+/* ============ FAQ（定石レイアウト） ============ */
+.faq{padding:var(--sec) 0;background:var(--paper2)}
+.faq-list{max-width:860px;margin-inline:auto;border-top:1px solid var(--line)}
+.faq details{border-bottom:1px solid var(--line);background:#fff}
+.faq summary{
+  list-style:none;cursor:pointer;padding:18px clamp(16px,2.4vw,24px);
+  display:grid;grid-template-columns:26px 1fr 22px;gap:14px;align-items:start;
+  font-size:15.5px;font-weight:700;line-height:1.7;
+}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary .q{font-family:var(--mono);font-weight:700;color:var(--sky);font-size:15px;padding-top:.05em}
+.faq summary .ic{position:relative;width:22px;height:22px;margin-top:.2em}
+.faq summary .ic::before,.faq summary .ic::after{
+  content:"";position:absolute;left:50%;top:50%;background:var(--ink);transition:transform .25s;
+}
+.faq summary .ic::before{width:14px;height:2px;transform:translate(-50%,-50%)}
+.faq summary .ic::after{width:2px;height:14px;transform:translate(-50%,-50%)}
+.faq details[open] summary .ic::after{transform:translate(-50%,-50%) scaleY(0)}
+.faq .a{padding:0 clamp(16px,2.4vw,24px) 22px 54px;font-size:14.5px;color:var(--ink2);line-height:1.95}
+.faq .a p+p{margin-top:.8em}
+
+/* ============ 会社概要 ============ */
+.co{padding:var(--sec) 0}
+.co-in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:clamp(24px,4vw,56px);align-items:start}
+.co-tbl{width:100%;border-collapse:collapse}
+.co-tbl th,.co-tbl td{text-align:left;padding:13px 0;border-bottom:1px solid var(--line);font-size:14.5px;vertical-align:top;line-height:1.85}
+.co-tbl th{width:150px;font-weight:800;padding-right:16px;white-space:nowrap}
+.co-tbl td{color:var(--ink2)}
+.co-tbl tr:first-child th,.co-tbl tr:first-child td{border-top:2px solid var(--ink)}
+.co-tbl ul li{padding-left:1.1em;text-indent:-1.1em}
+.co-tbl ul li+li{margin-top:.5em}
+.co-tbl ul li em{font-style:normal;display:block;font-size:13px;color:var(--ink3)}
+
+/* ============ CTA ＋ フォーム ============ */
+.cta{background:var(--grad-sky);color:#fff;padding:var(--sec) 0}
+.cta-in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:center}
+.cta h2{font-size:clamp(24px,3.6vw,40px);font-weight:800;line-height:1.35;margin-bottom:14px}
+.cta p{font-size:15px;line-height:2;color:rgba(255,255,255,.94)}
+.cta-box{background:#fff;color:var(--ink);padding:clamp(22px,3vw,32px);box-shadow:var(--shadow)}
+.cta-tel{display:block;text-decoration:none;text-align:center;padding-bottom:18px;border-bottom:1px solid var(--line)}
+.cta-tel small{display:block;font-size:12px;color:var(--ink3);letter-spacing:.04em}
+.cta-tel b{font-family:var(--mono);font-size:clamp(28px,4.4vw,40px);font-weight:700;color:var(--sky-d);letter-spacing:-.02em;display:block;line-height:1.3}
+.cta-tel em{font-style:normal;display:block;font-size:12.5px;color:var(--ink2)}
+.cta-sub{margin-top:16px;display:grid;gap:8px;font-size:13.5px;color:var(--ink2)}
+.cta-sub div{padding-left:1.1em;text-indent:-1.1em}
+
+.form-sec{padding:var(--sec) 0 var(--tight)}
+.form-wrap{max-width:820px;margin-inline:auto}
+/* 薄い背景＋左の太い縦棒で囲うコラム箱は使わない。字下げと余白だけで注記にする */
+.form-note{font-size:13.5px;color:var(--ink2);line-height:1.9;margin:0 auto 30px;max-width:36em;padding-left:clamp(0px,2vw,26px)}
+.f-row{display:grid;grid-template-columns:190px 1fr;gap:18px;padding:16px 0;border-bottom:1px solid var(--line)}
+.f-row:first-of-type{border-top:1px solid var(--line)}
+.f-row>label,.f-lb{font-size:14.5px;font-weight:700;padding-top:11px;display:flex;gap:8px;align-items:flex-start}
+.req{font-size:11px;font-weight:700;background:var(--shu);color:#fff;padding:3px 7px;letter-spacing:.06em;line-height:1.4;flex:none;margin-top:.15em}
+.opt{font-size:11px;font-weight:700;background:#E5EAEE;color:var(--ink2);padding:3px 7px;letter-spacing:.06em;line-height:1.4;flex:none;margin-top:.15em}
+input[type=text],input[type=tel],input[type=email],textarea,select{
+  width:100%;font:inherit;font-size:15px;padding:12px 14px;border:1px solid #C6D2DA;background:#fff;
+  border-radius:0;transition:border-color .18s,box-shadow .18s;
+}
+input:focus,textarea:focus,select:focus{outline:none;border-color:var(--sky);box-shadow:0 0 0 3px rgba(11,133,200,.16)}
+textarea{min-height:150px;line-height:1.8;resize:vertical}
+.f-hint{font-size:12.5px;color:var(--ink3);margin-top:6px;line-height:1.7}
+.f-radio{display:flex;gap:10px;flex-wrap:wrap;padding-top:6px}
+.f-radio label{display:flex;align-items:center;gap:8px;border:1px solid #C6D2DA;padding:10px 16px;font-size:14.5px;cursor:pointer;transition:.18s}
+.f-radio label:hover{border-color:var(--sky);background:var(--sky-t)}
+.f-radio input{accent-color:var(--sky);width:17px;height:17px}
+.f-agree{margin:24px 0;padding:18px;background:var(--paper2);font-size:13.5px;line-height:1.85}
+.f-agree label{display:flex;gap:10px;align-items:flex-start;cursor:pointer;font-weight:700}
+.f-agree input{accent-color:var(--sky);width:18px;height:18px;margin-top:.25em;flex:none}
+.f-agree .pp{margin-top:10px;color:var(--ink3);font-size:12.5px;max-height:88px;overflow-y:auto;padding-right:8px;line-height:1.8}
+.f-submit{text-align:center;margin-top:8px}
+.f-submit button{
+  background:var(--sky);color:#fff;font-size:16.5px;font-weight:800;padding:18px 60px;
+  letter-spacing:.06em;box-shadow:inset 0 -4px 0 rgba(0,0,0,.18);transition:.18s;
+}
+.f-submit button:hover{background:var(--sky-d);transform:translateY(-2px)}
+.f-submit p{margin-top:12px;font-size:12.5px;color:var(--ink3)}
+
+/* ============ フッター ============ */
+.ft{background:var(--ink);color:#fff;padding:clamp(44px,6vw,68px) 0 0}
+.ft-strip{display:flex;height:6px}
+.ft-strip i{flex:1}
+.ft-strip i:nth-child(1){background:var(--yama)}
+.ft-strip i:nth-child(2){background:var(--sky);flex:2.4}
+.ft-strip i:nth-child(3){background:var(--shu);flex:.6}
+.ft-strip i:nth-child(4){background:var(--wakaba)}
+.ft-in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:clamp(26px,4vw,60px)}
+.ft-logo{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.ft-logo b{font-size:18px;font-weight:800}
+.ft p{font-size:13.5px;color:rgba(255,255,255,.68);line-height:1.9}
+.ft-bases{display:grid;gap:14px;font-size:13.5px}
+.ft-base{display:grid;grid-template-columns:120px 1fr;gap:14px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.14)}
+.ft-base b{font-weight:800;font-size:13.5px}
+.ft-base p{color:rgba(255,255,255,.72)}
+.ft-nav{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:26px}
+.ft-nav a{font-size:13.5px;text-decoration:none;color:rgba(255,255,255,.82)}
+.ft-nav a:hover{color:#fff;text-decoration:underline}
+.ft-btm{margin-top:34px;padding:16px 0;border-top:1px solid rgba(255,255,255,.14);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.ft-btm small{font-size:11.5px;color:rgba(255,255,255,.45);line-height:1.7}
+
+/* ============ モバイル固定バー ============ */
+.mbar{
+  position:fixed;left:0;right:0;bottom:0;z-index:70;display:none;
+  grid-template-columns:1fr 1fr;background:#fff;border-top:1px solid var(--line);
+  box-shadow:0 -6px 20px -12px rgba(6,41,61,.4);
+}
+.mbar a{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;
+  text-decoration:none;padding:11px 6px;font-size:12.5px;font-weight:800;
+}
+.mbar .t{background:var(--navy);color:#fff}
+.mbar .t b{font-family:var(--mono);font-size:16px;letter-spacing:-.01em}
+.mbar .m{background:var(--sky);color:#fff}
+.mbar small{font-size:10px;font-weight:600;opacity:.78}
+
+/* ============ スクロール演出（控えめ） ============ */
+.rv{opacity:0;transform:translateY(18px);transition:opacity .7s cubic-bezier(.2,.7,.3,1),transform .7s cubic-bezier(.2,.7,.3,1)}
+.rv.on{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  .rv{opacity:1;transform:none;transition:none}
+  html{scroll-behavior:auto}
+  .hero h1 .mk::after{transform:scaleX(1);transition:none}
+}
+
+/* ============ レスポンシブ ============ */
+@media (max-width:1000px){
+  .hd-tel{display:none}
+  .gnav{gap:14px}
+  .gnav a{font-size:13px}
+  /* 画面が狭いほど写真は寄って見えるので、刷毛の穂先が入る位置へ寄せる */
+  .hero-bg{object-position:72% 50%}
+  .rulebox-in,.why-in,.flow-in,.area-in,.rec-in,.co-in,.cta-in,.crew-in{grid-template-columns:1fr}
+  .lead-item,.lead-item.-rev{grid-template-columns:1fr;gap:20px}
+  .lead-item.-rev .lead-vis{order:0}
+  .biz-index-grid{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:clamp(22px,3vw,32px)}
+  .work-hero{grid-template-columns:1fr}
+  /* 1カラムに落ちた縦位置枠は、そのままだと縦に伸びすぎる */
+  .ph.-tall{aspect-ratio:16/10}
+  .ph.-sq{aspect-ratio:16/10}
+  .works-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .work{grid-column:span 2}
+  .work:nth-child(n+4){grid-column:span 2}
+  .work:nth-child(n+4) .ph{aspect-ratio:4/3}
+}
+/* ナビは7項目あるので、900px以下は早めにドロワーへ畳む（2段に折り返すのを防ぐ） */
+@media (max-width:900px){
+  .gnav{display:none}
+  .hd-cta{margin-left:auto}
+  .burger{display:block}
+  .hd.-open .gnav{
+    display:flex;position:fixed;inset:calc(var(--hdh,70px) + var(--noth,30px)) 0 0 0;
+    background:#fff;flex-direction:column;gap:0;padding:8px 0 30px;overflow-y:auto;align-items:stretch;
+  }
+  .hd.-open .gnav a{padding:16px var(--gut);border-bottom:1px solid var(--line2);font-size:16px}
+  .hd.-open .gnav a::after{display:none}
+}
+@media (max-width:760px){
+  body{font-size:15.5px;line-height:1.88}
+  .hd-cta{display:none}
+  .hd.-open .hd-cta{
+    display:grid;position:fixed;left:0;right:0;bottom:64px;padding:0 var(--gut);z-index:61;
+  }
+  .hd.-open .btn-hd{text-align:center;padding:16px}
+  /* SPは横スクリムが効かないので、上から白を落として文字面をつくる */
+  .hero-bg{object-position:70% 50%}
+  .hero-scrim{background:linear-gradient(178deg,
+    rgba(255,255,255,.97) 0%,
+    rgba(255,255,255,.95) 50%,
+    rgba(255,255,255,.78) 70%,
+    rgba(255,255,255,.22) 92%,
+    rgba(255,255,255,0) 100%)}
+  .hero-in{min-height:clamp(430px,105vw,560px);align-items:flex-start;padding-bottom:clamp(96px,26vw,140px)}
+  .biz-index-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .works-grid{grid-template-columns:1fr}
+  .work,.work:nth-child(n+4){grid-column:span 1}
+  .work .ph,.work:nth-child(n+4) .ph{aspect-ratio:16/10}
+  .ph.-tall{aspect-ratio:4/3}
+  .why-tag{position:static;max-width:none;margin-top:0;display:block}
+  .rule-list li{grid-template-columns:44px 1fr;gap:14px}
+  .f-row{grid-template-columns:1fr;gap:8px;padding:14px 0}
+  .f-row>label,.f-lb{padding-top:0}
+  .f-submit button{width:100%;padding:18px}
+  .ft-in{grid-template-columns:1fr}
+  .ft-base{grid-template-columns:1fr;gap:2px}
+  .mbar{display:grid}
+  body{padding-bottom:62px}
+  .faq .a{padding-left:clamp(16px,2.4vw,24px)}
+}
+</style>
+</head>
+<body>
+
+<!-- ▼ 提案用の注記（納品時は削除する行） -->
+<div class="notice" id="notice">
+  <div class="wrap">
+    <b>※本サイトは提案用の非公式デザイン案です</b>
+    <span>株式会社ペイントホーム様の公式サイトではありません／写真・事例はダミーです</span>
+  </div>
+</div>
+
+<header class="hd" id="hd">
+  <div class="wrap-wide hd-in">
+    <a href="#top" class="logo" aria-label="株式会社ペイントホーム トップへ">
+      <!-- ロゴマーク：家の断面＝屋根/壁/床。既存ロゴは未使用の仮マーク -->
+      <svg class="logo-mk" viewBox="0 0 34 34" aria-hidden="true">
+        <path d="M17 2 33 13v3H1v-3z" fill="#F7A600"/>
+        <rect x="4" y="17" width="26" height="10" fill="#0B85C8"/>
+        <rect x="4" y="28" width="26" height="4" fill="#37A75C"/>
+        <rect x="13" y="19" width="8" height="8" fill="#E8462B"/>
+      </svg>
+      <span class="logo-tx">
+        <b>株式会社ペイントホーム</b>
+        <small>PAINT HOME / SAPPORO</small>
+      </span>
+    </a>
+    <nav class="gnav" id="gnav" aria-label="メインメニュー">
+      <a href="#biz">業務内容</a>
+      <a href="#why">自社施工</a>
+      <a href="#works">施工事例</a>
+      <a href="#flow">工事の流れ</a>
+      <a href="#recruit">採用情報</a>
+      <a href="#company">会社概要</a>
+      <a href="#faq">よくある質問</a>
+    </nav>
+    <div class="hd-cta">
+      <a class="hd-tel" href="tel:0120411617">
+        <small>通話料無料</small>
+        <b>0120-4116-17</b>
+      </a>
+      <a class="btn-hd" href="#contact">見積り・資料請求</a>
+    </div>
+    <button class="burger" id="burger" aria-label="メニューを開く" aria-expanded="false" aria-controls="gnav">
+      <i></i><i></i><i></i>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <!-- メインビジュアル（ご提供画像）。背景画像ではなくimgで置き、
+       白のスクリムを重ねて文字の可読性を確保する -->
+  <img class="hero-bg" src="img/main-img-full2.jpg" width="2000" height="400"
+       fetchpriority="high" decoding="async"
+       alt="脚立に乗った子どもが白い壁を刷毛で塗っている様子と、虹色の塗料をつけた大きな刷毛">
+  <span class="hero-scrim" aria-hidden="true"></span>
+  <div class="wrap-wide hero-in">
+    <div class="hero-tx">
+      <div class="hero-eyebrow">
+        <em>札幌市内・札幌市近郊</em>
+        <span class="eyebrow-note">外壁・屋根の塗装／防水／リフォーム</span>
+      </div>
+      <h1>
+        <span class="l2">色を決めるのも、</span>
+        <span class="l2"><span class="mk">塗るのも</span>、</span>
+        <span class="l2">直しに来るのも、<em class="lg">うち</em>。</span>
+      </h1>
+      <div class="hero-copy">
+        <p class="lead">下請けに出しません。1995年に塗装専門で仕事を始めて、31年。職人はいま19人、いちばん厚い層は40代です。</p>
+        <p class="small">外壁・屋根の塗装から、防水、室内、車庫や融雪槽まで。現場に立つ人間が、そのまま見積りを書きます。</p>
+      </div>
+      <div class="hero-cta">
+        <a class="btn btn-p" href="#contact">見積りを依頼する<span class="ar">→</span></a>
+        <a class="btn btn-o" href="#works">施工事例を見る<span class="ar">→</span></a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-strip"><i></i><i></i><i></i><i></i></div>
+</section>
+
+<!-- ================= 職人の構成 ================= -->
+<section class="crew">
+  <div class="wrap-wide crew-in">
+    <div>
+      <h2>いちばん多いのは、40代です。<br>13人。</h2>
+      <p>1995年に塗装専門で始めて31年目。拠点は本社と北営業所、それに新琴似と花畔の作業場が2か所。塗るのは全員うちの社員で、下請けには出しません。</p>
+      <p class="note">※年代の内訳は既存サイトの採用ページ、従業員数19人は会社概要（2011年11月現在）の記載によるものです。出典が異なるため合計が一致しません。公開時は最新の実数をご確認ください。</p>
+    </div>
+    <figure>
+      <div class="crew-row">
+        <span>20代</span>
+        <div class="dots"><i></i><i></i></div>
+        <b>2</b>
+      </div>
+      <div class="crew-row">
+        <span>30代</span>
+        <div class="dots"><i></i><i></i><i></i><i></i></div>
+        <b>4</b>
+      </div>
+      <div class="crew-row -main">
+        <span>40代</span>
+        <div class="dots"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <b>13</b>
+      </div>
+      <div class="crew-row">
+        <span>50代〜</span>
+        <div class="dots"><i></i></div>
+        <b>1</b>
+      </div>
+    </figure>
+  </div>
+</section>
+
+<!-- ================= 色のルール ================= -->
+<section class="rulebox">
+  <div class="wrap rulebox-in">
+    <div>
+      <h2 class="ttl-b">色は、飾りじゃなく<br>住所みたいなものです。</h2>
+      <p class="lead" style="margin-top:18px">塗装屋のサイトなのに、色に意味がないのは変だと思っています。<br>
+      このサイトで使う色は4つだけ。それぞれ「家のどこを塗る話か」を指しています。ページのどこを見ても、色を見れば、いま屋根の話なのか床の話なのかが分かるようにしました。</p>
+      <p class="small" style="margin-top:14px">水色は、いまお使いのサイトから引き継いだ色です。</p>
+
+      <!-- 家の断面図＝配色ルールの凡例そのもの -->
+      <figure class="rv" style="margin:26px 0 0">
+        <svg class="sec-house" viewBox="0 0 520 400" role="img" aria-label="家の断面と、このサイトで使う色の対応（屋根＝山吹、外壁＝水色、室内＝朱、床・外構＝若草）">
+          <rect width="520" height="400" fill="#F4F8FB"/>
+          <rect x="0" y="0" width="520" height="176" fill="#EAF3F9"/>
+          <path d="M260 44 470 168H50z" fill="#F7A600"/>
+          <path d="M260 44 470 168h-26L260 78z" fill="#C57E00"/>
+          <rect x="78" y="168" width="364" height="176" fill="#0B85C8"/>
+          <rect x="78" y="168" width="364" height="10" fill="#04618F"/>
+          <rect x="122" y="208" width="94" height="72" fill="#E8462B"/>
+          <rect x="304" y="208" width="94" height="72" fill="#E8462B"/>
+          <rect x="228" y="252" width="64" height="92" fill="#FDEDE9"/>
+          <rect x="228" y="252" width="64" height="8" fill="#E8462B"/>
+          <rect x="60" y="344" width="400" height="26" fill="#37A75C"/>
+          <rect x="0" y="370" width="520" height="30" fill="#278044"/>
+          <g font-family="monospace" font-size="12.5" fill="#16202A" letter-spacing="1px">
+            <line x1="360" y1="104" x2="486" y2="104" stroke="#16202A" stroke-width="1"/>
+            <text x="392" y="98">ROOF / F7A600</text>
+            <line x1="442" y1="236" x2="500" y2="236" stroke="#16202A" stroke-width="1"/>
+            <text x="452" y="230">WALL</text>
+            <text x="452" y="248">0B85C8</text>
+            <line x1="216" y1="244" x2="150" y2="300" stroke="#fff" stroke-width="1"/>
+            <text x="96" y="316" fill="#16202A">ROOM / E8462B</text>
+            <line x1="60" y1="357" x2="20" y2="357" stroke="#16202A" stroke-width="1"/>
+            <text x="14" y="392" fill="#fff">FLOOR &amp; EXTERIOR / 37A75C</text>
+          </g>
+        </svg>
+        <div class="hero-strip"><i></i><i></i><i></i><i></i></div>
+        <figcaption class="house-note">
+          <span>色は、塗る場所を指しています。</span>
+          <span class="num">色は4つ、ルールは1つ</span>
+        </figcaption>
+      </figure>
+    </div>
+    <div>
+      <ul class="rule-list">
+        <li>
+          <div class="rule-sw"><b style="background:var(--sky)"></b></div>
+          <div>
+            <h3>水色 ― 壁</h3>
+            <p>外壁塗装、サイディング、シーリングの打ち替え。会社そのものを指す色でもあるので、面積もいちばん大きく取っています。<span class="num">#0B85C8</span></p>
+          </div>
+        </li>
+        <li>
+          <div class="rule-sw"><b style="background:var(--yama)"></b></div>
+          <div>
+            <h3>山吹 ― 屋根</h3>
+            <p>屋根塗装、屋根板金。札幌の家でいちばん陽と雪を受ける面なので、いちばん強い色を当てました。<span class="num">#F7A600</span></p>
+          </div>
+        </li>
+        <li>
+          <div class="rule-sw"><b style="background:var(--wakaba)"></b></div>
+          <div>
+            <h3>若草 ― 床・外まわり</h3>
+            <p>屋上やベランダの防水、外構、融雪槽、ロードヒーティング、車庫。ウレタン防水の塗膜が緑なので、そのまま借りています。<span class="num">#37A75C</span></p>
+          </div>
+        </li>
+        <li>
+          <div class="rule-sw"><b style="background:var(--shu)"></b></div>
+          <div>
+            <h3>朱 ― 室内</h3>
+            <p>内装クロス、システムキッチン、ユニットバス、サッシ。家の「中」の工事にだけ使います。<span class="num">#E8462B</span></p>
+          </div>
+        </li>
+      </ul>
+      <p class="rule-note">4色が同じ場所に並ぶのは、会社全体の話をしているときだけ（ヘッダーのマーク、ページ下の帯、特殊塗装）。それ以外では混ぜません。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 業務内容 ================= -->
+<section class="biz" id="biz">
+  <div class="wrap-wide">
+    <div class="sec-head -indent">
+      <h2 class="ttl-b">塗るところと、塗らないところ。</h2>
+      <p class="lead" style="margin-top:12px;max-width:42em">件数がいちばん多いのは外壁と屋根なので、先にその2つを。残り5つは下にまとめました。見出しの上にある色つきの文字が、家のどこを塗る工事かを表しています。</p>
+    </div>
+    <!-- 主力2件：写真を大きく、文章で説明する -->
+    <div class="lead-biz">
+      <article class="lead-item -sky">
+        <div class="lead-vis">
+          <span class="bar"></span>
+          <div class="ph -wide">
+            <span class="kind">wide / 引き</span>
+            <span class="memo">［写真差し替え枠］足場を組んだ外壁の全景。職人が実際にローラーを当てている引きの一枚。晴天・順光で。</span>
+          </div>
+        </div>
+        <div class="lead-tx">
+          <p class="place -sky">家のいちばん広い面＝壁</p>
+          <h3>外壁塗装</h3>
+          <p>高圧洗浄で旧塗膜と汚れを落とし、ひび割れとコーキングを直してから、下塗り・中塗り・上塗りの3回。触ると手に白い粉がつく（チョーキング）状態が出ていたら、塗り替えの合図です。</p>
+          <p class="sub">サイディングの張り替え、シーリングの打ち替えもあわせて。見積書には塗料のメーカー名と製品名を書きます。</p>
+          <a class="ln" href="#contact">外壁の見積りを依頼する<em>&rarr;</em></a>
+        </div>
+      </article>
+
+      <article class="lead-item -yama -rev">
+        <div class="lead-vis">
+          <span class="bar"></span>
+          <div class="ph -wide">
+            <span class="kind">wide / 引き</span>
+            <span class="memo">［写真差し替え枠］屋根に乗って塗装している場面。できれば施工前後の同アングル2枚。</span>
+          </div>
+        </div>
+        <div class="lead-tx">
+          <p class="place -yama">陽と雪を受ける面＝屋根</p>
+          <h3>屋根塗装</h3>
+          <p>札幌の屋根は、雪の重みと融雪の水を毎年受けます。錆が出てからでは板金の交換になることもあるので、色褪せの段階で一度見せてください。</p>
+          <p class="sub">屋根板金の工事も自社で対応します。積雪期は上がれないので、相談は雪が消えてからになります。</p>
+          <a class="ln" href="#contact">屋根の見積りを依頼する<em>&rarr;</em></a>
+        </div>
+      </article>
+    </div>
+
+    <!-- 残り5件：索引として小さく扱う -->
+    <div class="biz-index">
+      <p class="biz-index-cap">そのほか、5つ</p>
+      <div class="biz-index-grid">
+        <div class="bi -wakaba">
+          <p class="place -wakaba">床</p>
+          <h4>防水塗装・工事</h4>
+          <p>陸屋根、ベランダ、階段まわり。雨漏りは、まず水がどこから入っているかを見るところから。</p>
+        </div>
+        <div class="bi -shu">
+          <p class="place -shu">室内</p>
+          <h4>リフォーム工事</h4>
+          <p>システムキッチン、内装クロス、ユニットバス、各種サッシ。足場を組むついでに窓を替える方が多いです。</p>
+        </div>
+        <div class="bi -wakaba">
+          <p class="place -wakaba">外まわり</p>
+          <h4>外まわり工事</h4>
+          <p>玄関フード、外構、融雪槽、ロードヒーティング、車庫。冬の暮らしに直結する工事です。</p>
+        </div>
+        <div class="bi -all">
+          <p class="place -all">どの面にも</p>
+          <h4>特殊塗装</h4>
+          <p>耐候性・防カビ・意匠性。「隣と同じ色は避けたい」「前と同じ色に戻したい」どちらの相談も受けています。</p>
+        </div>
+        <div class="bi -sky">
+          <p class="place -sky">壁</p>
+          <h4>大規模改修</h4>
+          <p>マンション、店舗、工場。居住者・営業への影響を先に確認してから工程を組みます。夜間・日曜の作業も相談可。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 自社施工 ================= -->
+<section class="why" id="why">
+  <div class="wrap why-in">
+    <div class="why-vis">
+      <div class="ph -tall">
+        <span class="kind">tall / 縦</span>
+        <span class="memo">［写真差し替え枠］社員全員の集合写真、または朝の作業場（新琴似 or 花畔）。人の顔が見える縦位置で。</span>
+      </div>
+      <div class="why-tag">見積りを書いた人間が、<br>そのまま現場に立ちます。</div>
+    </div>
+    <div class="why-body">
+      <h2 class="ttl-b" style="margin-top:10px">「その職人、御社の社員ですか」<br>と、聞いてみてください。</h2>
+      <p class="lead">塗装は、契約した会社と、実際に塗る人が違うことがあります。うちは違います。営業も、診断も、塗る作業も、全部うちの社員です。</p>
+      <p class="lead">だから、現場で「ここも直しておきますね」の判断がその場でできます。逆に、できないことは、その場で「できません」と言います。</p>
+      <ul class="why-pts">
+        <li><b>中間マージンが乗らない</b><p>元請け・下請けの間に入る手数料がない分を、塗料と工程に回しています。安さだけを売りにはしません。</p></li>
+        <li><b>職人の平均は40代</b><p>20代2名、30代4名、40代13名、50代以上1名。いちばん手が動く年代が中心です（2011年11月現在の構成）。</p></li>
+        <li><b>作業場を2か所持っている</b><p>札幌市北区新琴似と石狩市花畔。足場材や塗料を自前で置けるので、急ぎの手直しにも動けます。</p></li>
+        <li><b>終わったあとも同じ番号</b><p>工事が終わってから気づいた箇所は、担当した職人に直接つながります。窓口が変わりません。</p></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 施工事例 ================= -->
+<section class="works" id="works">
+  <div class="wrap-wide">
+    <div class="works-head">
+      <div>
+        <h2 class="ttl-b" style="margin-top:10px">一般住宅も、マンションも、<br>工場の床も塗ります。</h2>
+      </div>
+      <p class="small" style="color:#A9C9DA;max-width:26em">下の6件はレイアウト確認用のダミーです。実際の物件写真・色番号・工期に差し替えて公開します。</p>
+    </div>
+    <!-- 代表1件を大きく -->
+    <article class="work-hero rv">
+      <div class="ph -wide">
+        <span class="kind">wide / 引き</span>
+        <span class="memo">［写真差し替え枠］施工後の正面全景。可能なら施工前と同じ立ち位置・同じ画角で。</span>
+      </div>
+      <div>
+        <h3>札幌市東区 K様邸</h3>
+        <dl class="wh-dl">
+          <dt>工事</dt><dd>外壁塗装・屋根塗装</dd>
+          <dt>建物</dt><dd>木造2階建</dd>
+          <dt>工期</dt><dd>14日（うち雨天中止2日）</dd>
+        </dl>
+        <p class="painted">塗った面は<span class="place -sky">壁</span>と<span class="place -yama">屋根</span>。</p>
+      </div>
+    </article>
+
+    <div class="works-grid">
+      <article class="work">
+        <div class="ph -close">
+          <span class="kind">close / 寄り</span>
+          <span class="memo">［写真差し替え枠］外壁全景</span>
+        </div>
+        <div class="work-b">
+          <h3>札幌市北区 Sマンション</h3>
+          <p class="meta">大規模改修（外壁・シーリング）／RC5階建／工期48日</p>
+          <p class="painted">塗った面は<span class="place -sky">壁</span>。</p>
+        </div>
+      </article>
+      <article class="work">
+        <div class="ph -close">
+          <span class="kind">close / 寄り</span>
+          <span class="memo">［写真差し替え枠］屋上防水の施工後</span>
+        </div>
+        <div class="work-b">
+          <h3>石狩市 T倉庫</h3>
+          <p class="meta">屋上ウレタン防水／工期9日</p>
+          <p class="painted">塗った面は<span class="place -wakaba">床</span>。</p>
+        </div>
+      </article>
+      <article class="work">
+        <div class="ph -close">
+          <span class="kind">close / 寄り</span>
+          <span class="memo">［写真差し替え枠］室内クロス・キッチン</span>
+        </div>
+        <div class="work-b">
+          <h3>札幌市東区 Y様邸</h3>
+          <p class="meta">内装クロス・システムキッチン交換／工期11日</p>
+          <p class="painted">直したのは<span class="place -shu">室内</span>。</p>
+        </div>
+      </article>
+      <article class="work">
+        <div class="ph -wide">
+          <span class="kind">wide / 引き</span>
+          <span class="memo">［写真差し替え枠］店舗ファサード。夜間施工なので、明かりが入った状態も1枚。</span>
+        </div>
+        <div class="work-b">
+          <h3>札幌市中央区 飲食店</h3>
+          <p class="meta">外壁・特殊塗装／営業を止めずに夜間施工／工期6日</p>
+          <p class="painted">塗った面は<span class="place -sky">壁</span>と<span class="place -shu">室内</span>。</p>
+        </div>
+      </article>
+      <article class="work">
+        <div class="ph -wide">
+          <span class="kind">wide / 引き</span>
+          <span class="memo">［写真差し替え枠］玄関フードと車庫。雪が積もった状態が入ると北海道らしさが出ます。</span>
+        </div>
+        <div class="work-b">
+          <h3>札幌市北区 M様邸</h3>
+          <p class="meta">玄関フード設置・車庫塗装／工期5日</p>
+          <p class="painted">塗った面は<span class="place -wakaba">外まわり</span>。</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+<!-- ================= 工事の流れ ================= -->
+<section class="flow" id="flow">
+  <div class="wrap flow-in">
+    <div>
+      <h2 class="ttl-c">相談から引き渡しまで、<br>だいたい2〜4週間です。</h2>
+      <p class="small" style="margin-top:14px">建物の大きさと天気で前後します。塗料はメーカーが決めた乾燥時間を守る必要があるので、雨や気温で工程を止めることがあります。</p>
+      <figure class="cal">
+        <figcaption class="cal-t">札幌で、どこを、いつ塗れるか</figcaption>
+        <div class="cal-row cal-head" aria-hidden="true">
+          <span>月</span>
+          <b>1</b><b>2</b><b>3</b><b>4</b><b>5</b><b>6</b><b>7</b><b>8</b><b>9</b><b>10</b><b>11</b><b>12</b>
+        </div>
+        <div class="cal-row" style="--c:var(--yama)">
+          <span>屋根</span>
+          <i></i><i></i><i></i><i data-on></i><i data-on></i><i data-on></i><i data-on></i><i data-on></i><i data-on></i><i data-on></i><i data-on></i><i></i>
+        </div>
+        <div class="cal-row" style="--c:var(--sky)">
+          <span>外壁</span>
+          <i></i><i></i><i></i><i data-on></i><i data-on></i><i data-on></i><i data-on></i><i data-on></i><i data-on></i><i data-on></i><i data-on></i><i></i>
+        </div>
+        <div class="cal-row" style="--c:var(--wakaba)">
+          <span>床・外まわり</span>
+          <i></i><i></i><i></i><i data-on></i><i data-on></i><i data-on></i><i data-on></i><i data-on></i><i data-on></i><i data-on></i><i data-on></i><i></i>
+        </div>
+        <div class="cal-row" style="--c:var(--shu)">
+          <span>室内</span>
+          <i data-on></i><i data-on></i><i data-on></i><i data-on></i><i data-on></i><i data-on></i><i data-on></i><i data-on></i><i data-on></i><i data-on></i><i data-on></i><i data-on></i>
+        </div>
+        <p class="cal-note">気温5℃を下回ると多くの塗料が規定どおりに乾かず、積雪期は足場も組めません。外部はおおむね4月〜11月。冬にご相談いただいた場合は、診断だけ先に済ませて春の工程を押さえます。室内工事は通年で動けます。</p>
+      </figure>
+    </div>
+    <div class="flow-steps">
+      <div class="phase" style="--i:0">
+        <p class="phase-cap">まだ、こちらが見せてもらう段階</p>
+        <div class="phase-items">
+          <div><b>電話・フォームで相談</b><p>「そろそろかな」の段階で結構です。築年数と、気になっている箇所を教えてください。</p></div>
+          <div><b>現地調査・診断</b><p>外壁を触って粉が出るか、コーキングが切れていないか、屋根の錆はどこまで進んでいるか。写真を撮って記録します。1〜2時間ほど。</p></div>
+          <div><b>見積書の提出</b><p>使う塗料のメーカー名と製品名、塗る面積、工程の回数、保証の範囲まで書面に入れます。不明点はここで全部潰してください。</p></div>
+          <div><b>色決め</b><p>A4の色見本ではなく、大きめの板を現場に持ち込んで、日向と日陰の両方で見ていただきます。屋外の色は、室内で見た印象より明るく出ます。</p></div>
+        </div>
+      </div>
+      <div class="phase" style="--i:1">
+        <p class="phase-cap">ご近所に音が出はじめる</p>
+        <div class="phase-items">
+          <div><b>近隣へのあいさつ</b><p>足場と高圧洗浄は音が出ます。着工前に、両隣と裏のお宅へうちの人間が伺います。</p></div>
+          <div><b>足場・養生</b><p>足場を組み、窓・車・植栽を養生します。この間、洗濯物は室内干しをお願いしています。</p></div>
+        </div>
+      </div>
+      <div class="phase" style="--i:2">
+        <p class="phase-cap">仕上がりの寿命が決まる</p>
+        <div class="phase-items">
+          <div><b>高圧洗浄／下地処理</b><p>旧塗膜・カビ・チョーキングを落とし、ひび割れの補修とコーキングの打ち替え。上から何を塗っても、ここが甘いと数年で剥がれます。</p></div>
+          <div><b>下塗り・中塗り・上塗り</b><p>3回に分けて塗ります。各工程の写真を撮って、後でお渡しします。足場に上がって直接ご覧いただいても構いません。</p></div>
+        </div>
+      </div>
+      <div class="phase" style="--i:3">
+        <p class="phase-cap">ここから先が、長い付き合い</p>
+        <div class="phase-items">
+          <div><b>点検・手直し・足場解体</b><p>お客様と一緒に見て回り、気になる箇所をその場で直してから足場を外します。</p></div>
+          <div><b>引き渡し・その後</b><p>工程写真と保証書をお渡しします。数年後に気になる箇所が出たら、担当した職人に直接ご連絡ください。</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 対応エリア ================= -->
+<section class="area">
+  <div class="wrap area-in">
+    <div>
+      <h2 class="ttl-c" style="margin-top:10px">札幌市内と、その周辺。</h2>
+      <p class="small" style="margin-top:12px">下記以外の地域も、距離によってはお受けできます。まず電話で場所を教えてください。</p>
+      <ul class="area-tags">
+        <li>札幌市東区</li><li>札幌市北区</li><li>札幌市白石区</li><li>札幌市厚別区</li>
+        <li>札幌市豊平区</li><li>札幌市清田区</li><li>札幌市中央区</li><li>札幌市西区</li>
+        <li>札幌市手稲区</li><li>札幌市南区</li><li>石狩市</li><li>江別市</li><li>北広島市</li><li>当別町</li>
+      </ul>
+    </div>
+    <div class="base-list">
+      <div class="base">
+        <h3>本社</h3>
+        <p>〒007-0384　札幌市東区北34条東5丁目2-24 PHBLD</p>
+        <p class="num">TEL 0120-4116-17（通話料無料）／ 011-748-8523（直通）</p>
+        <p class="num">FAX 011-748-8522</p>
+      </div>
+      <div class="base">
+        <h3>北営業所</h3>
+        <p>〒002-8007　札幌市北区太平7条5丁目7-5</p>
+        <p class="num">TEL 011-790-8507　FAX 011-790-8502</p>
+        <p class="small">採用面接はこちらで行っています。</p>
+      </div>
+      <div class="base">
+        <h3>作業場・資材置場</h3>
+        <p>札幌市北区新琴似／石狩市花畔</p>
+        <p class="small">足場材と塗料はここに置いています。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 採用 ================= -->
+<section class="rec" id="recruit">
+  <div class="wrap rec-in">
+    <div class="rec-vis">
+      <h3>元調理師が、いま普通に<br>現場を回しています。</h3>
+      <p>未経験からの見習いスタート、歓迎します。20代で全くの異業種から来た人も、いま一人で現場を持っています。</p>
+      <p style="margin-top:1em">社長も現場に出ますが、横から口うるさく言いません。必要なことは教えて、あとは任せる。長く続けている社員が多いのは、たぶんそこです。</p>
+      <p style="margin-top:1em;font-size:13.5px;opacity:.9">社員旅行は国内組と海外組に分かれます。去年は沖縄とタイでした。毎年、社長が手作りのしおりを配ります。</p>
+    </div>
+    <div>
+      <h2 class="ttl-c" style="margin-bottom:6px">正社員募集｜①塗装工　②塗装工見習い</h2>
+      <table class="rec-tbl">
+        <caption class="sr-only">正社員（塗装工・塗装工見習い）の募集要項</caption>
+        <tr><th>勤務地</th><td>北営業所集合（直行直帰は応相談）／札幌市北区太平7条5丁目7-5・車通勤可</td></tr>
+        <tr><th>資格</th><td>普通免許をお持ちの方。見習いスタートも可能なので、未経験の方もどうぞ。</td></tr>
+        <tr><th>時間</th><td>8:00〜17:00（業務により変動）</td></tr>
+        <tr><th>休日</th><td>日曜ほか、年末年始・GW・お盆</td></tr>
+        <tr><th>給与</th><td>①日給13,000〜16,000円／②日給10,500〜13,000円<br>※試用期間1〜3か月（同条件）</td></tr>
+        <tr><th>待遇</th><td>車通勤可／昇給年1回（8月）／賞与年2回（1月・8月）／決算手当（業績による）／交通費規定支給（月5,000円）／家族手当／社会保険完備／社員旅行</td></tr>
+        <tr><th>応募</th><td>電話でご連絡ください。面接は北営業所で行います。<br><span class="num">TEL 011-748-8523</span></td></tr>
+      </table>
+      <p class="small" style="margin-top:14px">従業員構成：男性19名・女性1名／20代2名・30代4名・40代13名・50代以上1名</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="faq" id="faq">
+  <div class="wrap">
+    <div class="sec-head" style="text-align:center">
+      <h2 class="ttl-c" style="margin-top:8px">よくある質問</h2>
+    </div>
+    <div class="faq-list">
+      <details>
+        <summary><span class="q">Q</span><span>見積りにお金はかかりますか。</span><span class="ic"></span></summary>
+        <div class="a"><p>現地調査と見積書の作成は無料です。見積り後に断っていただいて構いませんし、こちらから何度も電話することはしません。</p></div>
+      </details>
+      <details>
+        <summary><span class="q">Q</span><span>金額はどのくらいになりますか。</span><span class="ic"></span></summary>
+        <div class="a"><p>建物の大きさ、劣化の程度、選ぶ塗料で変わるので、実際に見ないと数字が出せません。ただ、見積書には「どの面を何平米、どの塗料で何回塗るか」まで書きますので、他社さんの見積りと項目単位で比べられます。</p><p>相場だけ先に知りたい場合も、電話で建物の階数と築年数を教えていただければ、おおよその幅はお伝えします。</p></div>
+      </details>
+      <details>
+        <summary><span class="q">Q</span><span>塗り替えの時期の目安は。</span><span class="ic"></span></summary>
+        <div class="a"><p>分かりやすいのはこの3つです。外壁を手で触ると白い粉がつく（チョーキング）、コーキングが痩せて隙間が見える、屋根や鉄部に錆が出ている。ひとつでも当てはまったら、一度見せてください。</p><p>色褪せの段階で塗れば塗装だけで済みますが、下地まで傷むと補修や板金の交換が加わって、金額が変わります。</p></div>
+      </details>
+      <details>
+        <summary><span class="q">Q</span><span>冬でも工事できますか。</span><span class="ic"></span></summary>
+        <div class="a"><p>外部の塗装は難しいです。気温5℃を下回ると塗料が規定どおりに乾かず、積雪期は足場も組めません。外部はおおむね4月〜11月とお考えください。</p><p>冬の間は診断だけ済ませて、春の工程を先に押さえる方が多いです。室内工事は冬でも動けます。</p></div>
+      </details>
+      <details>
+        <summary><span class="q">Q</span><span>工事中、家にいなくても大丈夫ですか。</span><span class="ic"></span></summary>
+        <div class="a"><p>問題ありません。日中お留守でも作業は進みます。ただ、色決めと最後の確認だけは立ち会っていただけると助かります。作業の様子は写真で記録して、終わってからまとめてお渡しします。</p></div>
+      </details>
+      <details>
+        <summary><span class="q">Q</span><span>保証はありますか。</span><span class="ic"></span></summary>
+        <div class="a"><p>あります。年数と範囲は、使う塗料と工事の内容で変わりますので、見積書と保証書に明記します。口頭では約束しません。</p></div>
+      </details>
+      <details>
+        <summary><span class="q">Q</span><span>近所への影響が心配です。</span><span class="ic"></span></summary>
+        <div class="a"><p>足場の組み立てと高圧洗浄は音が出ます。着工前に、両隣と裏のお宅へうちの人間が挨拶に伺います。車や植栽への飛散も養生で防ぎますが、駐車位置だけは事前にご相談させてください。</p></div>
+      </details>
+      <details>
+        <summary><span class="q">Q</span><span>塗装以外もまとめて頼めますか。</span><span class="ic"></span></summary>
+        <div class="a"><p>できます。キッチン、クロス、ユニットバス、サッシ、玄関フード、屋根板金、外構、融雪槽、ロードヒーティング、車庫まで自社で対応しています。足場を組むタイミングで窓を替える方が多いです。</p></div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 会社概要 ================= -->
+<section class="co" id="company">
+  <div class="wrap co-in">
+    <div>
+      <h2 class="ttl-c">会社概要</h2>
+      <p class="small" style="margin-top:12px">1995年3月に塗装専門で事業を始め、2007年8月に法人化しました。</p>
+      <div class="ph -sq" style="margin-top:22px">
+        <span class="kind">square / 正方</span>
+        <span class="memo">［写真差し替え枠］本社外観（PHBLD）、または代表・三浦のポートレート。</span>
+      </div>
+    </div>
+    <div>
+      <table class="co-tbl">
+        <caption class="sr-only">株式会社ペイントホーム 会社概要</caption>
+        <tr><th>商号</th><td>株式会社ペイントホーム</td></tr>
+        <tr><th>設立</th><td>2007年8月（事業開始 1995年3月）</td></tr>
+        <tr><th>代表者</th><td>三浦 希予史</td></tr>
+        <tr><th>資本金</th><td class="num">1,000万円</td></tr>
+        <tr><th>従業員数</th><td>19人（2011年11月現在）</td></tr>
+        <tr><th>建築免許番号</th><td>北海道知事許可（般－23）石 第21061号</td></tr>
+        <tr><th>本社</th><td>〒007-0384　札幌市東区北34条東5丁目2-24 PHBLD<br><span class="num">TEL 0120-4116-17（フリーダイヤル）／ 011-748-8523（直通）／ FAX 011-748-8522</span></td></tr>
+        <tr><th>北営業所</th><td>〒002-8007　札幌市北区太平7条5丁目7-5<br><span class="num">TEL 011-790-8507／FAX 011-790-8502</span></td></tr>
+        <tr><th>作業場・資材置場</th><td>札幌市北区新琴似／石狩市花畔</td></tr>
+        <tr><th>事業内容</th><td>
+          <ul>
+            <li>塗装工事全般</li>
+            <li>リフォーム工事全般</li>
+            <li>室内工事<em>システムキッチン・内装クロス・ユニットバス・各種サッシ工事</em></li>
+            <li>外まわり工事<em>外壁サイディング・玄関フード・屋根板金・外構工事・融雪槽・ロードヒーティング・車庫</em></li>
+          </ul>
+        </td></tr>
+        <tr><th>関連</th><td>札幌塗装職人社</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA ================= -->
+<section class="cta" id="contact">
+  <div class="wrap cta-in">
+    <div>
+      <h2 style="margin-top:10px">まず、家を見せてください。<br>話はそれからです。</h2>
+      <p>写真だけでは分からないことが多いので、実際に外壁を触って、屋根に上がって確認します。診断も見積りも無料です。その場で契約を迫ることはしません。</p>
+      <p style="margin-top:1em">「まだ相談の段階」で結構です。塗り替えが必要ない状態なら、そう伝えます。</p>
+    </div>
+    <div class="cta-box rv">
+      <a class="cta-tel" href="tel:0120411617">
+        <small>電話が早いです（通話料無料）</small>
+        <b>0120-4116-17</b>
+        <em>直通 011-748-8523／受付 8:00〜17:00・日曜休</em>
+      </a>
+      <div class="cta-sub">
+        <div><span>現地調査は1〜2時間。当日中に金額は出しません。</span></div>
+        <div><span>見積書には塗料のメーカー名と製品名を書きます。</span></div>
+        <div><span>他社さんの見積書を持ってきていただいても構いません。</span></div>
+      </div>
+      <a class="btn btn-p" href="#form" style="width:100%;justify-content:center;margin-top:18px">フォームから相談する<span class="ar">↓</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= フォーム（定石レイアウト） ================= -->
+<section class="form-sec" id="form">
+  <div class="wrap form-wrap">
+    <div class="sec-head" style="text-align:center;margin-bottom:24px">
+      <h2 class="ttl-c" style="margin-top:8px">お問い合わせ・資料請求</h2>
+    </div>
+    <p class="form-note">項目を入力して［入力内容を確認する］を押してください。折り返しご連絡しますので、つながる電話番号かメールアドレスをご記入ください。<br>日曜と17時以降にいただいた分は、翌営業日の対応になります。</p>
+
+    <form action="#" method="post" novalidate>
+      <div class="f-row">
+        <span class="f-lb" id="lb-subject">件名<span class="req">必須</span></span>
+        <div>
+          <fieldset style="border:0;padding:0;margin:0;min-width:0">
+            <legend class="sr-only">件名を選択してください</legend>
+            <div class="f-radio">
+              <label><input type="radio" name="subject" value="お問い合わせ" checked><span>お問い合わせ</span></label>
+              <label><input type="radio" name="subject" value="見積り依頼"><span>見積り依頼</span></label>
+              <label><input type="radio" name="subject" value="資料請求"><span>資料請求</span></label>
+              <label><input type="radio" name="subject" value="採用について"><span>採用について</span></label>
+            </div>
+          </fieldset>
+        </div>
+      </div>
+
+      <div class="f-row">
+        <label for="f-name">お名前<span class="req">必須</span></label>
+        <div><input type="text" id="f-name" name="name" autocomplete="name" required></div>
+      </div>
+
+      <div class="f-row">
+        <label for="f-kana">ふりがな<span class="opt">任意</span></label>
+        <div><input type="text" id="f-kana" name="kana"></div>
+      </div>
+
+      <div class="f-row">
+        <label for="f-zip">郵便番号<span class="opt">任意</span></label>
+        <div>
+          <input type="text" id="f-zip" name="zip" inputmode="numeric" autocomplete="postal-code" style="max-width:200px" placeholder="007-0384">
+        </div>
+      </div>
+
+      <div class="f-row">
+        <label for="f-add">住所（建物の所在地）<span class="req">必須</span></label>
+        <div>
+          <input type="text" id="f-add" name="address" autocomplete="street-address" required>
+          <p class="f-hint">現地調査に伺う建物の住所をご記入ください。</p>
+        </div>
+      </div>
+
+      <div class="f-row">
+        <label for="f-tel">電話番号<span class="req">必須</span></label>
+        <div>
+          <input type="tel" id="f-tel" name="tel" autocomplete="tel" placeholder="011-748-8523" required>
+          <p class="f-hint">ハイフンを入れてご記入ください。</p>
+        </div>
+      </div>
+
+      <div class="f-row">
+        <label for="f-mail">メールアドレス<span class="opt">任意</span></label>
+        <div><input type="email" id="f-mail" name="email" autocomplete="email"></div>
+      </div>
+
+      <div class="f-row">
+        <label for="f-kind">工事の種類<span class="opt">任意</span></label>
+        <div>
+          <select id="f-kind" name="kind">
+            <option value="">選択してください</option>
+            <option>外壁塗装</option>
+            <option>屋根塗装</option>
+            <option>外壁＋屋根</option>
+            <option>防水塗装・工事</option>
+            <option>リフォーム工事（室内）</option>
+            <option>外まわり工事（外構・車庫・融雪槽など）</option>
+            <option>特殊塗装</option>
+            <option>まだ決まっていない</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="f-row">
+        <label for="f-msg">ご相談内容<span class="req">必須</span></label>
+        <div>
+          <textarea id="f-msg" name="message" required placeholder="例）築18年の木造2階建てです。南側の外壁を触ると白い粉がつくようになりました。屋根の色褪せも気になります。来春の工事で検討しています。"></textarea>
+          <p class="f-hint">築年数、気になっている箇所、希望の時期があれば書いてください。分かる範囲で構いません。</p>
+        </div>
+      </div>
+
+      <div class="f-agree">
+        <label><input type="checkbox" name="agree" required><span>個人情報の取り扱いに同意します<span class="req" style="margin-left:6px">必須</span></span></label>
+        <div class="pp">
+          <b>個人情報の取扱いについて</b><br>
+          1．取得について｜当社は、適正かつ公正な手段によって個人情報を取得します。<br>
+          2．利用について｜収集した個人情報は、収集目的の達成に必要な範囲に限って利用します。お客様のご興味に沿うと思われる情報を、電子メール・郵便・電話・FAXでお届けする場合があります。配信を希望されない場合は、当社の個人情報窓口までご連絡いただければ停止します。<br>
+          3．第三者提供｜法令に基づく場合を除き、あらかじめご本人の同意を得ずに第三者へ提供することはありません。<br>
+          4．管理｜個人情報への不正アクセス、紛失、破壊、改ざん、漏えいを防ぐため、必要な措置を講じます。<br>
+          5．お問い合わせ｜開示・訂正・削除のご依頼は、本社（TEL 011-748-8523）までご連絡ください。
+        </div>
+      </div>
+
+      <div class="f-submit">
+        <button type="submit">入力内容を確認する</button>
+        <p>※本ページは提案用デザイン案のため、送信は行われません。</p>
+      </div>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<footer class="ft">
+  <div class="wrap-wide">
+    <div class="ft-in">
+      <div>
+        <div class="ft-logo">
+          <svg class="logo-mk" viewBox="0 0 34 34" aria-hidden="true">
+            <path d="M17 2 33 13v3H1v-3z" fill="#F7A600"/>
+            <rect x="4" y="17" width="26" height="10" fill="#0B85C8"/>
+            <rect x="4" y="28" width="26" height="4" fill="#37A75C"/>
+            <rect x="13" y="19" width="8" height="8" fill="#E8462B"/>
+          </svg>
+          <b>株式会社ペイントホーム</b>
+        </div>
+        <p>札幌市内・札幌市近郊の外壁塗装、屋根塗装。<br>塗装工事全般／リフォーム工事全般／室内工事／外まわり工事。<br>北海道知事許可（般－23）石 第21061号</p>
+        <nav class="ft-nav" aria-label="フッターメニュー">
+          <a href="#biz">業務内容</a>
+          <a href="#why">自社施工</a>
+          <a href="#works">施工事例</a>
+          <a href="#flow">工事の流れ</a>
+          <a href="#recruit">採用情報</a>
+          <a href="#company">会社概要</a>
+          <a href="#faq">よくある質問</a>
+          <a href="#contact">お問い合わせ</a>
+        </nav>
+      </div>
+      <div class="ft-bases">
+        <div class="ft-base">
+          <b>本社</b>
+          <p>〒007-0384　札幌市東区北34条東5丁目2-24 PHBLD<br>
+          TEL 0120-4116-17（通話料無料）／011-748-8523（直通）<br>FAX 011-748-8522</p>
+        </div>
+        <div class="ft-base">
+          <b>北営業所</b>
+          <p>〒002-8007　札幌市北区太平7条5丁目7-5<br>TEL 011-790-8507／FAX 011-790-8502</p>
+        </div>
+        <div class="ft-base" style="border-bottom:0">
+          <b>作業場・資材置場</b>
+          <p>札幌市北区新琴似／石狩市花畔<br>受付 8:00〜17:00・日曜休</p>
+        </div>
+      </div>
+    </div>
+    <div class="ft-btm">
+      <small>Copyright © 株式会社ペイントホーム All Rights Reserved.</small>
+      <small>本ページは提案用の非公式デザイン案です。写真・施工事例はダミーです。</small>
+    </div>
+  </div>
+  <div class="ft-strip"><i></i><i></i><i></i><i></i></div>
+</footer>
+
+<!-- モバイル固定バー -->
+<div class="mbar">
+  <a class="t" href="tel:0120411617"><small>通話料無料</small><b>0120-4116-17</b></a>
+  <a class="m" href="#form"><small>24時間受付</small><b>見積り・資料請求</b></a>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var d=document;
+
+  /* ヒーローの塗り跡アニメを初回描画後に起動 */
+  requestAnimationFrame(function(){ d.body.classList.add("is-in"); });
+
+  /* スクロール表示（控えめ。1要素1回だけ） */
+  if("IntersectionObserver" in window){
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add("on"); io.unobserve(e.target); }
+      });
+    },{rootMargin:"0px 0px -12% 0px",threshold:.06});
+    Array.prototype.forEach.call(d.querySelectorAll(".rv"),function(el,i){
+      el.style.transitionDelay=(i%4)*70+"ms";
+      io.observe(el);
+    });
+  }else{
+    Array.prototype.forEach.call(d.querySelectorAll(".rv"),function(el){el.classList.add("on")});
+  }
+
+  /* SPメニュー */
+  var hd=d.getElementById("hd"), bg=d.getElementById("burger"), nav=d.getElementById("gnav"), nt=d.getElementById("notice");
+  function setVars(){
+    hd.style.setProperty("--hdh",hd.offsetHeight+"px");
+    hd.style.setProperty("--noth",(nt?nt.offsetHeight:0)+"px");
+  }
+  setVars(); window.addEventListener("resize",setVars);
+  bg.addEventListener("click",function(){
+    var open=hd.classList.toggle("-open");
+    bg.setAttribute("aria-expanded",open?"true":"false");
+    bg.setAttribute("aria-label",open?"メニューを閉じる":"メニューを開く");
+    d.body.style.overflow=open?"hidden":"";
+  });
+  Array.prototype.forEach.call(nav.querySelectorAll("a"),function(a){
+    a.addEventListener("click",function(){
+      hd.classList.remove("-open");
+      bg.setAttribute("aria-expanded","false");
+      d.body.style.overflow="";
+    });
+  });
+
+  /* FAQ：開いているものを1つに絞る（定石の挙動） */
+  var faqs=d.querySelectorAll(".faq details");
+  Array.prototype.forEach.call(faqs,function(el){
+    el.addEventListener("toggle",function(){
+      if(!el.open)return;
+      Array.prototype.forEach.call(faqs,function(o){ if(o!==el)o.open=false; });
+    });
+  });
+
+  /* フォーム：提案用なので送信させない */
+  var f=d.querySelector("#form form");
+  if(f){ f.addEventListener("submit",function(e){
+    e.preventDefault();
+    alert("提案用のデザイン案のため、送信は行われません。\n実装時はご利用中のフォーム（form.cgi 等）に接続します。");
+  }); }
+})();
+</script>
+
+<!--
+  ================================================================
+  【このデザインを採用した理由】
+  ----------------------------------------------------------------
+  0. ファーストビュー
+     ご提供いただいたメインビジュアル（img/main-img-full2.jpg）を全面に敷いた。
+     写真は2000×400の横長で、右側の「虹色の塗料をつけた刷毛」が主役。
+     object-position:78% で穂先と塗り跡が必ず画面に入る位置を指定し、
+     文字側には白のスクリム（写真自身の白フェードと同じ白）を重ねている。
+     黒の半透明オーバーレイを使うと色が濁って写真の良さが消えるため使わない。
+     ・幅900px以下は 72%、760px以下は 70% ＋ 上から白を落とす縦スクリムへ切り替え
+     ・ヒーロー下端の4色ストリップが、そのまま下の配色ルールへの導入になる
+
+  1. コンセプト：「色は、家のどこを指すか」
+     ご要望の「カラフルさを最大の強みにする」を、装飾ではなく“情報”として
+     成立させるために、色に役割を固定しました。
+       水色 #0B85C8 ＝ 壁（外壁・サイディング・シーリング／会社そのもの）
+       山吹 #F7A600 ＝ 屋根（屋根塗装・板金）
+       若草 #37A75C ＝ 床・外まわり（防水・外構・融雪槽・車庫）
+       朱   #E8462B ＝ 室内（クロス・キッチン・浴室・サッシ）
+     「色のルール」セクションの家の断面図が色の凡例になっています。以降、業務内容
+     カードの上端5px、施工事例のスウォッチ、工事の流れの番号色、フッターの
+     帯まで、全部このルールで統一しています。「なぜこの色なのか」に必ず
+     答えられる状態＝ランダムな虹色配色との決定的な差です。
+
+  2. メインカラーは既存サイトの水色を継承
+     既存サイト（paint-home.co.jp）の主要色 #0B85C8 をそのまま主役に据え、
+     面積比でも最大にしました（帯・ストリップは水色を2.4倍幅で配分）。
+     リニューアルしても「同じ会社だ」と分かることを優先しています。
+
+  3. カラフル＝色数ではなく、色面のメリハリ
+     ページの70%以上は白と水色。差し色3色は該当する工事の話をしている
+     ときだけ登場します。4色が同時に並ぶのは3か所（ロゴマーク／特殊塗装
+     カード／フッターの帯）だけに限定し、ここが「会社全体を指す場所」だと
+     分かるようにしました。
+
+  4. 御社の一番の強みを構造の中心に
+     既存サイトの Point「経験豊富な職人／自社施工／アフターサポート」を
+     並列カードで並べるのをやめ、「自社施工」1本に絞って独立セクション化。
+     "その職人、御社の社員ですか" という問いを見出しに置いています。
+
+  5. 採用情報をトップに載せた
+     既存の採用ページの文章（元調理師の20代、社長手作りのしおり、口うるさく
+     言わない）が、この会社で一番人柄の出ている部分でした。ポップで元気な
+     会社という印象は、キャッチコピーより採用ページの事実が作ります。
+
+  ----------------------------------------------------------------
+  【AI感を減らすために行ったこと】
+  ----------------------------------------------------------------
+  ■ 配色
+   ・色に必ず参照元がある（水色＝既存ブランド色、若草＝ウレタン防水塗膜の
+     定番色、山吹＝陽と雪を受ける屋根）。感覚で選んだ色を1色も置いていない
+   ・グラデーションは2種類しか定義していない（--grad-sky / --grad-warm）。
+     角度は両方 38deg に固定＝ローラーを下から上へ押し上げる手の角度。
+     虹グラデ・多色グラデ・意味のない背景グラデは0か所
+   ・パステルの淡色面で全セクションを塗り分ける（AIサイトの定番）をやめ、
+     濃色面は紺 #06293D の2セクションだけに絞った
+
+  ■ レイアウト
+   ・非対称を意図的に配置：ヒーローは写真の上に左寄せ1カラム、色ルール1:1.12、自社施工1:1で
+     写真側にタグを重ね、業務内容は6カラムグリッドに span3/span2 を
+     混在させて等分割を崩している
+   ・見出しの型を6種類使い分け（ttl-a / ttl-b / ttl-c ＋ 罫線型・チップ型・
+     中央揃え型）。「ラベル＋大見出し＋3カード」の反復を1度もしていない
+   ・角丸をほぼ全廃（色見本・塗料缶・足場は直角）。角丸ピル型バッジの
+     多用というAIサイトの癖を避けた
+   ・アイコン3個並べの「強み」セクション、01〜05の番号付きカード、
+     絵文字、フラットベクターイラストは不使用
+
+  ■ 文字
+   ・サイズを4階層に分けてリズムを作る（hero 31-70px / ttl 20-48px /
+     lead 15-17.5px / small 13px）。数字と英字だけ等幅にして質感を変えた
+   ・「〜を実現します」「お気軽に」「安心」「高品質」「豊富な実績」
+     「お客様に寄り添う」は1度も使っていない（既存サイトにある
+     「お気軽にお問い合わせください」もあえて置き換え）
+   ・短文と長文を混ぜた。「下請けに出しません。」の直後に長い説明を置く、
+     という緩急を全セクションで作っている
+   ・抽象語を数字と固有名詞に置換：
+       「実績豊富」→「1995年から31年目」「職人19人」「40代13名」
+       「安心の自社施工」→「見積りを書いた人間が、そのまま現場に立つ」
+       「万全なアフターサポート」→「終わったあとも同じ番号につながる」
+   ・都合の悪いことも書いた（冬は外部塗装不可、当日中に金額は出さない、
+     見積り後の断りOK、保証年数は口頭で約束しない）
+   ・事実として確認できない情報は書かない。保証年数・価格・施工実績件数は
+     一切創作せず、「見積書に明記します」の表現で処理した
+   ・フォームのプレースホルダーを実際の相談文の体裁にした
+     （築18年／南側の外壁／来春の工事）
+
+  ■ 実装
+   ・外部フォント／CDN／外部スクリプトへの依存ゼロ。図版はこのファイル内のSVG
+   ・写真はご提供のメインビジュアル1点のみ。残り15か所は「差し替え枠＋撮影メモ」。
+     フリー素材・生成画像を使わないことで、写真とデザインの温度差が出るのを防いでいる
+   ・アニメーションは2種類だけ（ヒーローの塗り跡、スクロールの18px上昇）。
+     prefers-reduced-motion で無効化
+   ・FAQは<details>、フォームは縦積みラベル＋必須バッジという定石構成を維持
+     （ご指示どおり、機能面では冒険しない）
+
+  ----------------------------------------------------------------
+  【2026-08-04 改訂：制作ルール（営業/CLAUDE.md）に沿った自己レビューの反映】
+  ----------------------------------------------------------------
+  2-1「装飾パターンの禁止」に自分で抵触していた4点を作り直した。
+   ・工事の流れ：色付きの通し番号＋横罫で区切るプロセスリスト
+     → 番号と罫線を全廃。10工程を4つのフェーズにまとめ、
+       フェーズごとに字下げを一段深くして進行を表した（余白と位置のズレで区切る）
+   ・自社施工の4項目：01〜04の色付き番号＋横罫
+     → 番号・罫線を全廃。余白の量と、偶数項目の字下げだけで区切る
+   ・「札幌で塗るなら、いつ？」：薄い背景＋左に太い縦棒のコラム箱
+     → 12か月×4行の施工可否表に置換。装飾ではなく資料になり、
+       かつ「室内（朱）だけ冬も動ける」という色ルールの実演にもなっている
+   ・フォーム上の注記：同じくコラム箱 → 箱を外し、字下げと余白だけの注記に
+
+  あわせて、色の意味を薄めていた4か所を修正した（色＝家のどこ、のルール厳守）。
+   ・拠点マーカー（本社/北営業所/作業場）に山吹・若草を使っていた → 墨に統一
+   ・会社概要の見出し罫に山吹（＝屋根）を使っていた → 墨に
+   ・CTA脇の四角に山吹 → 無彩色に
+   ・ヒーローの塗り跡が2本あり、片方が山吹だった
+     → 塗り跡は水色1本だけに。「うち」は下線ではなく文字サイズで強調
+
+  ----------------------------------------------------------------
+  【2026-08-04 改装：反復していた処理の解体】
+  ----------------------------------------------------------------
+   ・業務内容 … 7件を同じカードで並べるのをやめ、主力2件（外壁・屋根）だけ
+     「大きな写真＋文章」に。写真の左右と比率（1.18:1 ↔ 1:1.18）を反転させて
+     非対称にした。残り5件は箱も罫線も影も持たない索引へ。
+     → カードという処理そのものがサイトから消えた
+   ・数字帯 … 4つの数字を等分に並べる型を廃止し、職人の年代構成を1枚の図に。
+     20代2／30代4／40代13／50代〜1 を四角の並びで見せ、40代の行だけ白で塗る。
+     出典が異なり合計が19人と一致しないことも、注記で正直に書いた
+   ・施工事例 … 6件均等をやめ、代表1件をフル幅（工事・建物・工期・塗った面の
+     定義リスト付き）、残り5件は 3+2 のリズムで小さく
+   ・スクロール表示 … 38要素への一律適用をやめ、3か所だけに絞った
+     （家の断面図／代表事例／CTAボックス）
+   ・写真枠 … 引き(-wide) / 寄り(-close) / 縦(-tall) / 正方(-sq) の4種に描き分け。
+     比率・下地・メモ位置を変え、左上の種別ラベルで撮影指示書としても使えるようにした
+
+  ----------------------------------------------------------------
+  【2026-08-04 第3回：禁止パターン1・2の全数除去】
+  ----------------------------------------------------------------
+  ■ 禁止1「短い罫線を見出しの上に置く」… 8か所で使用していた
+   ・見出し上の水色バー（56×4px）を3セクションから全廃
+   ・索引5件の色バー（30×5px）を全廃 → 色は「床」「室内」等の文字そのものに乗せた
+  ■ 禁止2「色付き四角＋英字ラベルの横並び」… 26か所で使用していた
+   ・全13セクションの英字ラベル（.chip）を全廃。セクションの入りは
+     業務内容＝見出しを右へ字下げ／FAQ＝中央／施工事例＝見出し左・注記右、
+     というように「配置のズレ」で作り分けた
+   ・施工事例の色四角＋"wall + roof" → 「塗った面は壁と屋根。」（色を文字色に乗せる）
+   ・拠点名の頭の四角、CTA脇の四角、会社概要の箇条書きの四角を全廃
+  ■ 残した色ブロック（装飾ではなく情報。いずれもサイト内で1回だけ）
+   ・色のルールの色見本 … 色の定義そのもの
+   ・施工可否表 … 12か月×4区分のデータ
+   ・職人の年代構成 … 20人の内訳データ
+   ・ヒーロー下端とフッターの4色帯 … 全幅の帯であり、見出し上の短い罫線ではない
+
+  ----------------------------------------------------------------
+  【公開前に差し替えが必要な箇所】
+  ----------------------------------------------------------------
+   ・写真15か所（[写真差し替え枠]で検索）
+   ・施工事例6件（現状はダミー。物件名・工期・色番号を実データへ）
+   ・従業員数19人＝2011年11月現在の記載。最新の人数をご確認ください
+   ・対応エリアの市町村リスト（現状は札幌市10区＋近郊4市町の想定）
+   ・受付時間「8:00〜17:00・日曜休」は採用ページの勤務時間から推定。要確認
+   ・フォームの送信先（既存の form.cgi 等へ接続）
+   ・ヘッダーの提案注記バー（#notice）と、フッター右下の注記を削除
+   ・ロゴマークは仮。実際のロゴデータに差し替え
+  ================================================================
+-->
+</body>
+</html>
