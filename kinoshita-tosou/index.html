@@ -110,8 +110,8 @@ ul,ol{margin:0;padding:0;list-style:none}
   overflow:visible;
 }
 .sec-en{
-  position:absolute;right:0;top:50%;
-  transform:translateY(-50%);
+  position:absolute;right:0;top:12%;
+  transform:none;
   font-family:var(--mincho);font-weight:600;
   font-size:clamp(3.6rem,11vw,8rem);line-height:1;
   letter-spacing:.01em;color:#E8E8E8;
@@ -122,7 +122,8 @@ ul,ol{margin:0;padding:0;list-style:none}
 .sec-head.is-center{text-align:center}
 .sec-head.is-center .sec-en{
   left:50%;right:auto;
-  transform:translate(-50%,-50%);
+  transform:translateX(-50%);
+  top:8%;
   color:#EDEDED;
 }
 .sec-head.is-center .sec-lead{margin-inline:auto}
@@ -135,12 +136,14 @@ ul,ol{margin:0;padding:0;list-style:none}
 }
 .sec-head.is-tight .sec-en{
   font-size:clamp(2.8rem,7.5vw,5.2rem);
+  top:10%;
 }
 .faq .sec-head{
   padding-block:clamp(44px,6.5vw,72px) clamp(16px,2vw,24px);
 }
 .faq .sec-head .sec-en{
   font-size:clamp(3.6rem,12vw,6.4rem);
+  top:6%;
 }
 .about .sec-head{
   padding-block:clamp(44px,6.5vw,68px) clamp(16px,2.2vw,28px);
@@ -148,17 +151,51 @@ ul,ol{margin:0;padding:0;list-style:none}
 .about .sec-en{
   font-size:clamp(2.4rem,5.8vw,4.4rem);
   right:0;
+  top:12%;
 }
 
 .head-meta{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:12px 24px;overflow:visible}
 .head-meta .sec-head{flex:1 1 auto;min-width:min(100%,220px);overflow:visible}
 .head-meta .meta{position:relative;z-index:1;font-size:.72rem;letter-spacing:.1em;color:var(--ink-mute);white-space:nowrap;padding-bottom:6px}
+
+/* SP：横揺れ防止＋欧文を見出しの上方へ */
 @media(max-width:760px){
-  .sec-en{font-size:clamp(2.6rem,16vw,4.2rem);right:0}
-  .sec-head.is-center .sec-en,
-  .faq .sec-head .sec-en{font-size:clamp(3rem,20vw,5rem)}
+  html,body{overflow-x:clip}
+  .wrap,.sec-head,.head-meta,.about-grid,.hero,.menu-list,.cases{
+    max-width:100%;
+  }
+  .sec-head{
+    overflow-x:clip;
+    padding-top:clamp(2.4rem,12vw,3.4rem);
+    padding-bottom:clamp(8px,2vw,14px);
+  }
+  .sec-en{
+    top:0;right:auto;left:0;
+    font-size:clamp(2.2rem,11vw,3.2rem);
+    line-height:1;
+    opacity:.95;
+  }
+  .sec-head.is-center .sec-en{
+    left:50%;right:auto;
+    transform:translateX(-50%);
+    top:0;
+    font-size:clamp(2.4rem,13vw,3.4rem);
+  }
+  .sec-head.is-tight,
+  .faq .sec-head,
+  .about .sec-head{
+    padding-top:clamp(2.2rem,11vw,3.2rem);
+    padding-bottom:clamp(8px,2vw,12px);
+  }
   .sec-head.is-tight .sec-en,
-  .about .sec-en{font-size:clamp(2.4rem,14vw,3.8rem)}
+  .faq .sec-head .sec-en,
+  .about .sec-en{
+    font-size:clamp(2rem,10vw,2.8rem);
+    top:0;
+  }
+  .sec-head .sec-title{
+    margin-top:.15em;
+  }
 }
 
 /* ===== 撮影メモ付きプレースホルダー ============================= */
@@ -926,7 +963,7 @@ section[id],main[id]{scroll-margin-top:104px}
   <section class="menu is-paint" id="paint-menu">
     <div class="wrap">
       <div class="sec-head is-summer reveal">
-        <span class="sec-en" aria-hidden="true">Painting</span>
+        <span class="sec-en" aria-hidden="true">Service</span>
         <h2 class="sec-title">塗装メニュー</h2>
         <p class="sec-lead">屋根・外壁を中心に、内部塗装や付帯部まで自社施工します。全て手塗り3回塗りです。</p>
       </div>
